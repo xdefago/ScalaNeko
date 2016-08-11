@@ -22,8 +22,15 @@ the way distributed algorithms would be expressed in that model.
 ScalaNeko was successfully used as programming support for lectures on
 distributed systems at [JAIST](www.jaist.ac.jp) and at Hiroshima University.
 
-Ocelot, a successor to ScalaNeko, will be used in future lectures at
-Tokyo Institute of Technology.
+This version of ScalaNeko is useable but rough around the edges.
+The documentation generated through scaladoc provide some information on how to use it and its
+syntax, but it is partly stale. Although the repository is made public, we do not consider it
+to be easily useable without explicit instructions.
+Anyone is free to install and use ScalaNeko in its current form, but this is at your own risk and
+no support will be offered about it.
+In contrast, we are currently developing Ocelot, a successor to ScalaNeko. It will be used in
+future lectures at [Tokyo Institute of Technology](www.titech.ac.jp) and we intend to provide a
+complete documentation and full support for it.
 
 ### <a name="Refs"></a> References
 
