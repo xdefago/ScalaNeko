@@ -26,3 +26,8 @@ trait TopologyFactory
 {
   def apply(n: Int): Topology
 }
+
+object TopologyFactory
+{
+  def apply(topology: Topology): TopologyFactory = (_: Int) => topology
+}
