@@ -43,7 +43,7 @@ class DispatcherSpec extends FlatSpec
 
   it should "register and unregister Receivers properly" in {
     val disp = Dispatcher.withClassLookup()
-    val receivers = for (i <- 1 to numIterations) yield DummyReceiver { ev => }
+    val receivers = for (i <- 1 to numIterations) yield DummyReceiver { ev => i }
     val msgClasses = IndexedSeq(classOf[DummyMessageA], classOf[DummyMessageB], classOf[DummyMessageC])
     val expectedCount = IndexedSeq(4, 7, 10) // NB: not generic !!
 
@@ -177,7 +177,7 @@ class DispatcherSpec extends FlatSpec
     assertResult(Seq(receiver2))(disp.protocolsFor(SignalB.getClass))
   }
 
-  it should "be NOT BE able to match subclasses of messages" in {
+  it should "be UNABLE to match subclasses of messages" in {
     abstract class DummyContentBase(from: PID, to: Set[PID], id: MessageID) extends MulticastMessage(from,to,id)
     case class DummyContentSubclassA(from: PID, to: Set[PID], info: String, id: MessageID=MessageID.auto())
       extends DummyContentBase(from,to,id)
