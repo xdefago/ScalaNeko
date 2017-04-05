@@ -32,7 +32,7 @@ import scala.language.reflectiveCalls
  * mixin trait to provide support to listening to a message type.
  */
 trait ListenerUtils extends Listener
-{ this: { def dispatcher : Dispatcher } =>
+{ this: { def dispatcher : neko.kernel.Dispatcher } =>
   protected[this] def listenTo(clazz: Class[_ <: Event])
   {
     dispatcher.registerFor(clazz, this)
