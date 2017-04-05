@@ -4,14 +4,16 @@ name := "ScalaNeko"
 
 organization := "jp.ac.titech.c.coord"
 
-version := "0.15"
+version := "0.17-SNAPSHOT"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.1"
 
 
 initialCommands in console := "import neko._"
 
 scalacOptions in (Compile,doc) ++= Seq("-groups", "-implicits")
+
+scalacOptions += "-deprecation"
 
 libraryDependencies ++= Seq(
   /*
@@ -21,22 +23,32 @@ libraryDependencies ++= Seq(
   /*
    *  Logging
    */
-  "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0",
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
   "ch.qos.logback" % "logback-classic" % "1.1.7",
   /*
    *  Graphs
    */
-  "com.assembla.scala-incubator" %% "graph-core" % "1.11.0"
+  "org.scala-graph" %% "graph-core" % "1.11.4"
 )
 
 // libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.1.2"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.6" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 
-publishTo := Some(Resolver.ssh("Defago at JAIST", "www.jaist.ac.jp", "public_html/sbt-repo") as "defago" withPermissions "0644")
+//publishTo :=
+//  Some (
+//    Resolver.ssh ("Defago at Tokyo Tech", "web-o1.noc.titech.ac.jp", "www/sbt-repo") as
+//    "c0004" withPermissions "0644"
+//  )
+
+// TO USE:
+//resolvers += "Defago at Tokyo Tech" at "http://www.coord.c.titech.ac.jp/sbt-repo"
+//libraryDependencies += ("jp.ac.titech.c.coord.defago" %% "scalaneko" % "0.15")
+
+
+//publishTo := Some(Resolver.ssh("Defago at JAIST", "www.jaist.ac.jp", "public_html/sbt-repo") as "defago" withPermissions "0644")
 
 // HAS ISSUES: publishTo := Some(Resolver.file("Defago at JAIST", Path.userHome / "Dropbox" / "Web" / "JAIST" / "public_html" / "sbt-repo"))
-
 
 // TO USE:
 //resolvers += "Defago at JAIST" at "https://www.jaist.ac.jp/~defago/sbt-repo"
