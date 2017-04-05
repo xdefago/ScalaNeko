@@ -22,10 +22,10 @@ the way distributed algorithms would be expressed in that model.
 ScalaNeko was successfully used as programming support for lectures on
 distributed systems at [JAIST](www.jaist.ac.jp) and at Hiroshima University.
 
-This version of ScalaNeko is useable but rough around the edges.
+This version of ScalaNeko is usable but rough around the edges. Use at your own risks!
 The documentation generated through scaladoc provide some information on how to use it and its
 syntax, but it is partly stale. Although the repository is made public, we do not consider it
-to be easily useable without explicit instructions.
+to be easily usable without explicit instructions.
 Anyone is free to install and use ScalaNeko in its current form, but this is at your own risk and
 no support will be offered about it.
 In contrast, we are currently developing Ocelot, a successor to ScalaNeko. It will be used in
