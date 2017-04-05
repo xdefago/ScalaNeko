@@ -71,9 +71,8 @@ object Initializer
   }
 
   def fromMap(configMap: Map[String, _<:Any]): Config = {
-    import scala.collection.JavaConversions._
-    val convertedMap = configMap.mapValues( _.asInstanceOf[AnyRef] )
-    ConfigFactory.parseMap(convertedMap)
+    import scala.collection.JavaConverters._
+    ConfigFactory.parseMap(configMap.asJava)
   }
 
   def fromFile(file: File): Config = { ConfigFactory.parseFile(file) }
