@@ -93,3 +93,38 @@ class NekoMain(
   logger.info("Exiting")
 }
 
+
+class Main (
+    topology: Topology,
+    logLevel : Level = Level.ERROR,
+    logFile  : Option[String] = None,
+    withTrace : Boolean = false
+)(initializer: ProcessInitializer)
+extends App
+{
+  val N = topology.size
+  val topoFactory = TopologyFactory(topology)
+  
+  private final val root = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME).asInstanceOf[LogbackLogger]
+  root.setLevel(logLevel)
+
+  final val logger: Logger = LoggerFactory.getLogger(classOf[Main])
+
+  private val config     = Initializer.configFor(N, classOf[ProcessInitializer], logLevel, logFile)
+  private val nekoConfig = NekoConfig(config, initializer, topology)
+
+  if (withTrace) {
+    neko.trace.Tracing.defaultTracer_=(neko.trace.Tracer.consoleOnly)
+  }
+
+  logger.info("Starting")
+
+  val system: NekoSystem = new NekoSimSystem(nekoConfig)
+
+  system.mainloop(
+    onFinish = {t =>
+      logger.info(s"Simulation ended normally at time ${t.asSeconds} (${t.asNanoseconds}})")
+    })
+
+  logger.info("Exiting")
+}

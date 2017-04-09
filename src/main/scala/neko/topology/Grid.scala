@@ -39,9 +39,11 @@ object Grid extends TopologyFactory
   {
     val N    = range.size
     val side = math.ceil(math.sqrt(N)).toInt
-
-    Topology.from ( Topology.gridOf (side, side, range.min) )
+    this(side, side, range.min)
   }
 
   def apply(n: Int) : Topology = this.apply(0 until n)
+  
+  def apply(width: Int, height: Int, start: Int = 0, withDiagonals: Boolean = false) : Topology =
+    Topology.from( Topology.gridOf(width, height, start, withDiagonals) )
 }

@@ -207,4 +207,10 @@ object ProcessInitializer
         .asSubclass(classOf[ProcessInitializer])
         .newInstance()
     }
+  
+  def apply(initializer: ProcessConfig => Unit): ProcessInitializer =
+    new ProcessInitializer
+    {
+      forProcess(initializer)
+    }
 }

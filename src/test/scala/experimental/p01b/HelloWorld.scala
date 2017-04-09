@@ -1,8 +1,6 @@
-package neko.util
-
 /**
  *
- * Copyright 2014 Xavier Defago
+ * Copyright 2015 Xavier Defago
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,25 +16,29 @@ package neko.util
  *
  * Created by IntelliJ IDEA.
  * User: defago
- * Date: 20/06/2014
- * Time: 14:43
+ * Date: 10/06/15
+ * Time: 15:59
  *
  */
+package experimental.p01b
 
 import neko._
+import neko.topology.Clique
 
 
-trait LeaderElectionClient
-{ this: Receiving with Listener =>
-  
-  def candidate() { SEND(LeaderElectionClient.Candidate) }
-  
-  listenTo(classOf[LeaderElectionClient.Elected])
-}
-
-
-object LeaderElectionClient
+class MyProcess(c: ProcessConfig) extends ActiveProtocol(c)
 {
-  case object Candidate extends Signal
-  case class Elected(leader: Option[PID]) extends Signal
+  def run (): Unit =
+  {
+    println(s"Hello World! ${me.name}")
+  }
 }
+
+
+object HelloWorld extends Main(
+  topology = Clique(4),
+  logLevel=ch.qos.logback.classic.Level.OFF
+)(
+  ProcessInitializer { p => new MyProcess(p) }
+)
+

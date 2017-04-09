@@ -4,7 +4,7 @@ name := "ScalaNeko"
 
 organization := "jp.ac.titech.c.coord"
 
-version := "0.17-SNAPSHOT"
+version := "0.18-SNAPSHOT"
 
 scalaVersion := "2.12.1"
 
@@ -34,6 +34,12 @@ libraryDependencies ++= Seq(
 // libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.1.2"
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+
+
+
+publishTo := Some(
+  Resolver.file("scalaneko", file(Path.userHome.absolutePath + "/GithubLocal/sbt-repo"))
+)
 
 //publishTo :=
 //  Some (

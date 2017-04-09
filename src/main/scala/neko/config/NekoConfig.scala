@@ -25,12 +25,12 @@ package neko.config
 import com.typesafe.config.Config
 import neko.NekoProcessInitializer
 import neko.network.Network
-import neko.topology.TopologyFactory
+import neko.topology.{ Topology, TopologyFactory }
 
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 
-class NekoConfig(config: Config, topologyDescriptor: TopologyFactory)
+class NekoConfig(config: Config, init: Try[NekoProcessInitializer], topologyDescriptor: TopologyFactory)
 {
   import scala.collection.JavaConverters._
 
@@ -45,7 +45,7 @@ class NekoConfig(config: Config, topologyDescriptor: TopologyFactory)
 
   val process = new NekoConfig.ProcessConf {
     val initializerName = config.getString(CF.PROCESS_INIT)
-    val initializer     = NekoProcessInitializer.forName(initializerName)
+    val initializer     = init // NekoProcessInitializer.forName(initializerName)
   }
 
   val sys = new NekoConfig.SystemConf {
@@ -61,8 +61,14 @@ class NekoConfig(config: Config, topologyDescriptor: TopologyFactory)
 object NekoConfig
 {
   def apply(config: Config, topologyDescriptor: TopologyFactory): NekoConfig =
-    new NekoConfig(config, topologyDescriptor)
+    new NekoConfig(
+      config,
+      NekoProcessInitializer.forName(config.getString(CF.PROCESS_INIT)),
+      topologyDescriptor)
 
+  def apply(config: Config, init: NekoProcessInitializer, topo: Topology): NekoConfig =
+    new NekoConfig(config, Success(init), TopologyFactory(topo) )
+  
   trait SystemConf
   {
     def N: Int
