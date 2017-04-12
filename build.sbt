@@ -2,9 +2,9 @@ import scala.util.matching.Regex.Match
 
 name := "ScalaNeko"
 
-organization := "jp.ac.titech.c.coord"
+organization := "titech.c.coord"
 
-version := "0.18-SNAPSHOT"
+version := "0.18.0"
 
 scalaVersion := "2.12.1"
 
@@ -40,6 +40,12 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 publishTo := Some(
   Resolver.file("scalaneko", file(Path.userHome.absolutePath + "/GithubLocal/sbt-repo"))
 )
+
+// to use:
+//   resolvers += "titech.c.coord" at "https://github.com/xdefago/sbt-repo/"
+//   libraryDependencies += "titech.c.coord" %% "ocelot" % <version>
+
+
 
 //publishTo :=
 //  Some (
