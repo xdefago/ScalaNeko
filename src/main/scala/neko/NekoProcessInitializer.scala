@@ -131,10 +131,10 @@ object NekoProcessInitializer
  * {
  *   forProcess { p =>
  *     // create protocols
- *     val app   = p.register(new MutexApplication(p))
- *     val clock = p.register(new protocol.LamportClock(p))
- *     val mutex = p.register(new LamportMutex(p, clock))
- *     val fifo  = p.register(new protocol.FIFOChannel(p))
+ *     val app   = new MutexApplication(p)
+ *     val clock = new protocol.LamportClock(p)
+ *     val mutex = new LamportMutex(p, clock)
+ *     val fifo  = new protocol.FIFOChannel(p)
  *
  *     // connect protocols
  *     app   --> mutex
@@ -144,7 +144,25 @@ object NekoProcessInitializer
  * }
  * }}}
  *
- * Without a call to [[ProcessInitializer.forProcess]], the initializer does nothing by default, thus resulting in
+ * Below is an alternative to create an initializer that is more adapted to
+ * use as argument with the [[neko.Main]] class.
+ * {{{
+ * ProcessInitializer { p =>
+ *   // create protocols
+ *   val app   = new MutexApplication(p)
+ *   val clock = new protocol.LamportClock(p)
+ *   val mutex = new LamportMutex(p, clock)
+ *   val fifo  = new protocol.FIFOChannel(p)
+ *
+ *   // connect protocols
+ *   app   --> mutex
+ *   mutex --> clock
+ *   clock --> fifo
+ * }
+ * }}}
+ *
+ *
+ * Without a call to [[ProcessInitializer$.forProcess]], the initializer does nothing by default, thus resulting in
  * an "empty" process.
  */
 trait ProcessInitializer extends Function[ProcessConfig, Unit] with NekoProcessInitializer
@@ -163,10 +181,10 @@ trait ProcessInitializer extends Function[ProcessConfig, Unit] with NekoProcessI
    * {
    *   forProcess { p =>
    *     // create protocols
-   *     val app   = p.register(new MutexApplication(p))
-   *     val clock = p.register(new protocol.LamportClock(p))
-   *     val mutex = p.register(new LamportMutex(p, clock))
-   *     val fifo  = p.register(new protocol.FIFOChannel(p))
+   *     val app   = new MutexApplication(p)
+   *     val clock = new protocol.LamportClock(p)
+   *     val mutex = new LamportMutex(p, clock)
+   *     val fifo  = new protocol.FIFOChannel(p)
    *
    *     // connect protocols
    *     app   --> mutex
