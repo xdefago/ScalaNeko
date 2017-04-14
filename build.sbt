@@ -11,7 +11,9 @@ scalaVersion := "2.12.1"
 
 initialCommands in console := "import neko._"
 
-scalacOptions in (Compile,doc) ++= Seq("-groups", "-implicits")
+scalacOptions in (Compile,doc) ++= Seq("-groups", "-implicits", "-author", "-diagrams")
+
+scalacOptions in (Compile,doc) ++= Seq("-skip-packages", "experimental:nekox")
 
 scalacOptions += "-deprecation"
 
@@ -19,7 +21,7 @@ libraryDependencies ++= Seq(
   /*
    *  Configuration
    */
-  "com.typesafe" % "config" % "1.3.0",
+  "com.typesafe" % "config" % "1.3.1",
   /*
    *  Logging
    */

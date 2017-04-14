@@ -29,6 +29,7 @@ import neko.kernel.{Initializer, NekoSystem}
 import neko.topology._
 import org.slf4j.{Logger, LoggerFactory}
 
+
 /**
  * Basic class used to define the system.
  *
@@ -49,16 +50,10 @@ import org.slf4j.{Logger, LoggerFactory}
  * @param logLevel          optionally sets the log level (default is OFF)
  * @param logFile           optionally provides a filename on which to write logs (not yet supported)
  */
-
-// TODO: Change so that one gives the topology itself, and that N is calculated based on it
-// TODO: Output a report of settings (incl. topology) to the console at the beginning of the execution
-// TODO: Output a report with statistics at the end of the execution
-// TODO: rationalize the output of traces
-//
-// longer term:
-// TODO: see about providing an optional GUI to output the console of processes, network, system
-// TODO: reintegrate support for actual distributed execution (rely on Akka?)
-
+@deprecated(
+  message = "The class neko.NekoMain has been deprecated in favor of the class neko.Main.",
+  since="0.18.0"
+)
 class NekoMain(
   N : Int,
   initializer : Class[_<:NekoProcessInitializer],
@@ -69,6 +64,15 @@ class NekoMain(
   )
   extends App
 {
+  // TODO: Change so that one gives the topology itself, and that N is calculated based on it
+  // TODO: Output a report of settings (incl. topology) to the console at the beginning of the execution
+  // TODO: Output a report with statistics at the end of the execution
+  // TODO: rationalize the output of traces
+  //
+  // longer term:
+  // TODO: see about providing an optional GUI to output the console of processes, network, system
+  // TODO: reintegrate support for actual distributed execution (rely on Akka?)
+  
   private final val root = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME).asInstanceOf[LogbackLogger]
   root.setLevel(logLevel)
 
@@ -94,6 +98,27 @@ class NekoMain(
 }
 
 
+/**
+ * Basic class used to define the system.
+ *
+ * An object that extends this class will act as a replacement for the main object, and also as a
+ * replacement for the configuration file used in original Neko.
+ * The parameters are used to create the system. This must provide the network topology (for which
+ * the number of processes is inferred),
+ * as well an initializer for the processes (see [[neko.ProcessInitializer]]).
+ *
+ * For instance, the code below declares a system consisting of three processes, each of which is
+ * initialized by the process initializer provided:
+ * {{{
+ * object MyMain extends Main(topology.Clique(3))(ProcessInitializer { p=> ... })
+ * }}}
+ *
+ * @param topology     network topology (see [[neko.topology]])
+ * @param initializer  the initializer of processes
+ * @param logLevel     optionally sets the log level (default is OFF)
+ * @param logFile      optionally provides a filename on which to write logs (not yet supported)
+ * @param withTrace    controls the generation of a trace of network events (send and receive)
+ */
 class Main (
     topology: Topology,
     logLevel : Level = Level.ERROR,
@@ -102,6 +127,14 @@ class Main (
 )(initializer: ProcessInitializer)
 extends App
 {
+  // TODO: Output a report of settings (incl. topology) to the console at the beginning of the execution
+  // TODO: Output a report with statistics at the end of the execution
+  // TODO: rationalize the output of traces
+  //
+  // longer term:
+  // TODO: see about providing an optional GUI to output the console of processes, network, system
+  // TODO: reintegrate support for actual distributed execution (rely on Akka?)
+
   val N = topology.size
   val topoFactory = TopologyFactory(topology)
   

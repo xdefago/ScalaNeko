@@ -60,6 +60,29 @@ trait Listener extends Receiver
 trait Receiving extends Receiver
 {
   def deliver(m: Event) { this.synchronized { onReceive(m) } }
+  
+  /**
+   * Implements the behavior of the protocol when receiving a message (or signal).
+   *
+   *
+   * This must be defined in any concrete subclass.
+   * It is defined as a partial function taking a message as input and returning nothing.
+   *
+   * Typically, the partial function will implement different behavior depending on the type of
+   * message being sent. For instance,
+   * {{{
+   *   def onReceive = {
+   *     case Token(from, _, _) if parent.isEmpty =>
+   *       parent   = Some(from)
+   *       children = (neighbors-from).toList
+   *       DELIVER (Visit)
+   *       visitNextChild()
+   *     case Token(_, _, _) => visitNextChild()
+   *   }
+   * }}}
+   *
+   * @return
+   */
   def onReceive : PartialFunction[Event, Unit]
 
   protected[this] def sender : Sender

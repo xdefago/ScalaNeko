@@ -44,7 +44,7 @@
  *  - The system is what handles the execution engine within the virtual machine and the
  *    initialization procedure. There is exactly one instance running for every virtual machine.
  *    The system also holds a discrete event simulator.
- *    See [[neko.NekoMain]] and [[neko.kernel.NekoSystem]].
+ *    See [[neko.Main]] and [[neko.kernel.NekoSystem]].
  *
  *  - The network simulates the behavior of a network, and is responsible for transmitting messages
  *    between processes. In the current version, it is running over a discrete-event simulation.
@@ -172,7 +172,7 @@
  * Most protocols in a process are reactive.
  * A reactive protocol is usually sandwiched between a
  * network and an application (or a lower-level protocol and a higher-level one).
- * The simplest way to implement one is by extending [[ReactiveProtocol]]. The information
+ * The simplest way to implement one is by extending [[neko.ReactiveProtocol]]. The information
  * has two flows: downstream and upstream. This is illustrated in the figure below.
  * {{{
  *             application
@@ -251,43 +251,39 @@
  *
  * ==4. Initialization of a process==
  *
- * While processes are created automatically, their protocols are not, and must be initializes and
- * connected. This is done through a process initializer, by defining a subclass of
- * [[neko.NekoProcessInitializer]], whose sole role is to create the protocols of a process and
- * combine them. An initializer is really a function of which the code is in method
- * [[neko.NekoProcessInitializer.apply]], and is defined as follows:
+ * While processes are created automatically, their protocols are not, and must be initialized and
+ * connected. This is done through a process initializer, by providing an instance of
+ * [[neko.ProcessInitializer]], whose sole role is to create the protocols of a process and
+ * combine them.
  * {{{
- * class PingPongInitializer extends NekoProcessInitializer
- * {
- *   override def apply (config: NekoProcessConfig): Unit =
- *   {
- *     val app  = config.register(new PingPong(config))
- *     val fifo = config.register(new FIFOChannel(config))
+ * ProcessInitializer { p =>
+ *     val app  = config.register(new PingPong(p))
+ *     val fifo = config.register(new FIFOChannel(p))
  *     app --> fifo
  *   }
- * }
  * }}}
  * In the above example, each process is initialized by executing the above code. The code creates
- * two protocols while registering them into the object `config` given as argument. Then, the two
+ * two protocols while registering them into the object `p` given as argument (which represents the
+ * process being initialized). Then, the two
  * protocols are connected such that all `SEND` operations of protocol `app` are handed to
  * protocol `fifo`. The send operations of protocol `fifo` use the default target which is
  * the network interface of the process.
  *
  * It is also possible to initialize processes differently, by discriminating based on the
- * identifier of the process to initialize. That identifier is obtained from the configuration
- * argument with [[neko.NekoProcessConfig.pid]].
+ * identifier of the process to initialize. That identifier is obtained from the argument
+ * with `p.pid`.
  *
  *
  * ==5. Setting up a new system==
  *
  * A new instance of a ScalaNeko system is created and configured by creating an object that
- * extends [[neko.NekoMain]]. The resulting object becomes a main object and is thus executable
- * ([[neko.NekoMain]] is a subclass of [[scala.App]]).
+ * extends [[neko.Main]]. The resulting object becomes a main object and is thus executable
+ * ([[neko.Main]] is a subclass of [[scala.App]]).
  *
- * Class [[neko.NekoMain]] requires to set parameters, such as the total number of processes and
- * the class of the process initializer, as illustrated below:
+ * Class [[neko.Main]] requires to set parameters, such as the network topology and
+ * the process initializer, as illustrated below:
  * {{{
- *   object PingPongApp extends NekoMain(3, classOf[PingPongInitializer])
+ *   object PingPongApp extends Main(topology.Clique(3))( ProcessInitializer { p=> ... } )
  * }}}
  *
  * Future planned versions of ScalaNeko will make it possible to define many more parameters, such

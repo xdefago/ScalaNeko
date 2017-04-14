@@ -36,7 +36,7 @@ class DispatcherSpec extends FlatSpec
 
   case class DummyReceiver(giveEvent: (Event)=>Unit) extends Receiver
   {
-    override def deliver (m: Event): Unit = { giveEvent(m) }
+    override def deliver (m: Event) = { giveEvent(m) }
   }
 
   behavior of "Dispatcher"

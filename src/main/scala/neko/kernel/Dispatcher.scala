@@ -33,7 +33,7 @@ trait Dispatcher extends Receiver
   def unregisterAllFor(clazz: Class[_<:Event]): Unit
   def protocolsFor(clazz: Class[_<:Event]) : Seq[Receiver]
 
-  def deliver(ev: Event): Unit =
+  def deliver(ev: Event) =
   {
     val protocols = this.protocolsFor(ev.getClass)
     for (proto <- protocols) {

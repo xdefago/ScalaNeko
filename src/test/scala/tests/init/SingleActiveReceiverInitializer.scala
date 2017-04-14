@@ -47,7 +47,7 @@ class SimpleActiveProtocol(config: ProcessConfig)
     }
   }
 
-  override def deliver(ev: Event): Unit = {
+  override def deliver(ev: Event) = {
     println(s"SimpleActiveProtocol > $me @ deliver $ev")
     super.deliver(ev)
   }
