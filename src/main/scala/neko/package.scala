@@ -294,6 +294,13 @@
  *  1. Péter Urbán, Xavier Défago, André Schiper:
  *     Neko: A Single Environment to Simulate and Prototype Distributed Algorithms.
  *     J. Inf. Sci. Eng. 18(6): 981-997 (2002).
+ *
+ * ==Contributors==
+ *
+ * Lead architect: Xavier Défago
+ *
+ * Other contributors:
+ *  - Naoyuki Onuki (trace system; integration with NekoViewer)
  */
 package object neko
 {
