@@ -1,6 +1,6 @@
 /**
  *
- * Copyright 2015 Xavier Defago
+ * Copyright 2015 Xavier Defago & Naoyuki Onuki
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,11 @@
  */
 package neko
 
+import neko.trace.Tracing
+
+import scala.reflect.ClassTag
+
+
 /**
  * Convenience class to replace [[ProtocolImpl]] with all common traits already mixed in.
  *
@@ -35,11 +40,42 @@ package neko
  * @param nickname  nickname of the protocol (aimed to be used for output)
  */
 abstract class ReactiveProtocol(config : ProcessConfig, nickname : String = "unnamed")
-  extends ProtocolImpl(config, nickname) with ListenerUtils with Sending with Receiving
+  extends ProtocolImpl(config, nickname)
+    with ListenerUtils
+    with Sending
+    with Receiving
+    with Tracing
 {
   /**
    * this method does nothing for reactive protocols; take downs should instead override the
    * method [[onShutdown]].
    */
   final override def onFinish(): Unit = {}
+  
+  /* from here, added for tracing message between protocols */
+  override def SEND(m: Event) = {
+    tracer.SEND(system.currentTime, me, this)(m)
+    super.SEND(m)
+  }
+  override def DELIVER(m: Event) = {
+    val protocols = dispatcher.protocolsFor(m.getClass)
+    for (proto <- protocols) {
+      tracer.DELIVER(system.currentTime, me, this)(m)
+    }
+    super.DELIVER(m)
+  }
+  override def deliver(m: Event) = {
+    tracer.deliver(system.currentTime, me, this)(m)
+    super.deliver(m)
+  }
+  override def send(m: Event) = {
+    tracer.send(system.currentTime, me, this)(m)
+    super.send(m)
+  }
+  /* until here */
+
+  def setTrace[A: tracer.ru.TypeTag: ClassTag](obj: A, nameOfVariable: String*): Unit = {
+    if (nameOfVariable.isEmpty) tracer.setTrace(obj, me, this.toString)
+    else nameOfVariable.foreach(str => tracer.setTrace(obj, me, this.toString, name = str))
+  }
 }

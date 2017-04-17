@@ -139,7 +139,7 @@ abstract class AbstractNetwork(val system: NekoSystem)
         .fold {
           logger.warn(s"Destination ${dest.name} not found for message $m")
         } { p =>
-          tracer.deliver(system.currentTime, dest)(m)
+          tracer.DELIVER(system.currentTime, dest, this)(m)
           p.deliver(m)
         }
     } else {
@@ -156,7 +156,7 @@ abstract class AbstractNetwork(val system: NekoSystem)
         logger.debug(s"Dropped signal: $e")
 
       case m: Message =>
-        tracer.send(system.currentTime, m.from)(m)
+        tracer.send(system.currentTime, m.from, this)(m)
         for (dest <- m.destinations) { sendTo(dest, m) }
     }
   }

@@ -54,14 +54,15 @@ import org.slf4j.{Logger, LoggerFactory}
   message = "The class neko.NekoMain has been deprecated in favor of the class neko.Main.",
   since="0.18.0"
 )
-class NekoMain(
-  N : Int,
-  initializer : Class[_<:NekoProcessInitializer],
-  logLevel : Level = Level.ERROR,
-  logFile  : Option[String] = None,
-  withTrace : Boolean = false,
-  topology: TopologyFactory = Clique
-  )
+class NekoMain (
+    N: Int,
+    initializer: Class[_ <: NekoProcessInitializer],
+    logLevel: Level = Level.ERROR,
+    logFile: Option[String] = None,
+    withTrace: Boolean = false,
+    TraceFile: String = "default",
+    topology: TopologyFactory = Clique
+)
   extends App
 {
   // TODO: Change so that one gives the topology itself, and that N is calculated based on it
@@ -78,12 +79,19 @@ class NekoMain(
 
   final val logger: Logger = LoggerFactory.getLogger(classOf[NekoMain])
 
-  private val config     = Initializer.configFor(N, initializer, logLevel, logFile)
-  private val nekoConfig = NekoConfig(config, topology)
-
   if (withTrace) {
+    neko.trace.Tracing.defaultTracer_=(neko.trace.Tracer.fileOnly(TraceFile, N, topology))
+  } else {
     neko.trace.Tracing.defaultTracer_=(neko.trace.Tracer.consoleOnly)
   }
+  
+  
+  private val config     = Initializer.configFor(N, initializer, logLevel, logFile)
+  private val nekoConfig = NekoConfig(config, topology, neko.trace.Tracing.defaultTracer)
+
+//  if (withTrace) {
+//    neko.trace.Tracing.defaultTracer_=(neko.trace.Tracer.consoleOnly)
+//  }
 
   logger.info("Starting")
 
@@ -144,7 +152,7 @@ extends App
   final val logger: Logger = LoggerFactory.getLogger(classOf[Main])
 
   private val config     = Initializer.configFor(N, classOf[ProcessInitializer], logLevel, logFile)
-  private val nekoConfig = NekoConfig(config, initializer, topology)
+  private val nekoConfig = NekoConfig(config, initializer, topology, neko.trace.Tracing.defaultTracer)
 
   if (withTrace) {
     neko.trace.Tracing.defaultTracer_=(neko.trace.Tracer.consoleOnly)

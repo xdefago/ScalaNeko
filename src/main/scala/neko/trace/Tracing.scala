@@ -25,7 +25,7 @@ package neko.trace
 
 trait Tracing
 {
-  protected val tracer: EventTracer = Tracing.defaulTracer
+  protected val tracer: EventTracer = Tracing.defaultTracer
 }
 
 
@@ -36,7 +36,7 @@ object Tracing
 
   def defaultTracer_=(tracer: EventTracer): Unit = currentTracer = Some(tracer)
 
-  def defaulTracer: EventTracer = currentTracer.getOrElse(Tracer.OFF)
+  def defaultTracer: EventTracer = currentTracer.getOrElse(Tracer.OFF)
 }
 
 

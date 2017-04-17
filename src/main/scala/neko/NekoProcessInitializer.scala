@@ -22,21 +22,24 @@
  */
 package neko
 
-import neko.kernel.{Dispatcher, NekoSystem}
+import neko.kernel.{ Dispatcher, NekoSystem }
+import neko.trace.EventTracer
 
 
 class NekoProcessConfig(
-  system: NekoSystem,
-  pid: PID,
-  dispatcher: Dispatcher
-) extends ProcessConfig(system, pid, dispatcher)
+    system: NekoSystem,
+    pid: PID,
+    dispatcher: Dispatcher,
+    tracer: EventTracer
+) extends ProcessConfig(system, pid, dispatcher, tracer)
 
 
 
 class ProcessConfig(
-  val system: NekoSystem,
-  val pid: PID,
-  val dispatcher: Dispatcher
+    val system: NekoSystem,
+    val pid: PID,
+    val dispatcher: Dispatcher,
+    val tracer: EventTracer
 ) {
   private var _registeredProtocols = Set.empty[Protocol]
 

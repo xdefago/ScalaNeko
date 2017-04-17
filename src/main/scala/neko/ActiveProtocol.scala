@@ -1,6 +1,6 @@
 /**
  *
- * Copyright 2014 Xavier Defago
+ * Copyright 2014 Xavier Defago & Naoyuki Onuki
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,14 @@
  */
 package neko
 
-import java.util.concurrent.{BlockingQueue, LinkedBlockingQueue}
+import java.util.concurrent.{ BlockingQueue, LinkedBlockingQueue }
 
 import com.typesafe.scalalogging.LazyLogging
 import neko.kernel.ManagedActivity
+import neko.trace.Tracing
 import neko.util.Time
+
+import scala.reflect.ClassTag
 
 /**
  * Basic class for defining active protocols; those typically at the top of the protocol stack.
@@ -46,6 +49,7 @@ abstract class ActiveProtocol(config: ProcessConfig, nickname: String = "unnamed
     with ListenerUtils
     with Runnable
     with LazyLogging
+    with Tracing
 {
   /**
    * Basic functionality for receiving together with pattern matching.
@@ -156,13 +160,23 @@ abstract class ActiveProtocol(config: ProcessConfig, nickname: String = "unnamed
 
   //override def SEND(m: Event):Unit =  { sender.send(m) }
 
-  override def deliver(event: Event) =
-    onReceive.applyOrElse(event, { e:Event =>
+  override def deliver(event: Event): Unit = {
+    onReceiveWithTrace.applyOrElse(event, { e: Event =>
       logger.trace(s"${id.name} : ENQUEUE ${e.toPrettyString}")
       messageCount.incrementAndGet()
       blockingQueue.offer(e)
     })
+  }
 
+  private def onReceiveWithTrace = {
+     val pf: PartialFunction[Event, Event] = {
+       case e: Event if onReceive.isDefinedAt(e) =>
+         tracer.deliver(system.currentTime, me, this)(e)
+         e
+     }
+     pf.andThen(onReceive)
+   }
+  
   def onReceive = PartialFunction.empty[Event,Unit]
 
   // RECEIVE EVENT QUEUE
@@ -180,6 +194,9 @@ abstract class ActiveProtocol(config: ProcessConfig, nickname: String = "unnamed
     val ev = blockingQueue.take()
     messageCount.decrementAndGet()
     logger.debug(s"${id.name} : receive() -> ${ev.toPrettyString}")
+    /* from here, added for tracing message between protocols */
+    tracer.deliver(system.currentTime, me, this)(ev)
+    /* until here */
     ev
   }
 
@@ -203,6 +220,9 @@ abstract class ActiveProtocol(config: ProcessConfig, nickname: String = "unnamed
       val ev = blockingQueue.take()
       messageCount.decrementAndGet()
       logger.debug(s"receive($withTimeout) at ${system.currentTime.asSeconds} got $ev")
+      /* from here, added for tracing message between protocols */
+      tracer.deliver(system.currentTime, me, this)(ev)
+      /* until here */
       Some(ev)
     }
   }
@@ -223,6 +243,19 @@ abstract class ActiveProtocol(config: ProcessConfig, nickname: String = "unnamed
     }
   }
 
+  /* from here, added for tracing message between protocols */
+  override def SEND(m: Event) = {
+    tracer.SEND(system.currentTime, me, this)(m)
+    super.SEND(m)
+  }
+  /* until here */
+
+  def setTrace[A: tracer.ru.TypeTag: ClassTag](obj: A, nameOfVariable: String*): Unit = {
+    if (nameOfVariable.isEmpty)
+      tracer.setTrace(obj, me, this.toString)
+    else
+      nameOfVariable.foreach(str => tracer.setTrace(obj, me, this.toString, name = str))
+  }
 }
 
 

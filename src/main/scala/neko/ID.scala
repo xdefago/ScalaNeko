@@ -209,4 +209,3 @@ object MessageID
   @deprecated(message="replace with the shorter MessageID.auto()", since="0.11")
   def autoIncrement() = auto()
 }
-

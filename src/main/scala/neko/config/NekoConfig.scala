@@ -24,13 +24,20 @@ package neko.config
 
 import com.typesafe.config.Config
 import neko.NekoProcessInitializer
+import neko.ProcessInitializer
 import neko.network.Network
 import neko.topology.{ Topology, TopologyFactory }
+import neko.trace.{ EventTracer, NullEventTracer }
 
 import scala.util.{ Success, Try }
 
 
-class NekoConfig(config: Config, init: Try[NekoProcessInitializer], topologyDescriptor: TopologyFactory)
+class NekoConfig(
+    config: Config,
+    init: Try[NekoProcessInitializer],
+    topologyDescriptor: TopologyFactory,
+    val tracer: EventTracer
+)
 {
   import scala.collection.JavaConverters._
 
@@ -45,7 +52,7 @@ class NekoConfig(config: Config, init: Try[NekoProcessInitializer], topologyDesc
 
   val process = new NekoConfig.ProcessConf {
     val initializerName = config.getString(CF.PROCESS_INIT)
-    val initializer     = init // NekoProcessInitializer.forName(initializerName)
+    val initializer     = init
   }
 
   val sys = new NekoConfig.SystemConf {
@@ -60,14 +67,29 @@ class NekoConfig(config: Config, init: Try[NekoProcessInitializer], topologyDesc
 
 object NekoConfig
 {
-  def apply(config: Config, topologyDescriptor: TopologyFactory): NekoConfig =
+  def apply(
+      config: Config,
+      topologyDescriptor: TopologyFactory,
+      tracer: EventTracer): NekoConfig =
     new NekoConfig(
       config,
       NekoProcessInitializer.forName(config.getString(CF.PROCESS_INIT)),
-      topologyDescriptor)
+      topologyDescriptor,
+      tracer
+    )
 
-  def apply(config: Config, init: NekoProcessInitializer, topo: Topology): NekoConfig =
-    new NekoConfig(config, Success(init), TopologyFactory(topo) )
+  def apply(config: Config, topologyDescriptor: TopologyFactory): NekoConfig =
+    this(config, topologyDescriptor, NullEventTracer)
+  
+  def apply(
+      config: Config,
+      init: ProcessInitializer,
+      topo: Topology,
+      tracer: EventTracer = NullEventTracer): NekoConfig =
+    new NekoConfig(config, Success(init), TopologyFactory(topo), tracer )
+  
+  def apply(config: Config, init: ProcessInitializer, topo: Topology): NekoConfig =
+    this(config, init, topo, NullEventTracer)
   
   trait SystemConf
   {
