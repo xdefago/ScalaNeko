@@ -121,13 +121,13 @@ trait EventFormatter
 object EventFormatter
 {
   sealed trait EventKind { def name: String }
-  case object SND extends EventKind { val name = "SND" }
-  case object RCV extends EventKind { val name = "RCV"}
+  case object SND   extends EventKind { val name = "SND" }
+  case object RCV   extends EventKind { val name = "RCV"}
   case object sSend extends EventKind { val name = "snd" }
   case object lSend extends EventKind { val name = "SND" }
   case object sDelv extends EventKind { val name = "dlv" }
   case object lDelv extends EventKind { val name = "DLV" }
-  case object Sig  extends EventKind { val name = "SIG"}
+  case object Sig   extends EventKind { val name = "SIG"}
 
   object SimpleEventFormatter extends EventFormatter
   {
@@ -146,7 +146,8 @@ object EventFormatter
     def stringFor(kind: EventFormatter.EventKind, time: Time, by: PID, ev: Event, who: Any): String = {
       val sKind  = formatKind(kind)
       val sTime  = formatTime(time)
-      val sEvent = formatEvent(ev)
+      val sID    = who match { case p:Protocol => p.id.toString ; case _ => "-1" }
+      val sEvent = formatEvent(ev) + s" commID($sID) MessageID(0)"
       s"[${by.name}] [$who] $sTime $sKind $sEvent"
     }
   }

@@ -147,8 +147,8 @@ object NekoProcessInitializer
  * }
  * }}}
  *
- * Below is an alternative to create an initializer that is more adapted to
- * use as argument with the [[neko.Main]] class.
+ * Below is an alternative to create an initializer that is more adapted when
+ * used as argument for the [[neko.Main]] class.
  * {{{
  * ProcessInitializer { p =>
  *   // create protocols

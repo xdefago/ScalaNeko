@@ -53,7 +53,7 @@
  *  - The processes are the basic unit of concurrency, and represent a virtual computer connected
  *    through a network. Every process has a unique identity represented by a [[neko.PID]].
  *    A process does nothing by itself and is merely a shell for protocols.
- *    See [[neko.NekoProcess]] and [[neko.NekoProcessConfig]].
+ *    See [[neko.NekoProcess]] and [[neko.ProcessConfig]].
  *
  *  - The protocols are the actual logic of the system and implement the algorithms. A process holds
  *    one or many protocols, which are organized as a stack. There are two kinds of protocols:
@@ -111,11 +111,11 @@
  * The initialization proceeds roughly as illustrated below:
  * {{{
  *            creates            creates
- *   NekoMain ------> NekoSystem ------> Network
- *                               creates
- *                         ''    ------> NekoProcessInitializer
- *                               creates             creates
- *                         ''    =====>> NekoProcess =====>> Protocol
+ *   Main ------> NekoSystem ------> Network
+ *                           creates
+ *                     ''    ------> ProcessInitializer
+ *                           creates             creates
+ *                     ''    =====>> NekoProcess =====>> Protocol
  * }}}
  *
  * ==2. Creating protocols==
@@ -257,8 +257,8 @@
  * combine them.
  * {{{
  * ProcessInitializer { p =>
- *     val app  = config.register(new PingPong(p))
- *     val fifo = config.register(new FIFOChannel(p))
+ *     val app  = new PingPong(p)
+ *     val fifo = new FIFOChannel(p)
  *     app --> fifo
  *   }
  * }}}

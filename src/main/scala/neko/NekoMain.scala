@@ -22,12 +22,15 @@
  */
 package neko
 
-import ch.qos.logback.classic.{Level, Logger => LogbackLogger}
+import ch.qos.logback.classic.{ Level, Logger => LogbackLogger }
 import neko.config.NekoConfig
 import neko.kernel.sim.NekoSimSystem
-import neko.kernel.{Initializer, NekoSystem}
+import neko.kernel.{ Initializer, NekoSystem }
 import neko.topology._
-import org.slf4j.{Logger, LoggerFactory}
+import org.slf4j.{ Logger, LoggerFactory }
+
+import scala.collection.mutable.ListBuffer
+import scala.compat.Platform.currentTime
 
 
 /**
@@ -128,12 +131,12 @@ class NekoMain (
  * @param withTrace    controls the generation of a trace of network events (send and receive)
  */
 class Main (
-    topology: Topology,
+    val topology : Topology,
     logLevel : Level = Level.ERROR,
     logFile  : Option[String] = None,
     withTrace : Boolean = false
 )(initializer: ProcessInitializer)
-extends App
+//  extends DelayedInit
 {
   // TODO: Output a report of settings (incl. topology) to the console at the beginning of the execution
   // TODO: Output a report with statistics at the end of the execution
@@ -143,29 +146,65 @@ extends App
   // TODO: see about providing an optional GUI to output the console of processes, network, system
   // TODO: reintegrate support for actual distributed execution (rely on Akka?)
 
-  val N = topology.size
+  def N = topology.size
+  
   val topoFactory = TopologyFactory(topology)
   
-  private final val root = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME).asInstanceOf[LogbackLogger]
-  root.setLevel(logLevel)
+  val logger: Logger = LoggerFactory.getLogger(classOf[Main])
+  
+  /** The command line arguments passed to the application's `main` method.
+   */
+  @deprecatedOverriding("args should not be overridden", "2.11.0")
+  protected def args: Array[String] = _args
+  
+  private var _args: Array[String] = _
 
-  final val logger: Logger = LoggerFactory.getLogger(classOf[Main])
+  /** The init hook. This saves all initialization code for execution within `main`.
+   *  This method is normally never called directly from user code.
+   *  Instead it is called as compiler-generated code for those classes and objects
+   *  (but not traits) that inherit from the `DelayedInit` trait and that do not
+   *  themselves define a `delayedInit` method.
+   *  @param body the initialization code to be stored for later execution
+   */
+//  @deprecated("the delayedInit mechanism will disappear", "2.11.0")
+//  override def delayedInit(body: => Unit) { initCode += (() => body) }
 
-  private val config     = Initializer.configFor(N, classOf[ProcessInitializer], logLevel, logFile)
-  private val nekoConfig = NekoConfig(config, initializer, topology, neko.trace.Tracing.defaultTracer)
+  private val initCode = new ListBuffer[() => Unit]
+  
+  /** The main method.
+   * This stores all arguments so that they can be retrieved with `args`
+   * and then executes all initialization code segments in the order in which
+   * they were passed to `delayedInit`.
+   *
+   * @param args the arguments passed to the main method
+   */
+  @deprecatedOverriding("main should not be overridden", "0.18.0")
+  def main (args: Array[String]) =
+  {
+    this._args = args
+    
+    val root = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME).asInstanceOf[LogbackLogger]
+    root.setLevel(logLevel)
+    
+    val config     = Initializer.configFor(N, classOf[ProcessInitializer], logLevel, logFile)
+    val nekoConfig = NekoConfig(config, initializer, topology, neko.trace.Tracing.defaultTracer)
+    
+    if (withTrace) {
+      neko.trace.Tracing.defaultTracer_=(neko.trace.Tracer.consoleOnly)
+    }
+    
+    logger.info("Starting")
 
-  if (withTrace) {
-    neko.trace.Tracing.defaultTracer_=(neko.trace.Tracer.consoleOnly)
+    for (proc <- initCode) proc()
+    
+    val system: NekoSystem = new NekoSimSystem(nekoConfig)
+
+    system.mainloop(
+      onFinish = { t =>
+        logger.info(s"Simulation ended normally at time ${t.asSeconds } (${t.asNanoseconds }})")
+      }
+    )
+    
+    logger.info("Exiting")
   }
-
-  logger.info("Starting")
-
-  val system: NekoSystem = new NekoSimSystem(nekoConfig)
-
-  system.mainloop(
-    onFinish = {t =>
-      logger.info(s"Simulation ended normally at time ${t.asSeconds} (${t.asNanoseconds}})")
-    })
-
-  logger.info("Exiting")
 }

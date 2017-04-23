@@ -44,6 +44,14 @@ object Grid extends TopologyFactory
 
   def apply(n: Int) : Topology = this.apply(0 until n)
   
+  /**
+   * Generates a `width`-by-`height` grid topology, with processes numbered from `start`.
+   * @param width           width of the grid
+   * @param height          height of the grid
+   * @param start           lowest process number
+   * @param withDiagonals   includes diagonal connections if true
+   * @return a `width`-by-`height` grid with processes numbered from `start`
+   */
   def apply(width: Int, height: Int, start: Int = 0, withDiagonals: Boolean = false) : Topology =
     Topology.from( Topology.gridOf(width, height, start, withDiagonals) )
 }
