@@ -37,7 +37,7 @@ import scala.reflect.ClassTag
  * [[Receiving!.onReceive]].
  *
  * @param config    configuration from the process to which the protocol instance is attached
- * @param nickname  nickname of the protocol (aimed to be used for output)
+ * @param nickname  nickname of the protocol (aimed to be used for io)
  */
 abstract class ReactiveProtocol(config : ProcessConfig, nickname : String = "unnamed")
   extends ProtocolImpl(config, nickname)

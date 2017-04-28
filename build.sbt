@@ -4,7 +4,7 @@ name := "ScalaNeko"
 
 organization := "titech.c.coord"
 
-version := "0.18.0"
+version := "0.18.3-SNAPSHOT"
 
 scalaVersion := "2.12.1"
 
@@ -33,7 +33,7 @@ libraryDependencies ++= Seq(
   "org.scala-graph" %% "graph-core" % "1.11.4"
 )
 
-// libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.1.2"
+// libraryDependencies += "com.h2database" % "h2" % "1.4.194"
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 

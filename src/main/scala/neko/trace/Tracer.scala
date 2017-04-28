@@ -22,12 +22,13 @@
  */
 package neko.trace
 
-import neko.topology.TopologyFactory
+import neko.topology.Topology
 
 
 object Tracer
 {
-  def fileOnly(filename: String, N: Int, topology: TopologyFactory): EventTracer = FileEventTracer(filename, N, topology)
+  def fileOnly(filename: String, topology: Topology): EventTracer =
+    FileEventTracer(filename, topology)
   
   lazy val consoleOnly: EventTracer = ConsoleEventTracer
   lazy val OFF: EventTracer         = NullEventTracer

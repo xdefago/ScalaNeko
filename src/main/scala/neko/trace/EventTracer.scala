@@ -26,13 +26,14 @@ import java.io.{ File, PrintWriter }
 import java.nio.file.{ Files, Paths }
 
 import neko._
-import neko.topology.TopologyFactory
+import neko.topology.Topology
 import neko.util.Time
 
 import scala.reflect.ClassTag
 
 
-trait EventTracer {
+trait EventTracer
+{
   def send(at: Time, by: PID, who: Sender)(event: Event)
 
   def deliver(at: Time, by: PID, who: Receiving)(event: Event)
@@ -146,8 +147,9 @@ object EventFormatter
     def stringFor(kind: EventFormatter.EventKind, time: Time, by: PID, ev: Event, who: Any): String = {
       val sKind  = formatKind(kind)
       val sTime  = formatTime(time)
-      val sID    = who match { case p:Protocol => p.id.toString ; case _ => "-1" }
-      val sEvent = formatEvent(ev) + s" commID($sID) MessageID(0)"
+      val sID    = who match { case p:Protocol => p.id.toString ; case _ => "0" }
+      val mID    = ev  match { case m:Message  => m.id.toString ; case _ => "MessageID(0)"}
+      val sEvent = formatEvent(ev) + s" commID($sID) $mID"
       s"[${by.name}] [$who] $sTime $sKind $sEvent"
     }
   }
@@ -187,7 +189,8 @@ object ConsoleEventTracer extends EventTracer
 }
 
 
-case class FileEventTracer(filename: String, N: Int, topology: TopologyFactory) extends EventTracer
+case class FileEventTracer(filename: String, topology: Topology)
+  extends EventTracer
 {
   import EventFormatter.SimpleEventFormatter.stringFor
   import EventFormatter._
@@ -207,7 +210,7 @@ case class FileEventTracer(filename: String, N: Int, topology: TopologyFactory) 
   val protocolPattern = """[\s\S]*πρ\[([\s\S]*)\][\s\S]*""".r
   val networkPattern = """[\s\S]*network[\s\S]*""".r
 
-  def send(at: Time, by: PID, who: Sender)(event: Event) = {
+  def send(at: Time, by: PID, who: Sender)(event: Event) =
     synchronized {
       initFile()
       val proto = usingName(who.toString)
@@ -217,8 +220,8 @@ case class FileEventTracer(filename: String, N: Int, topology: TopologyFactory) 
         //eventDB.addEvent(EventForDB(by.name, protocolDB.getID(proto), Time.formatTimeSeconds(at), sSend.name, messageDB.getID(event.toString), id, event.messageID))
       }
     }
-  }
-  def deliver(at: Time, by: PID, who: Receiving)(event: Event) = {
+  
+  def deliver(at: Time, by: PID, who: Receiving)(event: Event) =
     synchronized {
       initFile()
       val proto = usingName(who.toString)
@@ -228,8 +231,8 @@ case class FileEventTracer(filename: String, N: Int, topology: TopologyFactory) 
         //eventDB.addEvent(EventForDB(by.name, protocolDB.getID(proto), Time.formatTimeSeconds(at), sDelv.name, messageDB.getID(event.toString), id, event.messageID))
       }
     }
-  }
-  def SEND(at: Time, by: PID, who: Receiving)(event: Event) = {
+  
+  def SEND(at: Time, by: PID, who: Receiving)(event: Event) =
     synchronized {
       initFile()
       val proto = usingName(who.toString)
@@ -239,8 +242,8 @@ case class FileEventTracer(filename: String, N: Int, topology: TopologyFactory) 
         //eventDB.addEvent(EventForDB(by.name, protocolDB.getID(proto), Time.formatTimeSeconds(at), lSend.name, messageDB.getID(event.toString), id, event.messageID))
       }
     }
-  }
-  def DELIVER(at: Time, by: PID, who: Sender)(event: Event) = {
+  
+  def DELIVER(at: Time, by: PID, who: Sender)(event: Event) =
     synchronized {
       initFile()
       val proto = usingName(who.toString)
@@ -250,9 +253,10 @@ case class FileEventTracer(filename: String, N: Int, topology: TopologyFactory) 
         //eventDB.addEvent(EventForDB(by.name, protocolDB.getID(proto), Time.formatTimeSeconds(at), lDelv.name, messageDB.getID(event.toString), id, event.messageID))
       }
     }
-  }
+  
 
-  def initFile(): Unit = {
+  def initFile(): Unit =
+  {
     file match {
       case None =>
         val dir = Paths.get("TraceLog")
@@ -316,7 +320,7 @@ case class FileEventTracer(filename: String, N: Int, topology: TopologyFactory) 
         }
         staticBuffer += buf + "\n"
 
-        staticBuffer += topology(N).underlying.edges.mkString("", "#", "#")
+        staticBuffer += topology.underlying.edges.mkString("", "#", "#")
 
         usingNameBy.foreach(pair => usingName = usingName ++ pair._2)
 

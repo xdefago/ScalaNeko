@@ -63,7 +63,7 @@ class NekoMain (
     logLevel: Level = Level.ERROR,
     logFile: Option[String] = None,
     withTrace: Boolean = false,
-    TraceFile: String = "default",
+    traceFile: String = "default",
     topology: TopologyFactory = Clique
 )
   extends App
@@ -71,10 +71,10 @@ class NekoMain (
   // TODO: Change so that one gives the topology itself, and that N is calculated based on it
   // TODO: Output a report of settings (incl. topology) to the console at the beginning of the execution
   // TODO: Output a report with statistics at the end of the execution
-  // TODO: rationalize the output of traces
+  // TODO: rationalize the io of traces
   //
   // longer term:
-  // TODO: see about providing an optional GUI to output the console of processes, network, system
+  // TODO: see about providing an optional GUI to io the console of processes, network, system
   // TODO: reintegrate support for actual distributed execution (rely on Akka?)
   
   private final val root = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME).asInstanceOf[LogbackLogger]
@@ -83,7 +83,7 @@ class NekoMain (
   final val logger: Logger = LoggerFactory.getLogger(classOf[NekoMain])
 
   if (withTrace) {
-    neko.trace.Tracing.defaultTracer_=(neko.trace.Tracer.fileOnly(TraceFile, N, topology))
+    neko.trace.Tracing.defaultTracer_=(neko.trace.Tracer.fileOnly(traceFile, topology(N)))
   } else {
     neko.trace.Tracing.defaultTracer_=(neko.trace.Tracer.consoleOnly)
   }
@@ -140,10 +140,10 @@ class Main (
 {
   // TODO: Output a report of settings (incl. topology) to the console at the beginning of the execution
   // TODO: Output a report with statistics at the end of the execution
-  // TODO: rationalize the output of traces
+  // TODO: rationalize the io of traces
   //
   // longer term:
-  // TODO: see about providing an optional GUI to output the console of processes, network, system
+  // TODO: see about providing an optional GUI to io the console of processes, network, system
   // TODO: reintegrate support for actual distributed execution (rely on Akka?)
 
   def N = topology.size
@@ -182,16 +182,22 @@ class Main (
   def main (args: Array[String]) =
   {
     this._args = args
+
+    if (withTrace) {
+      neko.trace.Tracing.defaultTracer_=(
+          logFile.fold[neko.trace.EventTracer]{
+            neko.trace.Tracer.consoleOnly
+          }{ file =>
+            neko.trace.Tracer.fileOnly(file, topology)
+          }
+        )
+    }
     
     val root = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME).asInstanceOf[LogbackLogger]
     root.setLevel(logLevel)
     
     val config     = Initializer.configFor(N, classOf[ProcessInitializer], logLevel, logFile)
     val nekoConfig = NekoConfig(config, initializer, topology, neko.trace.Tracing.defaultTracer)
-    
-    if (withTrace) {
-      neko.trace.Tracing.defaultTracer_=(neko.trace.Tracer.consoleOnly)
-    }
     
     logger.info("Starting")
 

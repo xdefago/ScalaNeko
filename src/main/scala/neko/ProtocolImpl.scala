@@ -22,7 +22,9 @@
  */
 package neko
 
-import neko.kernel.{Dispatcher, NekoSystem}
+import java.io.PrintStream
+
+import neko.kernel.{ Dispatcher, NekoSystem }
 
 /**
  * Core class for implementing a reactive protocol.
@@ -33,7 +35,7 @@ import neko.kernel.{Dispatcher, NekoSystem}
  * mixed-in.
  *
  * @param config    configuration from the process to which the protocol instance is attached
- * @param nickname  nickname of the protocol (aimed to be used for output)
+ * @param nickname  nickname of the protocol (aimed to be used for io)
  */
 abstract class ProtocolImpl(config : ProcessConfig, nickname : String = "unnamed")
   extends Protocol with ProtocolUtils
@@ -44,8 +46,10 @@ abstract class ProtocolImpl(config : ProcessConfig, nickname : String = "unnamed
    * identifier of the process to which the protocol is attached.
    * @return identifier of the process
    */
-  def process: PID           = config.pid
+  def process: PID     = config.pid
 
+  //def out: PrintStream = Console.out
+  
   /**
    * dispatcher to be used when delivering messages. Typically, this is the default dispatcher of
    * the process.
