@@ -30,7 +30,6 @@ import neko.topology._
 import org.slf4j.{ Logger, LoggerFactory }
 
 import scala.collection.mutable.ListBuffer
-import scala.compat.Platform.currentTime
 
 
 /**
@@ -136,7 +135,6 @@ class Main (
     logFile  : Option[String] = None,
     withTrace : Boolean = false
 )(initializer: ProcessInitializer)
-//  extends DelayedInit
 {
   // TODO: Output a report of settings (incl. topology) to the console at the beginning of the execution
   // TODO: Output a report with statistics at the end of the execution
@@ -158,17 +156,7 @@ class Main (
   protected def args: Array[String] = _args
   
   private var _args: Array[String] = _
-
-  /** The init hook. This saves all initialization code for execution within `main`.
-   *  This method is normally never called directly from user code.
-   *  Instead it is called as compiler-generated code for those classes and objects
-   *  (but not traits) that inherit from the `DelayedInit` trait and that do not
-   *  themselves define a `delayedInit` method.
-   *  @param body the initialization code to be stored for later execution
-   */
-//  @deprecated("the delayedInit mechanism will disappear", "2.11.0")
-//  override def delayedInit(body: => Unit) { initCode += (() => body) }
-
+  
   private val initCode = new ListBuffer[() => Unit]
   
   /** The main method.
@@ -186,7 +174,8 @@ class Main (
     if (withTrace) {
       neko.trace.Tracing.defaultTracer_=(
           logFile.fold[neko.trace.EventTracer]{
-            neko.trace.Tracer.consoleOnly
+            // neko.trace.Tracer.consoleOnly
+            neko.trace.SingleFileTracer(topology, Console.out)
           }{ file =>
             neko.trace.Tracer.fileOnly(file, topology)
           }
@@ -210,6 +199,11 @@ class Main (
         logger.info(s"Simulation ended normally at time ${t.asSeconds } (${t.asNanoseconds }})")
       }
     )
+    
+    if (withTrace) {
+      logger.info("Generating trace file")
+      neko.trace.Tracing.defaultTracer.flush()
+    }
     
     logger.info("Exiting")
   }

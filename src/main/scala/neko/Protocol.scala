@@ -31,7 +31,7 @@ import neko.kernel.NekoSystem
  * An application programmer will not use this trait directly, but rather use its two main
  * subclasses: [[ActiveProtocol]] for active protocols, and [[ReactiveProtocol]] for reactive protocols.
  */
-trait Protocol
+trait Protocol extends NamedEntity
 {
   /**
    * returns the system, allowing to access global information.
@@ -56,6 +56,9 @@ trait Protocol
    * @return name of the protocol
    */
   def name = s"${process.name}:${id.name}"
+  
+  override def simpleName = id.name
+  override def context    = Some(process)
 
   /**
    * override this method to perform initializations just before the process begins to run.

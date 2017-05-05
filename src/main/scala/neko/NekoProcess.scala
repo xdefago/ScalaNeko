@@ -24,13 +24,16 @@ package neko
 
 import com.typesafe.scalalogging.LazyLogging
 import neko.config.NekoConfig
-import neko.kernel.{Dispatcher, NekoSystem}
+import neko.kernel.{ Dispatcher, NekoSystem }
 
-import scala.util.{Failure, Success}
+import scala.util.{ Failure, Success }
 
 class NekoProcess(val id: PID, val system: NekoSystem)(config: NekoConfig)
-  extends LazyLogging
+  extends NamedEntity with LazyLogging
 {
+  def name      = id.name
+  def senderOpt = Some(sender)
+  
   val network    = system.network
   val dispatcher = Dispatcher.withClassLookup()
 
@@ -72,6 +75,8 @@ object NekoProcess
   class Sender(p: NekoProcess, network: neko.Sender)
     extends neko.Sender
   {
+    def name      = s"${p.name}: network interface"
+    def senderOpt = Some(network)
     /**
      * Discard all messages that pass through it.
      * The shutdown code calls this function.
@@ -79,11 +84,10 @@ object NekoProcess
     def dropMessages() = { shouldDropMessages = true }
     private var shouldDropMessages = false
 
-    def send(m: Event) = {
+    def send(m: Event) =
       if (! shouldDropMessages) {
         network.send(m)
       }
-    }
   }
 
 

@@ -23,7 +23,7 @@
 package neko
 
 
-import neko.kernel.{Dispatcher, NekoSystem}
+import neko.kernel.{ Dispatcher, NekoSystem }
 
 import scala.language.reflectiveCalls
 
@@ -104,6 +104,8 @@ trait ProtocolUtils
    */
   def sender : Sender = _sender
 
+  def senderOpt: Option[Sender] = Some(sender)
+  
   /**
    * Connects a new sender to this protocol.
    *

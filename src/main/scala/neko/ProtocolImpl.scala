@@ -22,8 +22,6 @@
  */
 package neko
 
-import java.io.PrintStream
-
 import neko.kernel.{ Dispatcher, NekoSystem }
 
 /**
@@ -72,7 +70,10 @@ abstract class ProtocolImpl(config : ProcessConfig, nickname : String = "unnamed
   override def toString = s"${process.name}:${id.name}{${super.toString}}"
   
   def eventTracer = config.tracer
-  eventTracer.protocols = eventTracer.protocols :+ name
+  
+  eventTracer.register(this)
+  
+  //eventTracer.protocols = eventTracer.protocols :+ name
   eventTracer.protocolImpls = eventTracer.protocolImpls.updated(me, eventTracer.protocolImpls.getOrElse(me, Seq()) :+ this)
 }
 

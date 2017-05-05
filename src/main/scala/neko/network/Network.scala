@@ -32,8 +32,11 @@ import scala.util.Try
 /**
  * Implements the behavior of a network.
  */
-trait Network extends Sender
+trait Network extends NamedEntity with Sender
 {
+  def name      = "network"
+  def senderOpt = None
+  
   def topology: neko.topology.Topology
 
   /**

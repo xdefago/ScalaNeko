@@ -94,7 +94,7 @@ trait Sending extends Sender
 /**
  * provides the send operation.
  */
-trait Sender
+trait Sender extends NamedEntity
 {
   /**
    * sends a given message or signal (event).
