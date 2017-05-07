@@ -24,4 +24,5 @@ project/project/
 .idea/
 
 # ScalaNeko specific
-test/scala/experimental/
+src/test/scala/experimental/
+src/main/scala/experimental/
