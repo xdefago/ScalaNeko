@@ -168,18 +168,17 @@ object EventFormatter
       val sEvent = formatEvent(ev)
       s"${by.name} $whoCode $sKind $sTime $sEvent"
     }
-    def stringFor(kind: EventFormatter.EventKind, time: Time, by: PID, ev: Event, whoCode: String): String = {
+    def stringFor(kind: EventFormatter.EventKind, time: Time, by: PID, ev: Event, whoStr: String): String = {
       val sKind  = formatKind(kind)
       val sTime  = formatTime(time)
       val sEvent = formatEvent(ev)
-      s"${by.name} $whoCode $sKind $sTime $sEvent"
+      s"${by.name} $whoStr $sKind $sTime $sEvent"
     }
   }
 }
 
 object ConsoleEventTracer extends EventTracer
 {
-  //import EventFormatter.SimpleEventFormatter.stringFor
   import EventFormatter._
 
   def send(at: Time, by: PID, who: NamedEntity)(event: Event) = {
@@ -241,7 +240,7 @@ case class SingleFileTracer(topology: Topology, out: PrintStream)
   
   private def printTo(out: PrintStream): Unit =
   {
-    // find network entities by transitivity
+    // find all connected entities by transitivity
     var hasChanged = false
     do {
       hasChanged = false
@@ -255,16 +254,14 @@ case class SingleFileTracer(topology: Topology, out: PrintStream)
       }
     } while (hasChanged)
   
-    val entitiesByContext = entities.groupBy(_.context)
     val entitiesByPIDName =
-      entitiesByContext
-        .filterKeys(_.isDefined)
-        .map( p =>
-          p._1.get -> p._2.groupBy(_.simpleName)
-        )
+      entities
+        .groupBy(_.context)
+        .mapValues { _.groupBy(_.simpleName) }
     
     val nameCountByPID =
-      entitiesByPIDName.mapValues(_.mapValues(_.size))
+      entitiesByPIDName
+        .mapValues( _.mapValues(_.size) )
 
     val nameLookupByPID =
       entitiesByPIDName
@@ -272,32 +269,32 @@ case class SingleFileTracer(topology: Topology, out: PrintStream)
           entitiesByName =>
             for {
               (name, entities) <- entitiesByName
-              (entity, idx) <- entities.zipWithIndex
+              (entity, idx)    <- entities.zipWithIndex
               uniqueName = s"${name }_$idx"
               nickname = if (entities.size == 1) name
               else uniqueName
             } yield entity -> nickname
         }
     
-    val networkNames = entitiesByContext(None).map(_.simpleName)
     val protocolNames = {
       for {
-        (pid, entities) <- nameLookupByPID
-        (entity, name) <- entities
+        (_, entities) <- nameLookupByPID
+        (_, name)  <- entities
       } yield name
     }.toSet
     
-    val allNames = networkNames.toIndexedSeq ++ protocolNames
-    val nameLookup = allNames
-    val reverseNameLookup = nameLookup.zipWithIndex.map(p => p._1 -> p._2).toMap
+    val nameLookup = protocolNames.toIndexedSeq
+    val reverseNameLookup = nameLookup.zipWithIndex.map{ case (name, idx) => name -> idx }.toMap
 
     val connections = {
-      for (pid <- nameLookupByPID.keys)
-        yield pid -> {
+      for {
+        context <- nameLookupByPID.keys
+        pid <- context
+      } yield pid -> {
           for {
-            (proto, protoName) <- nameLookupByPID(pid)
+            (proto, protoName) <- nameLookupByPID(context)
             sender <- proto.senderOpt
-            senderName = nameLookupByPID(pid).getOrElse(sender, sender.simpleName)
+            senderName = nameLookupByPID(context).getOrElse(sender, sender.simpleName)
           } yield protoName -> senderName
         }
     }.toMap
@@ -331,7 +328,7 @@ case class SingleFileTracer(topology: Topology, out: PrintStream)
       pid <- connections.keys.toSeq.sortWith(_ < _)
       (fromName, toName) <- connections(pid)
       fromID = reverseNameLookup(fromName)
-      toID = reverseNameLookup(toName)
+      toID   = reverseNameLookup(toName)
     } {
       out.println(s"($fromID,$toID) == $fromName --> $toName")
     }
@@ -347,7 +344,7 @@ case class SingleFileTracer(topology: Topology, out: PrintStream)
       )
     
     for (event <- events) {
-      out.println(event.format(encoders(event.by)))
+      out.println(event.format(encoders(event.who.context)))
     }
   }
 }
