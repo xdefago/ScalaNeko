@@ -23,11 +23,10 @@
 package neko.config
 
 import com.typesafe.config.Config
-import neko.NekoProcessInitializer
-import neko.ProcessInitializer
 import neko.network.Network
 import neko.topology.{ Topology, TopologyFactory }
 import neko.trace.{ EventTracer, NullEventTracer }
+import neko.{ NekoProcessInitializer, ProcessInitializer }
 
 import scala.util.{ Success, Try }
 
@@ -67,6 +66,10 @@ class NekoConfig(
 
 object NekoConfig
 {
+  @deprecated(
+    message = "The use of NekoProcessInitializer has been deprecated. Use other constructors instead.",
+    since = "0.19.0"
+  )
   def apply(
       config: Config,
       topologyDescriptor: TopologyFactory,

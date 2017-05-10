@@ -25,7 +25,10 @@ package neko
 import neko.kernel.{ Dispatcher, NekoSystem }
 import neko.trace.EventTracer
 
-
+@deprecated(
+  message = "The class neko.NekoProcessConfig has been deprecated in favor of the class neko.ProcessConfig.",
+  since = "0.19.0"
+)
 class NekoProcessConfig(
     system: NekoSystem,
     pid: PID,
@@ -71,6 +74,10 @@ class ProcessConfig(
  * }}}
  *
  */
+@deprecated(
+  message = "The class neko.NekoProcessInitializer has been deprecated in favor of the class neko.ProcessInitializer.",
+  since = "0.19.0"
+)
 trait NekoProcessInitializer extends Function[NekoProcessConfig, Unit]
 {
   /**
@@ -102,6 +109,10 @@ trait NekoProcessInitializer extends Function[NekoProcessConfig, Unit]
 }
 
 
+@deprecated(
+  message = "The class neko.NekoProcessInitializer has been deprecated in favor of the class neko.ProcessInitializer.",
+  since = "0.19.0"
+)
 object NekoProcessInitializer
 {
   import scala.util.Try
