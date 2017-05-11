@@ -33,11 +33,24 @@ libraryDependencies ++= Seq(
   "org.scala-graph" %% "graph-core" % "1.11.4"
 )
 
+
 // libraryDependencies += "com.h2database" % "h2" % "1.4.194"
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 
+//
+// Settings for JavaFX/ScalaFX
+//
 
+libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.102-R11"
+
+unmanagedJars in Compile += Attributed.blank(file(System.getenv("JAVA_HOME") + "/jre/lib/ext/jfxrt.jar"))
+
+fork in run := true
+
+//
+// Settings for publishing to repository over github
+//
 
 publishTo := Some(
   Resolver.file("scalaneko", file(Path.userHome.absolutePath + "/GithubLocal/sbt-repo"))
