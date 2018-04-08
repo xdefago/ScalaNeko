@@ -15,6 +15,8 @@
  */
 package neko
 
+import java.io.PrintWriter
+
 import neko.kernel.{ Dispatcher, NekoSystem }
 
 /**
@@ -39,7 +41,7 @@ abstract class ProtocolImpl(config : ProcessConfig, nickname : String = "unnamed
    */
   def process: PID     = config.pid
 
-  //def out: PrintStream = Console.out
+  def out: PrintWriter = config.out
   
   /**
    * dispatcher to be used when delivering messages. Typically, this is the default dispatcher of

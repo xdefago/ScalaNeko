@@ -16,8 +16,6 @@
 package neko
 
 
-import neko.kernel.{ Dispatcher, NekoSystem }
-
 import scala.language.reflectiveCalls
 
 
@@ -46,12 +44,14 @@ trait ListenerUtils extends Listener
  *  - `neighbors` is the set of identifiers of all neighbor processes.
  */
 trait ProtocolUtils
-{ this: {
+{ this: ProtocolImpl =>
+/*{
     def process: PID
     def system: NekoSystem
     def dispatcher: Dispatcher
   } =>
-
+  */
+  
   /**
    * identifier of the process in which the protocol is running.
    */

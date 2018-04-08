@@ -22,8 +22,6 @@ import neko.kernel.{ Initializer, NekoSystem }
 import neko.topology._
 import org.slf4j.{ Logger, LoggerFactory }
 
-import scala.collection.mutable.ListBuffer
-
 /**
  * Basic class used to define the system.
  *
@@ -60,22 +58,23 @@ class Main (
   // TODO: see about providing an optional GUI to io the console of processes, network, system
   // TODO: reintegrate support for actual distributed execution (rely on Akka?)
 
-  def N = topology.size
+  def N: Int = topology.size
   
   val topoFactory = TopologyFactory(topology)
   
   val logger: Logger = LoggerFactory.getLogger(classOf[Main])
   
-  /** The command line arguments passed to the application's `main` method.
+  /**
+   * The command line arguments passed to the application's `main` method.
    */
-  @deprecatedOverriding("args should not be overridden", "2.11.0")
-  protected def args: Array[String] = _args
+  protected final def args: Array[String] = _args
   
   private var _args: Array[String] = _
   
-  private val initCode = new ListBuffer[() => Unit]
+  //åprivate val initCode = new ListBuffer[() => Unit]
   
-  /** The main method.
+  /**
+   * The main method.
    * This stores all arguments so that they can be retrieved with `args`
    * and then executes all initialization code segments in the order in which
    * they were passed to `delayedInit`.
@@ -88,7 +87,7 @@ class Main (
     this._args = args
 
     if (withTrace) {
-      neko.trace.Tracing.defaultTracer_=(
+      neko.trace.Tracing.defaultTracer_= (
           logFile.fold[neko.trace.EventTracer]{
             // neko.trace.Tracer.consoleOnly
             neko.trace.SingleFileTracer(topology, Console.out)
@@ -106,7 +105,7 @@ class Main (
     
     logger.info("Starting")
 
-    for (proc <- initCode) proc()
+    //for (proc <- initCode) proc()
     
     val system: NekoSystem = new NekoSimSystem(nekoConfig)
 

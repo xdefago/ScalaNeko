@@ -15,6 +15,8 @@
  */
 package neko
 
+import java.io.PrintWriter
+
 import neko.kernel.{ Dispatcher, NekoSystem }
 import neko.trace.EventTracer
 
@@ -26,8 +28,9 @@ class NekoProcessConfig(
     system: NekoSystem,
     pid: PID,
     dispatcher: Dispatcher,
-    tracer: EventTracer
-) extends ProcessConfig(system, pid, dispatcher, tracer)
+    tracer: EventTracer,
+    out: PrintWriter
+) extends ProcessConfig(system, pid, dispatcher, tracer, out)
 
 
 
@@ -35,7 +38,8 @@ class ProcessConfig(
     val system: NekoSystem,
     val pid: PID,
     val dispatcher: Dispatcher,
-    val tracer: EventTracer
+    val tracer: EventTracer,
+    val out: PrintWriter
 ) {
   private var _registeredProtocols = Set.empty[Protocol]
 

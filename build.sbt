@@ -6,7 +6,7 @@ organization := "titech.c.coord"
 
 version := "0.19.0-SNAPSHOT"
 
-scalaVersion := "2.12.1"
+scalaVersion := "2.12.5"
 
 
 initialCommands in console := "import neko._"
@@ -21,28 +21,28 @@ libraryDependencies ++= Seq(
   /*
    *  Configuration
    */
-  "com.typesafe" % "config" % "1.3.1",
+  "com.typesafe" % "config" % "1.3.3",
   /*
    *  Logging
    */
-  "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
-  "ch.qos.logback" % "logback-classic" % "1.1.7",
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2",
+  "ch.qos.logback" % "logback-classic" % "1.2.3",
   /*
    *  Graphs
    */
-  "org.scala-graph" %% "graph-core" % "1.11.4"
+  "org.scala-graph" %% "graph-core" % "1.12.3"
 )
 
 
 // libraryDependencies += "com.h2database" % "h2" % "1.4.194"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 
 //
 // Settings for JavaFX/ScalaFX
 //
 
-libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.102-R11"
+libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.144-R12"
 
 unmanagedJars in Compile += Attributed.blank(file(System.getenv("JAVA_HOME") + "/jre/lib/ext/jfxrt.jar"))
 

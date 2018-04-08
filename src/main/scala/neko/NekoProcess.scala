@@ -15,15 +15,19 @@
  */
 package neko
 
+import java.io.{ OutputStreamWriter, PrintWriter }
+
 import com.typesafe.scalalogging.LazyLogging
 import neko.config.NekoConfig
 import neko.kernel.{ Dispatcher, NekoSystem }
 
 import scala.util.{ Failure, Success }
 
-class NekoProcess(val id: PID, val system: NekoSystem)(config: NekoConfig)
+class NekoProcess(val id: PID, val system: NekoSystem)(config: NekoConfig, outOption: Option[PrintWriter] = None)
   extends NamedEntity with LazyLogging
 {
+  // TODO: fix support for processes' out
+  def out       = outOption.getOrElse { new PrintWriter(new OutputStreamWriter(Console.out)) }
   def name      = id.name
   def senderOpt = Some(sender)
   
@@ -40,7 +44,7 @@ class NekoProcess(val id: PID, val system: NekoSystem)(config: NekoConfig)
     config.process.initializer match {
 
       case Success(initializer) =>
-        val processConfig  = new NekoProcessConfig(system, this.id, dispatcher, config.tracer)
+        val processConfig  = new NekoProcessConfig(system, this.id, dispatcher, config.tracer, out)
         initializer.apply(processConfig)
         val protocols = processConfig.registeredProtocols
         processConfig.registeredProtocols
