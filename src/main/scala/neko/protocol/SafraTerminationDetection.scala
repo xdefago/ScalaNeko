@@ -116,9 +116,9 @@ object SafraTerminationDetection
   case object Passive extends State
 
   case class Payload(m: Message) extends Wrapper(m)
-  case class Announce(from: PID, to: Set[PID], id: MessageID = MessageID.auto()) extends MulticastMessage(from, to, id)
+  case class Announce(from: PID, to: Set[PID], id: MessageID = MessageID.auto()) extends MulticastMessage
 
   case class Token (color: StateColor, count: Long)
-  case class TokenHolder (from: PID, to: PID, token: Token, id: MessageID = MessageID.auto()) extends UnicastMessage(from, to, id)
+  case class TokenHolder (from: PID, to: PID, token: Token, id: MessageID = MessageID.auto()) extends UnicastMessage
   //{ def to = Set(_to) }
 }

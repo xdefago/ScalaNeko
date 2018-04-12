@@ -155,13 +155,13 @@ sealed trait Message extends Event
  *   case class Token (
  *       from: PID,
  *       to: PID,
- *       id: MessageID = MessageID.autoIncrement())
+ *       id: MessageID = MessageID.auto())
  *     extends UnicastMessage(from,to,id)
  *
  *   case class Ack (
  *       from: PID,
  *       to: PID,
- *       id: MessageID = MessageID.autoIncrement())
+ *       id: MessageID = MessageID.auto())
  *     extends UnicastMessage(from,to,id)
  *
  *   case class FIFO (
@@ -169,7 +169,7 @@ sealed trait Message extends Event
  *       to: PID,
  *       sn: Long,
  *       payload: Message,
- *       id: MessageID = MessageID.autoIncrement())
+ *       id: MessageID = MessageID.auto())
  *     extends UnicastMessage(from,to,id)
  * }}}
  *
@@ -203,8 +203,9 @@ sealed trait Message extends Event
  * the pattern (even if only as a wildcard). For instance, while {{{Token}}} was instantiated with
  * only two arguments, it really has three, as one can see in the pattern matching example.
  */
-abstract class UnicastMessage(from: PID, to: PID, id: MessageID) extends Message
+abstract class UnicastMessage extends Message
 {
+  def to: PID
   def destinations = Set(to)
 }
 
@@ -224,7 +225,7 @@ abstract class UnicastMessage(from: PID, to: PID, id: MessageID) extends Message
  *   case class Snapshot(
  *       from: PID,
  *       to: Set[PID],
- *       id: MessageID = MessageID.autoIncrement())
+ *       id: MessageID = MessageID.auto())
  *     extends MulticastMessage(from,to,id)
  *
  *   case class ViewChange(
@@ -232,14 +233,14 @@ abstract class UnicastMessage(from: PID, to: PID, id: MessageID) extends Message
  *       to: Set[PID],
  *       viewNum: Long,
  *       epochNum: Long,
- *       id: MessageID = MessageID.autoIncrement())
+ *       id: MessageID = MessageID.auto())
  *     extends MulticastMessage(from,to,id)
  *
  *   case class Heartbeat(
  *       from: PID,
  *       to: Set[PID],
  *       sentAt: Time,
- *       sn: Long, id: MessageID = MessageID.autoIncrement())
+ *       sn: Long, id: MessageID = MessageID.auto())
  *     extends MulticastMessage(from,to,id)
  * }}}
  *
@@ -272,8 +273,9 @@ abstract class UnicastMessage(from: PID, to: PID, id: MessageID) extends Message
  * in the pattern (even if only as a wildcard). For instance, while {{{Snapshot}}} was instantiated
  * with only two arguments, it really has three, as one can see in the pattern matching example.
  */
-abstract class MulticastMessage(from: PID, to: Set[PID], id: MessageID) extends Message
+abstract class MulticastMessage extends Message
 {
+  def to: Set[PID]
   def destinations = to
 }
 

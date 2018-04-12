@@ -49,7 +49,7 @@ class SimpleActiveProtocol(config: ProcessConfig)
 object SimpleActiveProtocol
 {
   case class SimpleMessage(from: PID, to: PID, text: String, id: MessageID = MessageID.auto())
-    extends UnicastMessage(from,to,id)
+    extends UnicastMessage
 }
 
 class SingleActiveReceiverInitializer extends ProcessInitializer

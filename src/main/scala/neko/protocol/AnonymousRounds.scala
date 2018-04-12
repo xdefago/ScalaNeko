@@ -76,6 +76,6 @@ object AnonymousRounds
 
   case class Anonymized(from: PID, to: Set[PID], content: Anonymous,
     id: MessageID = MessageID.auto())
-    extends MulticastMessage(from, to, id)
+    extends MulticastMessage
 }
 

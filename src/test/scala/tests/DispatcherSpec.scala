@@ -23,9 +23,9 @@ class DispatcherSpec extends FlatSpec
 {
   val numIterations = 10
 
-  case class DummyMessageA(from: PID, to: Set[PID], id: MessageID = MessageID.auto()) extends MulticastMessage(from, to, id)
-  case class DummyMessageB(from: PID, to: PID,      id: MessageID = MessageID.auto()) extends UnicastMessage(from, to, id)
-  case class DummyMessageC(from: PID, to: Set[PID], id: MessageID = MessageID.auto()) extends MulticastMessage(from, to, id)
+  case class DummyMessageA(from: PID, to: Set[PID], id: MessageID = MessageID.auto()) extends MulticastMessage
+  case class DummyMessageB(from: PID, to: PID,      id: MessageID = MessageID.auto()) extends UnicastMessage
+  case class DummyMessageC(from: PID, to: Set[PID], id: MessageID = MessageID.auto()) extends MulticastMessage
 
   case class DummyReceiver(giveEvent: (Event)=>Unit) extends Receiver
   {
@@ -171,7 +171,7 @@ class DispatcherSpec extends FlatSpec
   }
 
   it should "be UNABLE to match subclasses of messages" in {
-    abstract class DummyContentBase(from: PID, to: Set[PID], id: MessageID) extends MulticastMessage(from,to,id)
+    abstract class DummyContentBase(from: PID, to: Set[PID], id: MessageID) extends MulticastMessage
     case class DummyContentSubclassA(from: PID, to: Set[PID], info: String, id: MessageID=MessageID.auto())
       extends DummyContentBase(from,to,id)
     case class DummyContentSubclassB(from: PID, to: Set[PID], value: Int, id: MessageID=MessageID.auto())

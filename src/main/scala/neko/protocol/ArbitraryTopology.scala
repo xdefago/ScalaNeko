@@ -19,7 +19,6 @@ import com.typesafe.scalalogging.LazyLogging
 import neko._
 import neko.protocol.ArbitraryTopology._
 import neko.util.Topology
-
 import scalax.collection.Graph
 import scalax.collection.GraphEdge.UnDiEdge
 
@@ -67,5 +66,5 @@ class ArbitraryTopology(config: ProcessConfig, val topology: Graph[Int,UnDiEdge]
 object ArbitraryTopology
 {
   case class MessageShell(from: PID, to: Set[PID], content: Message, id: MessageID = MessageID.auto())
-    extends MulticastMessage(from, to, id)
+    extends MulticastMessage
 }

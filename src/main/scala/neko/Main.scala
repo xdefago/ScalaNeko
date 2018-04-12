@@ -89,8 +89,8 @@ class Main (
     if (withTrace) {
       neko.trace.Tracing.defaultTracer_= (
           logFile.fold[neko.trace.EventTracer]{
-            // neko.trace.Tracer.consoleOnly
-            neko.trace.SingleFileTracer(topology, Console.out)
+            neko.trace.Tracer.consoleOnly
+//            neko.trace.SingleFileTracer(topology, Console.out)
           }{ file =>
             neko.trace.Tracer.fileOnly(file, topology)
           }

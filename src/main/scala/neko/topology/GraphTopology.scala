@@ -16,7 +16,6 @@
 package neko.topology
 
 import neko._
-
 import scalax.collection.Graph
 import scalax.collection.GraphEdge.UnDiEdge
 
@@ -31,12 +30,12 @@ trait GraphTopology extends Topology
   override def neighborsFor(process: PID): Option[Set[PID]] =
   {
     val optNode = underlying.find(process.value)
-    val p = underlying.get(process.value)
+    //val p = underlying.get(process.value)
     optNode
       .map { p =>
-      val neighborhood: Set[Int] = p.neighbors.map {_.toInt}
-      neighborhood.map(PID)
-    }
+        val neighborhood: Set[Int] = p.neighbors.map {_.toInt}
+        neighborhood.map(PID)
+      }
   }
 
   override def contains(process: PID): Boolean =

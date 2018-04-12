@@ -86,10 +86,10 @@ object FastAnonymousRounds
 
   case class Round(from: PID, to: Set[PID], anons: Seq[Anonymous], round: Int,
       id: MessageID = MessageID.auto())
-    extends MulticastMessage(from,to,id)
+    extends MulticastMessage
 
   case class RoundPropose(from: PID, to: PID, content: Anonymous, round: Int,
       id: MessageID = MessageID.auto())
-    extends UnicastMessage(from, to, id)
+    extends UnicastMessage
 }
 

@@ -33,8 +33,8 @@ class EventSpec extends FlatSpec
       to = for (j <- 0 until rand.nextInt(numIterations)) yield PID(rand.nextInt(Int.MaxValue))
     } yield (from, to.toSet)
 
-  case class MyUnicast  (from: PID, to: PID,      id: MessageID = MessageID.auto()) extends UnicastMessage(from, to, id)
-  case class MyMulticast(from: PID, to: Set[PID], id: MessageID = MessageID.auto()) extends MulticastMessage(from, to, id)
+  case class MyUnicast  (from: PID, to: PID,      id: MessageID = MessageID.auto()) extends UnicastMessage
+  case class MyMulticast(from: PID, to: Set[PID], id: MessageID = MessageID.auto()) extends MulticastMessage
   case class MyWrapper(msg: Message, value: String) extends Wrapper(msg)
 
   behavior of "Signal"

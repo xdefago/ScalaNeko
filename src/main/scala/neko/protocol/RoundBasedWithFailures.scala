@@ -105,5 +105,5 @@ object RoundBasedWithFailures
 
   case class PartialCrashed(msg: Message, crashed: Set[PID]) extends Wrapper(msg)
   case class Crashed(from: PID, to: Set[PID], id: MessageID = MessageID.auto())
-    extends MulticastMessage(from, to, id)
+    extends MulticastMessage
 }

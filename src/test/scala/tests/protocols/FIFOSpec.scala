@@ -58,7 +58,7 @@ class ProcessApp(c: ProcessConfig, nickname: String) extends ActiveProtocol(c,ni
 object ProcessApp
 {
   case class AppMessage(from: PID, to: Set[PID], sn: Int, id: MessageID = MessageID.auto())
-    extends MulticastMessage(from,to,id)
+    extends MulticastMessage
 }
 
 class FIFOInitializer extends ProcessInitializer
