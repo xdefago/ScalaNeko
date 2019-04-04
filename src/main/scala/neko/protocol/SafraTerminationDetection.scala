@@ -92,15 +92,15 @@ class SafraTerminationDetection(config: ProcessConfig)
       msgCount -= 1
       DELIVER (m)
 
-    case TokenHolder(_,_,Token(White,q),_) if me == initiator
+    case TokenHolder(_,_,Token(White,q)) if me == initiator
                                           && (msgCount + q == 0)
                                           && (color == White)
                                           && (state == Passive)
       => SEND(Announce(me,ALL))
-    case TokenHolder(_,_,tok,_) if me == initiator && state == Active => token = Some(tok)
-    case TokenHolder(_,_,tok,_) if me == initiator  => transmitToken(Some(tok))
-    case TokenHolder(_,_,tok,_) if state == Active  => token = Some(tok)
-    case TokenHolder(_,_,tok,_) if state == Passive => transmitToken(Some(tok))
+    case TokenHolder(_,_,tok) if me == initiator && state == Active => token = Some(tok)
+    case TokenHolder(_,_,tok) if me == initiator  => transmitToken(Some(tok))
+    case TokenHolder(_,_,tok) if state == Active  => token = Some(tok)
+    case TokenHolder(_,_,tok) if state == Passive => transmitToken(Some(tok))
   }
 }
 
@@ -116,9 +116,9 @@ object SafraTerminationDetection
   case object Passive extends State
 
   case class Payload(m: Message) extends Wrapper(m)
-  case class Announce(from: PID, to: Set[PID], id: MessageID = MessageID.auto()) extends MulticastMessage
+  case class Announce(from: PID, to: Set[PID]) extends MulticastMessage
 
   case class Token (color: StateColor, count: Long)
-  case class TokenHolder (from: PID, to: PID, token: Token, id: MessageID = MessageID.auto()) extends UnicastMessage
+  case class TokenHolder (from: PID, to: PID, token: Token) extends UnicastMessage
   //{ def to = Set(_to) }
 }

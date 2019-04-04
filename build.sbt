@@ -4,9 +4,9 @@ name := "ScalaNeko"
 
 organization := "titech.c.coord"
 
-version := "0.19.0-SNAPSHOT"
+version := "0.20.0-SNAPSHOT"
 
-scalaVersion := "2.12.5"
+scalaVersion := "2.12.8"
 
 
 initialCommands in console := "import neko._"
@@ -17,26 +17,36 @@ scalacOptions in (Compile,doc) ++= Seq("-skip-packages", "experimental:nekox")
 
 scalacOptions += "-deprecation"
 
-libraryDependencies ++= Seq(
-  /*
-   *  Configuration
-   */
-  "com.typesafe" % "config" % "1.3.3",
-  /*
-   *  Logging
-   */
-  "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2",
-  "ch.qos.logback" % "logback-classic" % "1.2.3",
-  /*
-   *  Graphs
-   */
-  "org.scala-graph" %% "graph-core" % "1.12.3"
-)
+libraryDependencies ++= {
+  lazy val graphV = "1.12.5"
+  lazy val logbackV = "1.2.3"
+  lazy val configV = "1.3.3"
+  lazy val loggingV = "3.7.2"
+  lazy val scalaTestV = "3.0.5"
+  Seq(
+    /*
+     *  Configuration
+     */
+    "com.typesafe" % "config" % configV,
+    /*
+     *  Logging
+     */
+    "com.typesafe.scala-logging" %% "scala-logging" % loggingV,
+    "ch.qos.logback" % "logback-classic" % logbackV,
+    /*
+     *  Graphs
+     */
+    "org.scala-graph" %% "graph-core" % graphV,
+    /*
+     *  Testing
+     */
+    "org.scalactic" %% "scalactic" % scalaTestV,
+    "org.scalatest" %% "scalatest" % scalaTestV % "test"
+  )
+}
 
 
 // libraryDependencies += "com.h2database" % "h2" % "1.4.194"
-
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 
 //
 // Settings for JavaFX/ScalaFX
@@ -112,4 +122,5 @@ fixJavaLinksTask := {
 
 def hasJavadocApiLink(f: File): Boolean = (javadocApiLink findFirstIn IO.read(f)).nonEmpty
 
-fixJavaLinksTask <<= fixJavaLinksTask triggeredBy (doc in Compile)
+// fixJavaLinksTask <<= fixJavaLinksTask triggeredBy (doc in Compile)
+fixJavaLinksTask := (fixJavaLinksTask triggeredBy (doc in Compile) ).value

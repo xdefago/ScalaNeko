@@ -151,6 +151,10 @@ abstract class AbstractNetwork(val system: NekoSystem)
       case e: Signal =>
         logger.debug(s"Dropped signal: $e")
 
+      case m: BroadcastMessage =>
+        val neighbors = topology.neighborsFor(m.from).getOrElse(Set.empty)
+        for (dest <- neighbors if dest != m.from) { sendTo(dest, m) }
+        
       case m: Message =>
         tracer.send(system.currentTime, m.from, this)(m)
         for (dest <- m.destinations) { sendTo(dest, m) }

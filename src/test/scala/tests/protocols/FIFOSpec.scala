@@ -41,10 +41,10 @@ class ProcessApp(c: ProcessConfig, nickname: String) extends ActiveProtocol(c,ni
     var receipts = Map.empty[PID,Int].withDefaultValue(0)
     for (k <- 1 to numIterations * neighbors.size) {
       Receive {
-        case AppMessage(from,_,sn,_) if sn == receipts(from) + 1 =>
+        case AppMessage(from,_,sn) if sn == receipts(from) + 1 =>
           receipts = receipts.updated(from, sn)
 
-        case AppMessage(from,_,sn,_) =>
+        case AppMessage(from,_,sn) =>
           println(s"Out-of-sync message: from=$from, sn=$sn; expected=${receipts(from)}")
           assert(false)
       }
@@ -57,8 +57,7 @@ class ProcessApp(c: ProcessConfig, nickname: String) extends ActiveProtocol(c,ni
 
 object ProcessApp
 {
-  case class AppMessage(from: PID, to: Set[PID], sn: Int, id: MessageID = MessageID.auto())
-    extends MulticastMessage
+  case class AppMessage(from: PID, to: Set[PID], sn: Int) extends MulticastMessage
 }
 
 class FIFOInitializer extends ProcessInitializer

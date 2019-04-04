@@ -34,7 +34,7 @@ class SimpleActiveProtocol(config: ProcessConfig)
     SEND(SimpleMessage(me, other, s"I am $me"))
 
     Receive {
-      case SimpleMessage(_,_,text,_) =>
+      case SimpleMessage(_,_,text) =>
         //println(s"SimpleActiveProtocol > Receive : SimpleMessage($text) at time ${system.currentTime.asSeconds}")
       case m => println(s"SimpleActiveProtocol > Receive : got something else: $m")
     }
@@ -48,8 +48,7 @@ class SimpleActiveProtocol(config: ProcessConfig)
 
 object SimpleActiveProtocol
 {
-  case class SimpleMessage(from: PID, to: PID, text: String, id: MessageID = MessageID.auto())
-    extends UnicastMessage
+  case class SimpleMessage(from: PID, to: PID, text: String) extends UnicastMessage
 }
 
 class SingleActiveReceiverInitializer extends ProcessInitializer

@@ -103,7 +103,7 @@
  *
  * The initialization proceeds roughly as illustrated below:
  * {{{
- *            creates            creates
+ *        creates            creates
  *   Main ------> NekoSystem ------> Network
  *                           creates
  *                     ''    ------> ProcessInitializer
@@ -144,8 +144,8 @@
  *     SEND(Ping(me, next))
  *
  *     Receive {
- *       case Ping(from, _, _) => SEND(Pong(me, from))
- *       case Pong(from, _, _) => SEND(Ping(me, from))
+ *       case Ping(from, _) => SEND(Pong(me, from))
+ *       case Pong(from, _) => SEND(Ping(me, from))
  *     }
  *
  *     Receive { m =>
@@ -220,19 +220,19 @@
  *      {{{
  *   case class Snapshot(
  *       from: PID,
- *       to: Set[PID],
- *       id: MessageID = MessageID.autoIncrement())
- *     extends MulticastMessage(from,to,id)
+ *       to: Set[PID])
+ *     extends MulticastMessage
  *      }}}
+ *      NB: The arguments *must* be named <code>from</code> and <code>to</code>.
  *
  *    - A [[neko.UnicastMessage]] is a top-level message with a single destination process.
  *    {{{
  *   case class Token (
  *       from: PID,
- *       to: PID,
- *       id: MessageID = MessageID.autoIncrement())
- *     extends UnicastMessage(from,to,id)
+ *       to: PID)
+ *     extends UnicastMessage
  *    }}}
+ *      NB: The arguments *must* be named <code>from</code> and <code>to</code>.
  *
  *    - A [[neko.Wrapper]] is a shell that wraps an existing message. A wrapper can also extend
  *      another wrapper; not only top-level messages. A wrapper preserves the identity, the source

@@ -74,8 +74,7 @@ object AnonymousRounds
 
   abstract class Anonymous extends Signal
 
-  case class Anonymized(from: PID, to: Set[PID], content: Anonymous,
-    id: MessageID = MessageID.auto())
+  case class Anonymized(from: PID, to: Set[PID], content: Anonymous)
     extends MulticastMessage
 }
 

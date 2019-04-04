@@ -60,7 +60,7 @@ class FastAnonymousRounds(config: ProcessConfig)
   listenTo(classOf[Round])
 
   def onReceive = {
-    case RoundPropose(_,_,a,r,_) if me == coordinator && r == roundNum =>
+    case RoundPropose(_,_,a,r) if me == coordinator && r == roundNum =>
       anonList = a :: anonList
       if (anonList.size == N) {
         roundNum += 1
@@ -68,7 +68,7 @@ class FastAnonymousRounds(config: ProcessConfig)
         anonList = Nil
       }
 
-    case Round(_,_,data,r,_) if r == sendRound + 1 =>
+    case Round(_,_,data,r) if r == sendRound + 1 =>
       sendRound = r
       DELIVER(StartRound(r, data))
 
@@ -84,12 +84,10 @@ object FastAnonymousRounds
 
   abstract class Anonymous extends Signal
 
-  case class Round(from: PID, to: Set[PID], anons: Seq[Anonymous], round: Int,
-      id: MessageID = MessageID.auto())
+  case class Round(from: PID, to: Set[PID], anons: Seq[Anonymous], round: Int)
     extends MulticastMessage
 
-  case class RoundPropose(from: PID, to: PID, content: Anonymous, round: Int,
-      id: MessageID = MessageID.auto())
+  case class RoundPropose(from: PID, to: PID, content: Anonymous, round: Int)
     extends UnicastMessage
 }
 

@@ -58,13 +58,13 @@ class ArbitraryTopology(config: ProcessConfig, val topology: Graph[Int,UnDiEdge]
 
   listenTo(classOf[MessageShell])
   def onReceive = {
-    case MessageShell(_,_,m,_) => DELIVER (m)
+    case MessageShell(_,_,m) => DELIVER (m)
   }
 }
 
 
 object ArbitraryTopology
 {
-  case class MessageShell(from: PID, to: Set[PID], content: Message, id: MessageID = MessageID.auto())
+  case class MessageShell(from: PID, to: Set[PID], content: Message)
     extends MulticastMessage
 }

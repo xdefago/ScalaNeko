@@ -173,7 +173,7 @@ object NekoProcessInitializer
  * }}}
  *
  *
- * Without a call to [[ProcessInitializer$.forProcess]], the initializer does nothing by default, thus resulting in
+ * Without a block, the initializer does nothing by default, thus resulting in
  * an "empty" process.
  */
 trait ProcessInitializer extends Function[ProcessConfig, Unit] with NekoProcessInitializer

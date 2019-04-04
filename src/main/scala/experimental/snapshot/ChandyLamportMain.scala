@@ -56,7 +56,7 @@ class ChandyLamport(p: ProcessConfig) extends ReactiveProtocol(p, "Chandy-Lampor
 
     case Payload(m, _) => DELIVER(m)
 
-    case Snapshot(from,_,_) => /* receive marker first time */
+    case Snapshot(from,_) => /* receive marker first time */
       if (color == White) {
         color = Red                     // turn red
         recordState ()                  // record own state
@@ -75,7 +75,7 @@ object ChandyLamport
   case object White extends StateColor
 
   case class Payload(msg: Message, color: StateColor) extends Wrapper(msg)
-  case class Snapshot(from: PID, to: Set[PID], id: MessageID = MessageID.auto())
+  case class Snapshot(from: PID, to: Set[PID])
     extends MulticastMessage
 }
 
@@ -131,14 +131,14 @@ class MultiTokenRotation(p: ProcessConfig, maxTokens: Int = 10)
           tokenSet = remainder
           candidates.foreach{ tok => SEND(forwardToken(tok)) }
 
-        case Token(_,_,tok,_) if rand.nextDouble() < 0.2 => SEND(forwardToken(tok))
-        case Token(_,_,tok,_) => tokenSet += tok
+        case Token(_,_,tok) if rand.nextDouble() < 0.2 => SEND(forwardToken(tok))
+        case Token(_,_,tok) => tokenSet += tok
 
         case SnapshotClient.SaveState         =>
           println(s"${me.name}: SAVE STATE "+tokenSet)
 
         case SnapshotClient.SnapshotDone(rec) =>
-          val tokens = rec.collect { case Token(_,_,tok,_) => tok }
+          val tokens = rec.collect { case Token(_,_,tok) => tok }
           println(s"${me.name}: SNAPSHOT DONE -> " + tokens)
           system.timer.cancel(alarmTask)
           return
@@ -151,9 +151,7 @@ class MultiTokenRotation(p: ProcessConfig, maxTokens: Int = 10)
 object MultiTokenRotation
 {
   case class TokenID(process: PID, rank: Int)
-
-  case class Token(from: PID, to: PID, token: TokenID, id: MessageID=MessageID.auto())
-    extends UnicastMessage
+  case class Token(from: PID, to: PID, token: TokenID) extends UnicastMessage
 }
 
 
