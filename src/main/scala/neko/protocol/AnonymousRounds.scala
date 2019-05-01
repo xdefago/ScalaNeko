@@ -29,7 +29,9 @@ class AnonymousRounds(config: ProcessConfig)
   import AnonymousRounds.{ Anonymized, Anonymous }
 
   // creates a "private" underlying RoundBased protocol
-  private val roundBased = new SynchronousRounds(config)
+  private val roundBased = new SynchronousRounds(config) {
+    override def onError (e: Throwable): Unit = AnonymousRounds.this.onError(e)
+  }
 
   super.-->(roundBased)
 

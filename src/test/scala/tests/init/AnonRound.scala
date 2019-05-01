@@ -23,17 +23,18 @@ import scala.collection.mutable
 
 object AnonRound
 {
-  import Client.{ Ballot, RoundInfo }
+  import Client.Info
   import protocol.AnonymousRounds._
 
   val numRounds = 10
 
-  val aggregator = mutable.Map.empty[PID,List[RoundInfo]].withDefaultValue(Nil)
+  val aggregator = mutable.Map.empty[PID,List[Info]].withDefaultValue(Nil)
 
   object AggregatorLock
 
   class Client (p: ProcessConfig) extends ReactiveProtocol (p, "client")
   {
+    import Client.{ Ballot, RoundInfo }
 
     def onSend = { case e: Event => assert (assertion = false, e) }
 
@@ -51,25 +52,33 @@ object AnonRound
         val info = RoundInfo(me, round, other.collect{ case b: Ballot => b }.toSet + mine.asInstanceOf[Ballot])
         AggregatorLock.synchronized {
           aggregator(me) = info :: aggregator (me)
-          //aggregator = aggregator.updated (me, info :: aggregator (me))
         }
-        //println(s"aggregator = $aggregator")
 
         if (round <= numRounds) SEND ( Ballot (me, round) )
     }
+    
   }
 
 
   object Client
   {
     case class Ballot (from: PID, round: Int) extends Anonymous
-    case class RoundInfo (from: PID, round: Int, ballots: Set[Ballot])
+    sealed trait Info
+    case class RoundInfo (from: PID, round: Int, ballots: Set[Ballot]) extends Info
+    case class ErrorInfo (from: PID, e: Throwable) extends Info
   }
 
   class Initializer extends ProcessInitializer
   {
+    import Client.ErrorInfo
+    
     forProcess{ p =>
-      val anon   = new AnonymousRounds(p)
+      val anon   = new AnonymousRounds(p) {
+        override def onError (e: Throwable): Unit = {
+          println(s"AnonymousRounds > $me @ onError $e")
+          aggregator(me) = ErrorInfo(p.pid, e) :: aggregator(me)
+        }
+      }
       val client = new Client(p)
       client --> anon
     }

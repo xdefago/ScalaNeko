@@ -48,15 +48,17 @@ trait ManagedActivity
           self.onFinish ()
           activityManager.willFinish (activityID)
         } catch {
-          case _: BrokenBarrierException | _ : ActivityAbortedError =>
+          case e @ ( _:BrokenBarrierException | _:ActivityAbortedError ) =>
             Console.err.println(s"$name has terminated abruptly.")
+            self.onError (e)
           case e: Exception =>
-            activityManager.reset()
+            self.onError (e)
+            activityManager.reset ()
             throw e
         }
       }
     }
-    activityManager.willStart(activityID)
-    system.executionContext.execute(wrapper)
+    activityManager.willStart (activityID)
+    system.executionContext.execute (wrapper)
   }
 }

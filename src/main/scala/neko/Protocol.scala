@@ -73,7 +73,12 @@ trait Protocol extends NamedEntity
    * process shuts down.
    */
   def onShutdown(): Unit = {}
+  
+  /**
+   * override this method to report on errors whens the protocol is forcibly terminated due to an
+   * an error or exception. The method should never use any of the communication methods such as
+   * send, receive, or deliver.
+   */
+  def onError(e: Throwable): Unit = {}
 }
-
-
 
