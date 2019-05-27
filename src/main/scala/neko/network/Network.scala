@@ -129,7 +129,7 @@ abstract class AbstractNetwork(val system: NekoSystem)
   protected[this] def sendTo(dest: PID, m: Message): Unit =
   {
     logger.trace(s"sendTo(${dest.name}, ${m.toPrettyString})")
-    if (m.destinations.contains(dest)) {
+    if (m.destinations.contains(dest) || m.isInstanceOf[BroadcastMessage]) {
       receivers
         .get(dest)
         .fold {

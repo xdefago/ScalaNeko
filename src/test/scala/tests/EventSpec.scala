@@ -35,6 +35,7 @@ class EventSpec extends FlatSpec
 
   case class MyUnicast  (from: PID, to: PID) extends UnicastMessage
   case class MyMulticast(from: PID, to: Set[PID]) extends MulticastMessage
+  case class MyBroadcast(from: PID) extends BroadcastMessage
   case class MyWrapper(msg: Message, value: String) extends Wrapper(msg)
 
   behavior of "Signal"
@@ -109,6 +110,51 @@ class EventSpec extends FlatSpec
     }
   }
 
+  behavior of "BroadcastMessage"
+
+  it should "retain from and destinations fields" in {
+    val rand = new Random(randomSeed)
+    val info = generateHeaderInfo(rand, numIterations)
+    val headers =
+      for ((from, _) <- info) yield (from, MyBroadcast(from))
+
+    for ((expectedFrom, header) <- headers) {
+      assertResult(expectedFrom)(header.from)
+      assertResult(Set.empty)(header.destinations)
+    }
+  }
+
+  it should "have auto-incremented ids" in {
+    val from = PID(0)
+    val messages = IndexedSeq.tabulate(numIterations+1) { i => MyBroadcast(from) }
+    val firstID  = messages.head.id.value
+    val headers  =
+      for (i <- messages.indices)
+        yield (MessageID(firstID + i), messages(i))
+
+    for ((expectedID, header) <- headers) {
+      assertResult(expectedID)(header.id)
+      assertResult(from)(header.from)
+      assertResult(Set.empty)(header.destinations)
+    }
+  }
+
+  ignore should "not increment but retain ID upon copy" in {
+    val from = PID(0)
+    val otherFrom = PID(1000)
+    val otherTo = Set(PID(123))
+    val headers =
+      for (i <- 1 to numIterations)
+        yield MyBroadcast(from)
+
+    for (header <- headers) {
+      val expectedID = header.id
+      val copyHeader = header.copy(from = otherFrom)
+      assertResult(expectedID)(copyHeader.id)
+      assertResult(Set.empty)(copyHeader.destinations)
+    }
+  }
+  
   behavior of "UnicastMessage"
 
   it should "retain from and destinations fields" in {
