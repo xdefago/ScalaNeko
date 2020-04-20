@@ -1,0 +1,6 @@
+package neko
+
+class Timeout
+{
+  
+}
