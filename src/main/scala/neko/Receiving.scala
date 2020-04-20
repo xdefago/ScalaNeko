@@ -88,4 +88,13 @@ trait Receiving extends Receiver
    * @param m  the message/signal to send
    */
   def SEND(m: Event) { sender.send(m) }
+  
+  /**
+   * Broadcasts a message using the sender set in the initializer where the protocol is created.
+   * If no sender was explicitly set, the message will be set directly through the network.
+   * This is a wrapper for [[SEND]]
+   *
+   * @param m  the message to broadcast
+   */
+  def BROADCAST(m: BroadcastMessage) { this.SEND(m) }
 }
