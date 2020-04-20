@@ -16,6 +16,11 @@ project/plugins/project/
 .scala_dependencies
 .worksheet
 
+# VScode specific
+*.code-workspace
+.metals
+project/metals.sbt
+
 # addendum project specific
 project/target/
 project/project/
