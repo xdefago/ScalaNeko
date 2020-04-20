@@ -18,34 +18,6 @@ package neko
 import neko.kernel.{ PeriodicTask, Scheduler, SimpleTask, Task }
 import neko.util.Time
 
-
-/**
- * identifier of a task obtained from scheduling an action through an instance of [[Timer]].
- * Tasks identifiers are totally ordered, which allows to compare them.
- *
- * @param value identifying number of the task.
- */
-case class TaskID(value: Long) extends ID[Long] with Ordered[TaskID]
-{
-  type SameType = TaskID
-
-  def name = s"τ[$value]"
-  protected def idWith(newID: Long): TaskID = if (value == newID) this else copy(value = newID)
-
-  def compare (that: TaskID): Int = this.value compare that.value
-}
-
-
-object TaskID
-{
-  private var lastID: Long = 0
-  protected[neko] def autoIncrement() : TaskID = {
-    lastID += 1
-    TaskID(lastID)
-  }
-}
-
-
 /**
  * supports the scheduling of delayed and periodic tasks.
  *
