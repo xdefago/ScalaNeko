@@ -1,0 +1,1864 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title></title>
+          <meta name="description" content="" />
+          <meta name="keywords" content="" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      
+      <link href="../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../lib/index.js"></script>
+      <script type="text/javascript" src="../index.js"></script>
+      <script type="text/javascript" src="../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../lib/template.js"></script>
+      <script type="text/javascript" src="../lib/modernizr.custom.js"></script><script type="text/javascript" src="../lib/diagrams.js" id="diagrams-js"></script>
+      <script type="text/javascript">
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../';
+      </script>
+    
+        </head>
+        <body>
+      <div id="search">
+        <span id="doc-title"><span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="../index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../index.html"><span class="name">root</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.neko" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="neko"></a><a id="neko:neko"></a>
+      <span class="permalink">
+      <a href="../neko/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="ScalaNeko is a framework designed to help with the prototyping of distributed algorithms." href="index.html"><span class="name">neko</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">ScalaNeko is a framework designed to help with the prototyping of distributed algorithms.</p><div class="fullcomment"><div class="comment cmt"><h3>ScalaNeko Framework</h3><p>ScalaNeko is a framework designed to help with the prototyping of distributed algorithms. It is
+loosely based on the Neko framework [1] which was programmed in Java more than a decade earlier,
+mainly by Péter Urbán.</p><p>Whereas the original Neko framework was designed for performance evaluation and modeling, the
+main focus of ScalaNeko is to serve as a support for teaching distributed algorithms. Hence, the
+current version of ScalaNeko only supports simulated execution. However, we still have the
+intention to support actual distributed execution in a future version, and hence provide a full
+replacement of the original Neko.</p><h4>1. Architecture</h4><p>In order to effectively use ScalaNeko, it is helpful to understand its general architecture,
+which can be described as follows:</p><p>There are several important entities in ScalaNeko:</p><ul><li>The system is what handles the execution engine within the virtual machine and the
+   initialization procedure. There is exactly one instance running for every virtual machine.
+   The system also holds a discrete event simulator.
+   See <a href="Main.html" class="extype" name="neko.Main">neko.Main</a> and <a href="kernel/NekoSystem.html" class="extype" name="neko.kernel.NekoSystem">neko.kernel.NekoSystem</a>.</li><li>The network simulates the behavior of a network, and is responsible for transmitting messages
+   between processes. In the current version, it is running over a discrete-event simulation.
+   See <a href="network/Network.html" class="extype" name="neko.network.Network">neko.network.Network</a> and <a href="kernel/sim/Simulator.html" class="extype" name="neko.kernel.sim.Simulator">neko.kernel.sim.Simulator</a>.</li><li>The processes are the basic unit of concurrency, and represent a virtual computer connected
+   through a network. Every process has a unique identity represented by a <a href="PID.html" class="extype" name="neko.PID">neko.PID</a>.
+   A process does nothing by itself and is merely a shell for protocols.
+   See <a href="NekoProcess.html" class="extype" name="neko.NekoProcess">neko.NekoProcess</a> and <a href="ProcessConfig.html" class="extype" name="neko.ProcessConfig">neko.ProcessConfig</a>.</li><li>The protocols are the actual logic of the system and implement the algorithms. A process holds
+   one or many protocols, which are organized as a stack. There are two kinds of protocols:
+   active and reactive ones. While active protocols carry their own flow of execution, that is,
+   act as a thread, concurrently with the system, the reactive protocols only execute code as a
+   reaction to incoming events.
+   See <a href="ActiveProtocol.html" class="extype" name="neko.ActiveProtocol">neko.ActiveProtocol</a>, <a href="" class="extype" name="neko.ReactiveProtocol">neko.ReactiveProtocol</a>, <a href="Protocol.html" class="extype" name="neko.Protocol">neko.Protocol</a>, and <a href="ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">neko.ProtocolUtils</a>.</li><li>Protocols and processes exchange information through events. There are two types of events:
+   signals and messages. Signals allow protocols <b>within the same process</b> to notify each
+   other. In contrast, messages allow protocol instances to communicate
+   <b>across different processes</b>. In other words, only messages are transmitted through the
+   network.
+   See <a href="Event.html" class="extype" name="neko.Event">neko.Event</a>, <a href="Signal.html" class="extype" name="neko.Signal">neko.Signal</a>, <a href="UnicastMessage.html" class="extype" name="neko.UnicastMessage">neko.UnicastMessage</a>, <a href="MulticastMessage.html" class="extype" name="neko.MulticastMessage">neko.MulticastMessage</a>,
+   and <a href="Wrapper.html" class="extype" name="neko.Wrapper">neko.Wrapper</a>.</li></ul><p>A simplified view of the architecture of an execution of ScalaNeko is depicted below:</p><pre>+-------------------------------------------------------+
+|       process p1                    process pn        |
+|  +-------------------+         +-------------------+  |
+|  | +---------------+ |         | +---------------+ |  |
+|  | | protocol p1:A | |         | | protocol pn:A | |  |
+|  | +-------------+-+ |         | +-------------+-+ |  |
+|  |   |           |   |   ...   |   |           |   |  |
+|  | +-+-----------V-+ |         | +-+-----------V-+ |  |
+|  | | protocol p1:B | |         | | protocol pn:B | |  |
+|  | +-------------+-+ |         | +-------------+-+ |  |
+|  +---|-----------|---+         +---|-----------|---+  |
+|      |           |                 |           |      |
+|  +---+-----------V-----------------+-----------V---+  |
+|  |                      network                    |  |
+|  +-------------------------------------------------+  |
+|                  +------------------+                 |
+|                  |     simulator    |                 |
+|                  +------------------+       system    |
++-------------------------------------------------------+</pre><p>Creating a ScalaNeko application typically requires to implement the following steps:</p><ol class="lowerAlpha"><li>Implement the protocols. At least, an application will require to implement an active
+    protocol, but also possibly a number of reusable reactive ones.</li><li>Each protocol is likely to define its own message types. The most appropriate location for
+    doing so is in a companion object of the protocol. Messages are best defined as a
+    <code>case class</code> so that they are ensured to be immutable and code for pattern matching is
+    automatically generated by the compiler.</li><li>Creating a process initializer that instantiates and connects the protocols of the processes.</li><li>Creating a main object which provides the basic parameters of the execution, such as the
+    total number of processes to create and their initializer.</li></ol><p>The initialization proceeds roughly as illustrated below:</p><pre>     creates            creates
+Main ------&gt; NekoSystem ------&gt; Network
+                        creates
+                  <span class="lit">''</span>    ------&gt; ProcessInitializer
+                        creates             creates
+                  <span class="lit">''</span>    ====<span class="kw">=&gt;</span>&gt; NekoProcess ====<span class="kw">=&gt;</span>&gt; Protocol</pre><h4>2. Creating protocols</h4><p>A protocol can be either active or reactive. An active protocol is one that executes its own
+thread, concurrently with that of the other protocols or processes. In contrast, a reactive
+protocol only executes as a reaction to events, and does not do anything otherwise.</p><h5>2.1 Active protocols</h5><p>An active protocol is typically defined as a subclass of <a href="ActiveProtocol.html" class="extype" name="neko.ActiveProtocol">neko.ActiveProtocol</a>.</p><p>An active protocol has its own thread of control. The code of the protocol is implemented in its
+method <a href="ActiveProtocol.html#run():Unit" class="extmbr" name="neko.ActiveProtocol#run">neko.ActiveProtocol.run</a>, which must be defined in the subclass. This code is executed
+concurrently with the rest of the system.</p><p>An active protocol has access to operations for sending and receiving message. New messages are
+sent with the method <a href="ActiveProtocol.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ActiveProtocol#SEND">neko.ActiveProtocol.SEND</a>. While messages are received through
+<b>blocking</b> calls to <a href="ActiveProtocol$Receive$.html" class="extype" name="neko.ActiveProtocol.Receive">neko.ActiveProtocol.Receive</a>,
+as illustrated below. Note that, in order to receive messages of a certain type, the protocol
+must register by calling <a href="ActiveProtocol.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ActiveProtocol#listenTo">neko.ActiveProtocol.listenTo</a> for this type.</p><pre><span class="kw">class</span> PingPong(c: NekoProcessConfig) <span class="kw">extends</span> ActiveProtocol(c, <span class="lit">"ping-pong"</span>)
+{
+  <span class="kw">val</span> next = me.map{i <span class="kw">=&gt;</span> (i+<span class="num">1</span>) % N}
+  <span class="kw">var</span> record = <span class="std">Set</span>.empty[Event]
+
+  listenTo(classOf[Ping])
+  listenTo(classOf[Pong])
+  <span class="kw">def</span> run(): <span class="std">Unit</span> =
+  {
+    SEND(Ping(me, next))
+
+    Receive {
+      <span class="kw">case</span> Ping(from, _) <span class="kw">=&gt;</span> SEND(Pong(me, from))
+      <span class="kw">case</span> Pong(from, _) <span class="kw">=&gt;</span> SEND(Ping(me, from))
+    }
+
+    Receive { m <span class="kw">=&gt;</span>
+      record += m
+    }
+  }
+}</pre><p>It is also possible to override the method <a href="ActiveProtocol.html#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ActiveProtocol#onReceive">neko.ActiveProtocol.onReceive</a>. By doing so,
+messages that are matched by <code>onReceive</code> are processed reactively upon arrival, while those that
+are not matched by <code>onReceive</code> are stored into the receive queue and must be handled by a
+blocking call to <a href="ActiveProtocol$Receive$.html" class="extype" name="neko.ActiveProtocol.Receive">neko.ActiveProtocol.Receive</a>.</p><h5>2.2 Reactive protocols</h5><p>Most protocols in a process are reactive.
+A reactive protocol is usually sandwiched between a
+network and an application (or a lower-level protocol and a higher-level one).
+The simplest way to implement one is by extending <a href="" class="extype" name="neko.ReactiveProtocol">neko.ReactiveProtocol</a>. The information
+has two flows: downstream and upstream. This is illustrated in the figure below.</p><pre>         application
+  |                      ^
+  V                      |
++----------------------------+
+| onSend        DELIVER(...) |
+|                            | Reactive protocol
+| SEND(...)        onReceive |
++----------------------------+
+  |                      ^
+  V                      |
+          network</pre><p>For the downstream flow (from application to network), the code of the protocol is implemented
+in the method <a href="#onSend:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onSend">neko.ReactiveProtocol.onSend</a>, usually implemented as a <a href="https://www.scala-lang.org/api/2.12.11/scala/PartialFunction.html" class="extype" name="scala.PartialFunction">scala.PartialFunction</a> which
+reacts as appropriate to each event. The protocol can itself send messages through the
+<a href="#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#SEND">neko.ReactiveProtocol.SEND</a> method.</p><p>For the upstream flow (from network to application), the code of the protocol is implemented in
+the method <a href="#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onReceive">neko.ReactiveProtocol.onReceive</a>, also implemented as a <a href="https://www.scala-lang.org/api/2.12.11/scala/PartialFunction.html" class="extype" name="scala.PartialFunction">scala.PartialFunction</a> which
+reacts appropriately to each incoming events. Events of a certain type are delivered to the
+protocol only if it registers to the event type by calling the <a href="#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ReactiveProtocol#listenTo">neko.ReactiveProtocol.listenTo</a>
+method on that event type. The protocol can deliver a message to the application through the
+method <a href="#DELIVER(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#DELIVER">neko.ReactiveProtocol.DELIVER</a>.</p><p>Note that the two flows are not mutually exclusive. It is perfectly valid, and even frequent,
+for a protocol to call <a href="#DELIVER(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#DELIVER">neko.ReactiveProtocol.DELIVER</a> in <a href="#onSend:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onSend">neko.ReactiveProtocol.onSend</a>, or to call
+<a href="#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#SEND">neko.ReactiveProtocol.SEND</a> in <a href="#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onReceive">neko.ReactiveProtocol.onReceive</a> .</p><h4>3. Defining new events (messages and signals)</h4><p>Let's start with a little bit of terminology. An event denotes anything that happens in the
+system and is represented by the abstract class <a href="Event.html" class="extype" name="neko.Event">neko.Event</a>. Events can be of two types:</p><ul><li>A signal is an event that occurs within one process, and can go from one protocol to another,
+   but never cross process boundaries. It is represented by the subclasses of <a href="Signal.html" class="extype" name="neko.Signal">neko.Signal</a>.</li><li>A message is an event that crosses process boundaries, but is typically (but not necessarily)
+   interpreted by the same protocol in the target process. It is represented by the subclasses
+   of <a href="Message.html" class="extype" name="neko.Message">neko.Message</a>.</li></ul><p>   A message can be &quot;top-level&quot; or a &quot;wrapper&quot;. A top-level message is one that is created by the
+   sending protocol. It has its own identity, as well as a source and destinations. In contrast,
+   a wrapper is simply a shell that extends the information of an existing message. It retains
+   the same identity, source, and destinations, but provides a shell to the message and can add
+   its own information. This results into messages of three types:</p><ul><li>A <a href="MulticastMessage.html" class="extype" name="neko.MulticastMessage">neko.MulticastMessage</a> is a top-level message with multiple destinations. See the
+     example below on how to define a new message:</li></ul><pre><span class="kw">case</span> <span class="kw">class</span> Snapshot(
+    from: PID,
+    to: <span class="std">Set</span>[PID])
+  <span class="kw">extends</span> MulticastMessage</pre><p>     NB: The arguments *must* be named <code>from</code> and <code>to</code>.</p><ul><li>A <a href="UnicastMessage.html" class="extype" name="neko.UnicastMessage">neko.UnicastMessage</a> is a top-level message with a single destination process.</li></ul><pre><span class="kw">case</span> <span class="kw">class</span> Token (
+    from: PID,
+    to: PID)
+  <span class="kw">extends</span> UnicastMessage</pre><p>     NB: The arguments *must* be named <code>from</code> and <code>to</code>.</p><ul><li>A <a href="Wrapper.html" class="extype" name="neko.Wrapper">neko.Wrapper</a> is a shell that wraps an existing message. A wrapper can also extend
+     another wrapper; not only top-level messages. A wrapper preserves the identity, the source
+     and the destinations of the message it wraps.</li></ul><pre><span class="kw">case</span> <span class="kw">class</span> SequencedMessage(msg: Message, sn: <span class="std">Int</span>) <span class="kw">extends</span> Wrapper(msg)</pre><h4>4. Initialization of a process</h4><p>While processes are created automatically, their protocols are not, and must be initialized and
+connected. This is done through a process initializer, by providing an instance of
+<a href="ProcessInitializer.html" class="extype" name="neko.ProcessInitializer">neko.ProcessInitializer</a>, whose sole role is to create the protocols of a process and
+combine them.</p><pre>ProcessInitializer { p <span class="kw">=&gt;</span>
+    <span class="kw">val</span> app  = <span class="kw">new</span> PingPong(p)
+    <span class="kw">val</span> fifo = <span class="kw">new</span> FIFOChannel(p)
+    app --&gt; fifo
+  }</pre><p>In the above example, each process is initialized by executing the above code. The code creates
+two protocols while registering them into the object <code>p</code> given as argument (which represents the
+process being initialized). Then, the two
+protocols are connected such that all <code>SEND</code> operations of protocol <code>app</code> are handed to
+protocol <code>fifo</code>. The send operations of protocol <code>fifo</code> use the default target which is
+the network interface of the process.</p><p>It is also possible to initialize processes differently, by discriminating based on the
+identifier of the process to initialize. That identifier is obtained from the argument
+with <code>p.pid</code>.</p><h4>5. Setting up a new system</h4><p>A new instance of a ScalaNeko system is created and configured by creating an object that
+extends <a href="Main.html" class="extype" name="neko.Main">neko.Main</a>. The resulting object becomes a main object and is thus executable
+(<a href="Main.html" class="extype" name="neko.Main">neko.Main</a> is a subclass of <a href="https://www.scala-lang.org/api/2.12.11/scala/App.html" class="extype" name="scala.App">scala.App</a>).</p><p>Class <a href="Main.html" class="extype" name="neko.Main">neko.Main</a> requires to set parameters, such as the network topology and
+the process initializer, as illustrated below:</p><pre><span class="kw">object</span> PingPongApp <span class="kw">extends</span> Main(topology.Clique(<span class="num">3</span>))( ProcessInitializer { p<span class="kw">=&gt;</span> ... } )</pre><p>Future planned versions of ScalaNeko will make it possible to define many more parameters, such
+as the network topologyDescriptor, etc...</p><h4>References</h4><ol class="decimal"><li>Péter Urbán, Xavier Défago, André Schiper:
+    Neko: A Single Environment to Simulate and Prototype Distributed Algorithms.
+    J. Inf. Sci. Eng. 18(6): 981-997 (2002).</li></ol><h4>Contributors</h4><p>Lead architect: Xavier Défago</p><p>Other contributors:</p><ul><li>Naoyuki Onuki (trace system; integration with NekoViewer)
+</li></ul></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="neko.config" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="config"></a><a id="config:config"></a>
+      <span class="permalink">
+      <a href="../neko/config/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="config/index.html"><span class="name">config</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.exceptions" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exceptions"></a><a id="exceptions:exceptions"></a>
+      <span class="permalink">
+      <a href="../neko/exceptions/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="exceptions/index.html"><span class="name">exceptions</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.gui" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="gui"></a><a id="gui:gui"></a>
+      <span class="permalink">
+      <a href="../neko/gui/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="gui/index.html"><span class="name">gui</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.io" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="io"></a><a id="io:io"></a>
+      <span class="permalink">
+      <a href="../neko/io/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="io/index.html"><span class="name">io</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.kernel" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="kernel"></a><a id="kernel:kernel"></a>
+      <span class="permalink">
+      <a href="../neko/kernel/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="kernel/index.html"><span class="name">kernel</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.network" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="network"></a><a id="network:network"></a>
+      <span class="permalink">
+      <a href="../neko/network/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="network/index.html"><span class="name">network</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.protocol" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="protocol"></a><a id="protocol:protocol"></a>
+      <span class="permalink">
+      <a href="../neko/protocol/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="protocol/index.html"><span class="name">protocol</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.topology" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="topology"></a><a id="topology:topology"></a>
+      <span class="permalink">
+      <a href="../neko/topology/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="topology/index.html"><span class="name">topology</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.trace" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="trace"></a><a id="trace:trace"></a>
+      <span class="permalink">
+      <a href="../neko/trace/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="trace/index.html"><span class="name">trace</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.util" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="util"></a><a id="util:util"></a>
+      <span class="permalink">
+      <a href="../neko/util/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="util/index.html"><span class="name">util</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="ActiveProtocol.html" title="Basic class for defining active protocols; those typically at the top of the protocol stack."></a>
+                        <a href="ActiveProtocol.html" title="Basic class for defining active protocols; those typically at the top of the protocol stack.">ActiveProtocol</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="BroadcastMessage.html" title="Base class to define a new broadcast message."></a>
+                        <a href="BroadcastMessage.html" title="Base class to define a new broadcast message.">BroadcastMessage</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="Event.html" title="Basic trait to define all processable events in ScalaNeko."></a>
+                        <a href="Event.html" title="Basic trait to define all processable events in ScalaNeko.">Event</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="ID.html" title="Generic type to represent all kinds of identifiers in ScalaNeko."></a>
+                        <a href="ID.html" title="Generic type to represent all kinds of identifiers in ScalaNeko.">ID</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="Listener.html" title="declares that the protocol implementing the trait is able to &quot;listen&quot; to messages."></a>
+                        <a href="Listener.html" title="declares that the protocol implementing the trait is able to &quot;listen&quot; to messages.">Listener</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="ListenerUtils.html" title="mixin trait to provide support to listening to a message type."></a>
+                        <a href="ListenerUtils.html" title="mixin trait to provide support to listening to a message type.">ListenerUtils</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="Main.html" title="Basic class used to define the system."></a>
+                        <a href="Main.html" title="Basic class used to define the system.">Main</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="Message.html" title="Basic trait to define all messages."></a>
+                        <a href="Message.html" title="Basic trait to define all messages.">Message</a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="MessageID$.html" title=""></a>
+                        <a class="class" href="MessageID.html" title="Class to represent the identifier of a message."></a>
+                        <a href="MessageID.html" title="Class to represent the identifier of a message.">MessageID</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="MulticastMessage.html" title="Base class to define a new message with multiple destination processes (multicast)."></a>
+                        <a href="MulticastMessage.html" title="Base class to define a new message with multiple destination processes (multicast).">MulticastMessage</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="NamedEntity.html" title="Created by defago on 02/05/2017."></a>
+                        <a href="NamedEntity.html" title="Created by defago on 02/05/2017.">NamedEntity</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="NekoMain.html" title="Basic class used to define the system."></a>
+                        <a href="NekoMain.html" title="Basic class used to define the system.">NekoMain</a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="NekoProcess$.html" title=""></a>
+                        <a class="class" href="NekoProcess.html" title=""></a>
+                        <a href="NekoProcess.html" title="">NekoProcess</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="NekoProcessConfig.html" title=""></a>
+                        <a href="NekoProcessConfig.html" title="">NekoProcessConfig</a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="NekoProcessInitializer$.html" title=""></a>
+                        <a class="trait" href="NekoProcessInitializer.html" title="Implements the initialization of a process by creating the protocols and connecting them."></a>
+                        <a href="NekoProcessInitializer.html" title="Implements the initialization of a process by creating the protocols and connecting them.">NekoProcessInitializer</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="PID.html" title="Class to represent process identifiers."></a>
+                        <a href="PID.html" title="Class to represent process identifiers.">PID</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="ProcessConfig.html" title=""></a>
+                        <a href="ProcessConfig.html" title="">ProcessConfig</a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="ProcessInitializer$.html" title=""></a>
+                        <a class="trait" href="ProcessInitializer.html" title="Basic trait for implementing the process initialization."></a>
+                        <a href="ProcessInitializer.html" title="Basic trait for implementing the process initialization.">ProcessInitializer</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="ProtoID.html" title="Class to represent protocol identifiers."></a>
+                        <a href="ProtoID.html" title="Class to represent protocol identifiers.">ProtoID</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="Protocol.html" title="Defines the basic operations that a protocol must provide."></a>
+                        <a href="Protocol.html" title="Defines the basic operations that a protocol must provide.">Protocol</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="ProtocolImpl.html" title="Core class for implementing a reactive protocol."></a>
+                        <a href="ProtocolImpl.html" title="Core class for implementing a reactive protocol.">ProtocolImpl</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="ProtocolUtils.html" title="Provides basic functionality to the protocol that implements this trait."></a>
+                        <a href="ProtocolUtils.html" title="Provides basic functionality to the protocol that implements this trait.">ProtocolUtils</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="" title="Convenience class to replace ProtocolImpl with all common traits already mixed in."></a>
+                        <a href="" title="Convenience class to replace ProtocolImpl with all common traits already mixed in.">ReactiveProtocol</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="Receiver.html" title=""></a>
+                        <a href="Receiver.html" title="">Receiver</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="Receiving.html" title=""></a>
+                        <a href="Receiving.html" title="">Receiving</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="Sender.html" title="provides the send operation."></a>
+                        <a href="Sender.html" title="provides the send operation.">Sender</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="Sending.html" title="Defines the behavior for a protocol that provides the sending of messages as capability."></a>
+                        <a href="Sending.html" title="Defines the behavior for a protocol that provides the sending of messages as capability.">Sending</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="Signal.html" title="Basic class for internal events."></a>
+                        <a href="Signal.html" title="Basic class for internal events.">Signal</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="SignalID.html" title="Class to represent unique identifiers for instances of Signal."></a>
+                        <a href="SignalID.html" title="Class to represent unique identifiers for instances of Signal.">SignalID</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="StashedReceive.html" title=""></a>
+                        <a href="StashedReceive.html" title="">StashedReceive</a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="TaskID$.html" title=""></a>
+                        <a class="class" href="TaskID.html" title="identifier of a task obtained from scheduling an action through an instance of Timer."></a>
+                        <a href="TaskID.html" title="identifier of a task obtained from scheduling an action through an instance of Timer.">TaskID</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="object" href="Timeout$.html" title="Event generated by ActiveProtocol.Receive.withTimeout upon a timeout."></a>
+                        <a href="Timeout$.html" title="Event generated by ActiveProtocol.Receive.withTimeout upon a timeout.">Timeout</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="Timer.html" title="supports the scheduling of delayed and periodic tasks."></a>
+                        <a href="Timer.html" title="supports the scheduling of delayed and periodic tasks.">Timer</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="UnicastMessage.html" title="Base class to define a new message with one single destination process (unicast)."></a>
+                        <a href="UnicastMessage.html" title="Base class to define a new message with one single destination process (unicast).">UnicastMessage</a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="Wrapper.html" title="Basic class from messages used to add information to existing messages (wrappers)."></a>
+                        <a href="Wrapper.html" title="Basic class from messages used to add information to existing messages (wrappers).">Wrapper</a>
+                      </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="class type">
+      <div id="definition">
+        <div class="big-circle class">c</div>
+        <p id="owner"><a href="index.html" class="extype" name="neko">neko</a></p>
+        <h1>ReactiveProtocol<span class="permalink">
+      <a href="../neko/ReactiveProtocol.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        <h3><span class="morelinks"></span></h3>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ReactiveProtocol</span><span class="result"> extends <a href="ProtocolImpl.html" class="extype" name="neko.ProtocolImpl">ProtocolImpl</a> with <a href="ListenerUtils.html" class="extype" name="neko.ListenerUtils">ListenerUtils</a> with <a href="Sending.html" class="extype" name="neko.Sending">Sending</a> with <a href="Receiving.html" class="extype" name="neko.Receiving">Receiving</a> with <a href="trace/Tracing.html" class="extype" name="neko.trace.Tracing">Tracing</a></span>
+      </span>
+      </h4>
+
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Convenience class to replace <a href="ProtocolImpl.html" class="extype" name="neko.ProtocolImpl">ProtocolImpl</a> with all common traits already mixed in.</p><p>A protocol that sits as a middle layer between application and network can extend this class,
+which provides all of the basic functionalities.</p><p>A subclass must provide an implementation to the methods <a href="Sending.html#onSend:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.Sending#onSend">Sending!.onSend</a> and
+<a href="Receiving.html#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.Receiving#onReceive">Receiving!.onReceive</a>.
+</p></div><div class="toggleContainer block">
+          <span class="toggle">
+            Linear Supertypes
+          </span>
+          <div class="superTypes hiddenContent"><a href="trace/Tracing.html" class="extype" name="neko.trace.Tracing">Tracing</a>, <a href="Receiving.html" class="extype" name="neko.Receiving">Receiving</a>, <a href="Sending.html" class="extype" name="neko.Sending">Sending</a>, <a href="Sender.html" class="extype" name="neko.Sender">Sender</a>, <a href="ListenerUtils.html" class="extype" name="neko.ListenerUtils">ListenerUtils</a>, <a href="Listener.html" class="extype" name="neko.Listener">Listener</a>, <a href="Receiver.html" class="extype" name="neko.Receiver">Receiver</a>, <a href="ProtocolImpl.html" class="extype" name="neko.ProtocolImpl">ProtocolImpl</a>, <a href="ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">ProtocolUtils</a>, <a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a>, <a href="NamedEntity.html" class="extype" name="neko.NamedEntity">NamedEntity</a>, <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a>, <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></div>
+        </div><div class="toggleContainer block">
+            <span class="toggle">
+              Known Subclasses
+            </span>
+            <div class="subClasses hiddenContent"><a href="protocol/AnonymousRounds.html" class="extype" name="neko.protocol.AnonymousRounds">AnonymousRounds</a>, <a href="protocol/ArbitraryTopology.html" class="extype" name="neko.protocol.ArbitraryTopology">ArbitraryTopology</a>, <a href="protocol/FIFOChannel.html" class="extype" name="neko.protocol.FIFOChannel">FIFOChannel</a>, <a href="protocol/FastAnonymousRounds.html" class="extype" name="neko.protocol.FastAnonymousRounds">FastAnonymousRounds</a>, <a href="protocol/LamportClock.html" class="extype" name="neko.protocol.LamportClock">LamportClock</a>, <a href="protocol/RoundBased.html" class="extype" name="neko.protocol.RoundBased">RoundBased</a>, <a href="protocol/RoundBasedWithFailures.html" class="extype" name="neko.protocol.RoundBasedWithFailures">RoundBasedWithFailures</a>, <a href="protocol/SafraTerminationDetection.html" class="extype" name="neko.protocol.SafraTerminationDetection">SafraTerminationDetection</a>, <a href="protocol/VectorClock.html" class="extype" name="neko.protocol.VectorClock">VectorClock</a></div>
+          </div><div class="toggleContainer block diagram-container" id="inheritance-diagram-container">
+                <span class="toggle diagram-link">
+                  Type Hierarchy
+                </span>
+                <div class="diagram" id="inheritance-diagram"><svg class="class-diagram" id="graph1" viewBox="0.00 0.00 1241.50 155.00" height="155pt" width="1242pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 151)" class="graph" id="page0,1_graph0"><polygon points="-4,4 -4,-151 1237.5,-151 1237.5,4 -4,4" stroke="transparent" fill="white"></polygon><g class="cluster" id="clust1"></g><g class="cluster" id="clust2"></g><!-- node0 --><g class="node this class" id="graph1_0"><g id="a_this class|graph1_0"><a xlink:title="neko.ReactiveProtocol (this class)" xlink:href="#inheritance-diagram"><path d="M655.17,-86C655.17,-86 549.83,-86 549.83,-86 545.67,-86 541.5,-81.83 541.5,-77.67 541.5,-77.67 541.5,-69.33 541.5,-69.33 541.5,-65.17 545.67,-61 549.83,-61 549.83,-61 655.17,-61 655.17,-61 659.33,-61 663.5,-65.17 663.5,-69.33 663.5,-69.33 663.5,-77.67 663.5,-77.67 663.5,-81.83 659.33,-86 655.17,-86" stroke="#418565" fill="#418565"></path><image xlink:href="../lib/class_diagram.png" y="-80.5" x="551.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-71.63" x="572.2" text-anchor="start">ReactiveProtocol</text></a></g></g><!-- node1 --><g class="node class" id="graph1_1"><g id="a_class|graph1_1"><a xlink:title="neko.protocol.AnonymousRounds" xlink:href="protocol/AnonymousRounds.html#inheritance-diagram"><path d="M108.67,-25C108.67,-25 8.33,-25 8.33,-25 4.17,-25 0,-20.83 0,-16.67 0,-16.67 0,-8.33 0,-8.33 0,-4.17 4.17,0 8.33,0 8.33,0 108.67,0 108.67,0 112.83,0 117,-4.17 117,-8.33 117,-8.33 117,-16.67 117,-16.67 117,-20.83 112.83,-25 108.67,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../lib/class_diagram.png" y="-19.5" x="10.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="31.1" text-anchor="start">AnonymousRounds</text></a></g></g><!-- node0&#45;&gt;node1 --><g class="edge inheritance" id="graph1_0_1"><g id="a_inheritance|graph1_0_1"><a xlink:title="AnonymousRounds is a subtype of ReactiveProtocol"><path d="M534.26,-67.23C441.51,-59.72 270.58,-44.65 125.5,-25 122.81,-24.64 120.06,-24.24 117.29,-23.83" stroke="#d4d4d4" fill="none"></path><polygon points="534.17,-69.68 541.35,-67.8 534.57,-64.8 534.17,-69.68" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node2 --><g class="node class" id="graph1_2"><g id="a_class|graph1_2"><a xlink:title="neko.protocol.ArbitraryTopology" xlink:href="protocol/ArbitraryTopology.html#inheritance-diagram"><path d="M253.67,-25C253.67,-25 143.33,-25 143.33,-25 139.17,-25 135,-20.83 135,-16.67 135,-16.67 135,-8.33 135,-8.33 135,-4.17 139.17,0 143.33,0 143.33,0 253.67,0 253.67,0 257.83,0 262,-4.17 262,-8.33 262,-8.33 262,-16.67 262,-16.67 262,-20.83 257.83,-25 253.67,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../lib/class_diagram.png" y="-19.5" x="145.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="166.3" text-anchor="start">ArbitraryTopology</text></a></g></g><!-- node0&#45;&gt;node2 --><g class="edge inheritance" id="graph1_0_2"><g id="a_inheritance|graph1_0_2"><a xlink:title="ArbitraryTopology is a subtype of ReactiveProtocol"><path d="M534.29,-62.99C467.34,-53.59 362.34,-38.67 271.5,-25 268.46,-24.54 265.34,-24.07 262.19,-23.59" stroke="#d4d4d4" fill="none"></path><polygon points="534.18,-65.45 541.46,-64 534.87,-60.6 534.18,-65.45" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node3 --><g class="node class" id="graph1_3"><g id="a_class|graph1_3"><a xlink:title="neko.protocol.FIFOChannel" xlink:href="protocol/FIFOChannel.html#inheritance-diagram"><path d="M370.17,-25C370.17,-25 288.83,-25 288.83,-25 284.67,-25 280.5,-20.83 280.5,-16.67 280.5,-16.67 280.5,-8.33 280.5,-8.33 280.5,-4.17 284.67,0 288.83,0 288.83,0 370.17,0 370.17,0 374.33,0 378.5,-4.17 378.5,-8.33 378.5,-8.33 378.5,-16.67 378.5,-16.67 378.5,-20.83 374.33,-25 370.17,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../lib/class_diagram.png" y="-19.5" x="290.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="311.2" text-anchor="start">FIFOChannel</text></a></g></g><!-- node0&#45;&gt;node3 --><g class="edge inheritance" id="graph1_0_3"><g id="a_inheritance|graph1_0_3"><a xlink:title="FIFOChannel is a subtype of ReactiveProtocol"><path d="M542.1,-59.45C492.92,-48.82 424.35,-34 378.52,-24.09" stroke="#d4d4d4" fill="none"></path><polygon points="541.86,-61.9 549.21,-60.98 542.89,-57.11 541.86,-61.9" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node4 --><g class="node class" id="graph1_4"><g id="a_class|graph1_4"><a xlink:title="neko.protocol.FastAnonymousRounds" xlink:href="protocol/FastAnonymousRounds.html#inheritance-diagram"><path d="M524.17,-25C524.17,-25 404.83,-25 404.83,-25 400.67,-25 396.5,-20.83 396.5,-16.67 396.5,-16.67 396.5,-8.33 396.5,-8.33 396.5,-4.17 400.67,0 404.83,0 404.83,0 524.17,0 524.17,0 528.33,0 532.5,-4.17 532.5,-8.33 532.5,-8.33 532.5,-16.67 532.5,-16.67 532.5,-20.83 528.33,-25 524.17,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../lib/class_diagram.png" y="-19.5" x="406.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="427" text-anchor="start">FastAnonymousRounds</text></a></g></g><!-- node0&#45;&gt;node4 --><g class="edge inheritance" id="graph1_0_4"><g id="a_inheritance|graph1_0_4"><a xlink:title="FastAnonymousRounds is a subtype of ReactiveProtocol"><path d="M569.1,-58.22C545.42,-48.1 514.03,-34.68 491.84,-25.19" stroke="#d4d4d4" fill="none"></path><polygon points="568.17,-60.49 575.56,-60.98 570.09,-55.98 568.17,-60.49" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node5 --><g class="node class" id="graph1_5"><g id="a_class|graph1_5"><a xlink:title="neko.protocol.LamportClock" xlink:href="protocol/LamportClock.html#inheritance-diagram"><path d="M645.67,-25C645.67,-25 559.33,-25 559.33,-25 555.17,-25 551,-20.83 551,-16.67 551,-16.67 551,-8.33 551,-8.33 551,-4.17 555.17,0 559.33,0 559.33,0 645.67,0 645.67,0 649.83,0 654,-4.17 654,-8.33 654,-8.33 654,-16.67 654,-16.67 654,-20.83 649.83,-25 645.67,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../lib/class_diagram.png" y="-19.5" x="561.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="582.3" text-anchor="start">LamportClock</text></a></g></g><!-- node0&#45;&gt;node5 --><g class="edge inheritance" id="graph1_0_5"><g id="a_inheritance|graph1_0_5"><a xlink:title="LamportClock is a subtype of ReactiveProtocol"><path d="M602.5,-53.76C602.5,-44.37 602.5,-33.29 602.5,-25.13" stroke="#d4d4d4" fill="none"></path><polygon points="600.05,-53.84 602.5,-60.84 604.95,-53.84 600.05,-53.84" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node6 --><g class="node class" id="graph1_6"><g id="a_class|graph1_6"><a xlink:title="neko.protocol.RoundBased" xlink:href="protocol/RoundBased.html#inheritance-diagram"><path d="M756.67,-25C756.67,-25 680.33,-25 680.33,-25 676.17,-25 672,-20.83 672,-16.67 672,-16.67 672,-8.33 672,-8.33 672,-4.17 676.17,0 680.33,0 680.33,0 756.67,0 756.67,0 760.83,0 765,-4.17 765,-8.33 765,-8.33 765,-16.67 765,-16.67 765,-20.83 760.83,-25 756.67,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../lib/class_diagram.png" y="-19.5" x="682.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="703.1" text-anchor="start">RoundBased</text></a></g></g><!-- node0&#45;&gt;node6 --><g class="edge inheritance" id="graph1_0_6"><g id="a_inheritance|graph1_0_6"><a xlink:title="RoundBased is a subtype of ReactiveProtocol"><path d="M631.6,-57.7C651.38,-47.64 677.18,-34.52 695.52,-25.19" stroke="#d4d4d4" fill="none"></path><polygon points="630.27,-55.63 625.14,-60.98 632.49,-59.99 630.27,-55.63" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node7 --><g class="node class" id="graph1_7"><g id="a_class|graph1_7"><a xlink:title="neko.protocol.RoundBasedWithFailures" xlink:href="protocol/RoundBasedWithFailures.html#inheritance-diagram"><path d="M925.67,-25C925.67,-25 791.33,-25 791.33,-25 787.17,-25 783,-20.83 783,-16.67 783,-16.67 783,-8.33 783,-8.33 783,-4.17 787.17,0 791.33,0 791.33,0 925.67,0 925.67,0 929.83,0 934,-4.17 934,-8.33 934,-8.33 934,-16.67 934,-16.67 934,-20.83 929.83,-25 925.67,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../lib/class_diagram.png" y="-19.5" x="793.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="814.3" text-anchor="start">RoundBasedWithFailures</text></a></g></g><!-- node0&#45;&gt;node7 --><g class="edge inheritance" id="graph1_0_7"><g id="a_inheritance|graph1_0_7"><a xlink:title="RoundBasedWithFailures is a subtype of ReactiveProtocol"><path d="M659.47,-59.37C704.05,-49.1 765.45,-34.94 808.22,-25.09" stroke="#d4d4d4" fill="none"></path><polygon points="658.74,-57.02 652.47,-60.98 659.84,-61.8 658.74,-57.02" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node8 --><g class="node class" id="graph1_8"><g id="a_class|graph1_8"><a xlink:title="neko.protocol.SafraTerminationDetection" xlink:href="protocol/SafraTerminationDetection.html#inheritance-diagram"><path d="M1108.67,-25C1108.67,-25 960.33,-25 960.33,-25 956.17,-25 952,-20.83 952,-16.67 952,-16.67 952,-8.33 952,-8.33 952,-4.17 956.17,0 960.33,0 960.33,0 1108.67,0 1108.67,0 1112.83,0 1117,-4.17 1117,-8.33 1117,-8.33 1117,-16.67 1117,-16.67 1117,-20.83 1112.83,-25 1108.67,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../lib/class_diagram.png" y="-19.5" x="962.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="983.1" text-anchor="start">SafraTerminationDetection</text></a></g></g><!-- node0&#45;&gt;node8 --><g class="edge inheritance" id="graph1_0_8"><g id="a_inheritance|graph1_0_8"><a xlink:title="SafraTerminationDetection is a subtype of ReactiveProtocol"><path d="M671.16,-63.12C747.39,-52.71 870.38,-35.91 951.83,-24.79" stroke="#d4d4d4" fill="none"></path><polygon points="670.54,-60.73 663.94,-64.11 671.2,-65.59 670.54,-60.73" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node9 --><g class="node class" id="graph1_9"><g id="a_class|graph1_9"><a xlink:title="neko.protocol.VectorClock" xlink:href="protocol/VectorClock.html#inheritance-diagram"><path d="M1225.17,-25C1225.17,-25 1143.83,-25 1143.83,-25 1139.67,-25 1135.5,-20.83 1135.5,-16.67 1135.5,-16.67 1135.5,-8.33 1135.5,-8.33 1135.5,-4.17 1139.67,0 1143.83,0 1143.83,0 1225.17,0 1225.17,0 1229.33,0 1233.5,-4.17 1233.5,-8.33 1233.5,-8.33 1233.5,-16.67 1233.5,-16.67 1233.5,-20.83 1229.33,-25 1225.17,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../lib/class_diagram.png" y="-19.5" x="1145.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="1166.2" text-anchor="start">VectorClock</text></a></g></g><!-- node0&#45;&gt;node9 --><g class="edge inheritance" id="graph1_0_9"><g id="a_inheritance|graph1_0_9"><a xlink:title="VectorClock is a subtype of ReactiveProtocol"><path d="M670.71,-68.62C770.96,-62.39 963.82,-48.43 1126.5,-25 1129.34,-24.59 1132.26,-24.13 1135.2,-23.64" stroke="#d4d4d4" fill="none"></path><polygon points="670.49,-66.18 663.66,-69.05 670.79,-71.07 670.49,-66.18" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node10 --><g class="node class" id="graph1_10"><g id="a_class|graph1_10"><a xlink:title="neko.ProtocolImpl" xlink:href="ProtocolImpl.html#inheritance-diagram"><path d="M409.67,-147C409.67,-147 323.33,-147 323.33,-147 319.17,-147 315,-142.83 315,-138.67 315,-138.67 315,-130.33 315,-130.33 315,-126.17 319.17,-122 323.33,-122 323.33,-122 409.67,-122 409.67,-122 413.83,-122 418,-126.17 418,-130.33 418,-130.33 418,-138.67 418,-138.67 418,-142.83 413.83,-147 409.67,-147" stroke="#418565" fill="#418565"></path><image xlink:href="../lib/class_diagram.png" y="-141.5" x="325.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-132.63" x="346.3" text-anchor="start">ProtocolImpl</text></a></g></g><!-- node10&#45;&gt;node0 --><g class="edge inheritance" id="graph1_10_0"><g id="a_inheritance|graph1_10_0"><a xlink:title="ReactiveProtocol is a subtype of ProtocolImpl"><path d="M419.53,-120.24C460.58,-109.98 516.88,-95.9 556.15,-86.09" stroke="#d4d4d4" fill="none"></path><polygon points="418.76,-117.91 412.56,-121.98 419.95,-122.66 418.76,-117.91" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node11 --><g class="node trait" id="graph1_11"><g id="a_trait|graph1_11"><a xlink:title="neko.ListenerUtils" xlink:href="ListenerUtils.html#inheritance-diagram"><path d="M536.17,-147C536.17,-147 444.83,-147 444.83,-147 440.67,-147 436.5,-142.83 436.5,-138.67 436.5,-138.67 436.5,-130.33 436.5,-130.33 436.5,-126.17 440.67,-122 444.83,-122 444.83,-122 536.17,-122 536.17,-122 540.33,-122 544.5,-126.17 544.5,-130.33 544.5,-130.33 544.5,-138.67 544.5,-138.67 544.5,-142.83 540.33,-147 536.17,-147" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../lib/trait_diagram.png" y="-141.5" x="446.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-132.63" x="467.4" text-anchor="start">ListenerUtils</text></a></g></g><!-- node11&#45;&gt;node0 --><g class="edge inheritance" id="graph1_11_0"><g id="a_inheritance|graph1_11_0"><a xlink:title="ReactiveProtocol is a subtype of ListenerUtils"><path d="M518.6,-118.7C537.69,-108.64 562.61,-95.52 580.31,-86.19" stroke="#d4d4d4" fill="none"></path><polygon points="517.41,-116.55 512.36,-121.98 519.7,-120.89 517.41,-116.55" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node12 --><g class="node trait" id="graph1_12"><g id="a_trait|graph1_12"><a xlink:title="neko.Sending" xlink:href="Sending.html#inheritance-diagram"><path d="M633.67,-147C633.67,-147 571.33,-147 571.33,-147 567.17,-147 563,-142.83 563,-138.67 563,-138.67 563,-130.33 563,-130.33 563,-126.17 567.17,-122 571.33,-122 571.33,-122 633.67,-122 633.67,-122 637.83,-122 642,-126.17 642,-130.33 642,-130.33 642,-138.67 642,-138.67 642,-142.83 637.83,-147 633.67,-147" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../lib/trait_diagram.png" y="-141.5" x="573.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-132.63" x="594.3" text-anchor="start">Sending</text></a></g></g><!-- node12&#45;&gt;node0 --><g class="edge inheritance" id="graph1_12_0"><g id="a_inheritance|graph1_12_0"><a xlink:title="ReactiveProtocol is a subtype of Sending"><path d="M602.5,-114.76C602.5,-105.37 602.5,-94.29 602.5,-86.13" stroke="#d4d4d4" fill="none"></path><polygon points="600.05,-114.84 602.5,-121.84 604.95,-114.84 600.05,-114.84" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node13 --><g class="node trait" id="graph1_13"><g id="a_trait|graph1_13"><a xlink:title="neko.Receiving" xlink:href="Receiving.html#inheritance-diagram"><path d="M740.17,-147C740.17,-147 668.83,-147 668.83,-147 664.67,-147 660.5,-142.83 660.5,-138.67 660.5,-138.67 660.5,-130.33 660.5,-130.33 660.5,-126.17 664.67,-122 668.83,-122 668.83,-122 740.17,-122 740.17,-122 744.33,-122 748.5,-126.17 748.5,-130.33 748.5,-130.33 748.5,-138.67 748.5,-138.67 748.5,-142.83 744.33,-147 740.17,-147" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../lib/trait_diagram.png" y="-141.5" x="670.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-132.63" x="691" text-anchor="start">Receiving</text></a></g></g><!-- node13&#45;&gt;node0 --><g class="edge inheritance" id="graph1_13_0"><g id="a_inheritance|graph1_13_0"><a xlink:title="ReactiveProtocol is a subtype of Receiving"><path d="M678.21,-118.29C660.88,-108.27 638.52,-95.34 622.61,-86.13" stroke="#d4d4d4" fill="none"></path><polygon points="677.06,-120.46 684.35,-121.84 679.52,-116.22 677.06,-120.46" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node14 --><g class="node trait" id="graph1_14"><g id="a_trait|graph1_14"><a xlink:title="neko.trace.Tracing" xlink:href="trace/Tracing.html#inheritance-diagram"><path d="M837.67,-147C837.67,-147 775.33,-147 775.33,-147 771.17,-147 767,-142.83 767,-138.67 767,-138.67 767,-130.33 767,-130.33 767,-126.17 771.17,-122 775.33,-122 775.33,-122 837.67,-122 837.67,-122 841.83,-122 846,-126.17 846,-130.33 846,-130.33 846,-138.67 846,-138.67 846,-142.83 841.83,-147 837.67,-147" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../lib/trait_diagram.png" y="-141.5" x="777.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-132.63" x="798.3" text-anchor="start">Tracing</text></a></g></g><!-- node14&#45;&gt;node0 --><g class="edge inheritance" id="graph1_14_0"><g id="a_inheritance|graph1_14_0"><a xlink:title="ReactiveProtocol is a subtype of Tracing"><path d="M759.78,-119.99C724.37,-109.75 676.23,-95.82 642.57,-86.09" stroke="#d4d4d4" fill="none"></path><polygon points="759.28,-122.39 766.68,-121.98 760.64,-117.69 759.28,-122.39" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
+                <div id="diagram-controls" class="hiddenContent">
+                  <button id="diagram-zoom-out" class="diagram-btn"><i class="material-icons"></i></button>
+                  <button id="diagram-zoom-in" class="diagram-btn"><i class="material-icons"></i></button>
+                  <button title="Toggle full-screen" id="diagram-fs" class="diagram-btn to-full"><i class="material-icons"></i></button>
+                </div>
+              </div></div>
+        
+
+      <div id="mbrsel">
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
+            <ol>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              <li class="inherit out"><span>By Inheritance</span></li>
+            </ol>
+          </div>
+          <div class="ancestors">
+                  <span class="filtertype">Inherited<br />
+                  </span>
+                  <ol id="linearization">
+                    <li class="in" name="neko.ReactiveProtocol"><span>ReactiveProtocol</span></li><li class="in" name="neko.trace.Tracing"><span>Tracing</span></li><li class="in" name="neko.Receiving"><span>Receiving</span></li><li class="in" name="neko.Sending"><span>Sending</span></li><li class="in" name="neko.Sender"><span>Sender</span></li><li class="in" name="neko.ListenerUtils"><span>ListenerUtils</span></li><li class="in" name="neko.Listener"><span>Listener</span></li><li class="in" name="neko.Receiver"><span>Receiver</span></li><li class="in" name="neko.ProtocolImpl"><span>ProtocolImpl</span></li><li class="in" name="neko.ProtocolUtils"><span>ProtocolUtils</span></li><li class="in" name="neko.Protocol"><span>Protocol</span></li><li class="in" name="neko.NamedEntity"><span>NamedEntity</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  </ol>
+                </div><div class="ancestors">
+                  <span class="filtertype">Implicitly<br />
+                  </span>
+                  <ol id="implicits"> <li class="in" name="scala.Predef.any2stringadd" data-hidden="true"><span>by any2stringadd</span></li><li class="in" name="scala.Predef.StringFormat" data-hidden="true"><span>by StringFormat</span></li><li class="in" name="scala.Predef.Ensuring" data-hidden="true"><span>by Ensuring</span></li><li class="in" name="scala.Predef.ArrowAssoc" data-hidden="true"><span>by ArrowAssoc</span></li>
+                  </ol>
+                </div><div class="ancestors">
+              <span class="filtertype"></span>
+              <ol>
+                <li class="hideall out"><span>Hide All</span></li>
+                <li class="showall in"><span>Show All</span></li>
+              </ol>
+            </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="neko.ReactiveProtocol#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(config:neko.ProcessConfig,nickname:String):neko.ReactiveProtocol"></a><a id="&lt;init&gt;:ReactiveProtocol"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#&lt;init&gt;(config:neko.ProcessConfig,nickname:String):neko.ReactiveProtocol" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ReactiveProtocol</span><span class="params">(<span name="config">config: <a href="ProcessConfig.html" class="extype" name="neko.ProcessConfig">ProcessConfig</a></span>, <span name="nickname">nickname: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;unnamed&quot;</span></span>)</span>
+      </span>
+      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">config</dt><dd class="cmt"><p>configuration from the process to which the protocol instance is attached</p></dd><dt class="param">nickname</dt><dd class="cmt"><p>nickname of the protocol (aimed to be used for io)</p></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div class="values members">
+              <h3>Abstract Value Members</h3>
+              <ol><li name="neko.Receiving#onReceive" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="onReceive:PartialFunction[neko.Event,Unit]"></a><a id="onReceive:PartialFunction[Event,Unit]"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#onReceive:PartialFunction[neko.Event,Unit]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onReceive</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/PartialFunction.html#scala.PartialFunction" class="extype" name="scala.PartialFunction">PartialFunction</a>[<a href="Event.html" class="extype" name="neko.Event">Event</a>, <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Implements the behavior of the protocol when receiving a message (or signal).</p><div class="fullcomment"><div class="comment cmt"><p>Implements the behavior of the protocol when receiving a message (or signal).</p><p>This must be defined in any concrete subclass.
+It is defined as a partial function taking a message as input and returning nothing.</p><p>Typically, the partial function will implement different behavior depending on the type of
+message being sent. For instance,</p><pre><span class="kw">def</span> onReceive = {
+  <span class="kw">case</span> Token(from, _, _) <span class="kw">if</span> parent.isEmpty <span class="kw">=&gt;</span>
+    parent   = <span class="std">Some</span>(from)
+    children = (neighbors-from).toList
+    DELIVER (Visit)
+    visitNextChild()
+  <span class="kw">case</span> Token(_, _, _) <span class="kw">=&gt;</span> visitNextChild()
+}</pre></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Receiving.html" class="extype" name="neko.Receiving">Receiving</a></dd></dl></div>
+    </li><li name="neko.Sending#onSend" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="onSend:PartialFunction[neko.Event,Unit]"></a><a id="onSend:PartialFunction[Event,Unit]"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#onSend:PartialFunction[neko.Event,Unit]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onSend</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/PartialFunction.html#scala.PartialFunction" class="extype" name="scala.PartialFunction">PartialFunction</a>[<a href="Event.html" class="extype" name="neko.Event">Event</a>, <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Implements the behavior of the protocol when sending a message.</p><div class="fullcomment"><div class="comment cmt"><p>Implements the behavior of the protocol when sending a message.</p><p>This must be defined in any concrete subclass.
+It is defined as a partial function taking a message as input and returning nothing.</p><p>Typically, the partial function will implement different behavior depending on the type of
+message being sent. For instance,</p><pre><span class="kw">def</span> onSend = {
+  <span class="kw">case</span> MutexClient.Request <span class="kw">=&gt;</span>
+    want = <span class="kw">true</span> ; myTS = lc.time
+    SEND(Request(me, ALL-me, myTS))
+  <span class="kw">case</span> MutexClient.Release <span class="kw">=&gt;</span>
+    SEND(Ack(me, pendingAcks))
+    ackCount = <span class="num">0</span> ; want = <span class="kw">false</span> ; pendingAcks = <span class="std">Set</span>.empty
+}</pre></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Sending.html" class="extype" name="neko.Sending">Sending</a></dd></dl></div>
+    </li></ol>
+            </div>
+
+        <div class="values members">
+              <h3>Concrete Value Members</h3>
+              <ol>
+                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#!=(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html###():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Int.html#scala.Int" class="extype" name="scala.Int">Int</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Predef.any2stringadd#+" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="+(other:String):String"></a><a id="+(String):String"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#+(other:String):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $plus" class="implicit">+</span><span class="params">(<span name="other">other: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> to
+            <span class="extype" name="scala.Predef.any2stringadd">any2stringadd</span>[<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>] performed by method any2stringadd in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>any2stringadd</dd></dl></div>
+    </li><li name="neko.ProtocolUtils#--&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="--&gt;(sender:neko.Sender):Unit"></a><a id="--&gt;(Sender):Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#--&gt;(sender:neko.Sender):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $minus$minus$greater" class="name">--&gt;</span><span class="params">(<span name="sender">sender: <a href="Sender.html" class="extype" name="neko.Sender">Sender</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Connects a new sender to this protocol.</p><div class="fullcomment"><div class="comment cmt"><p>Connects a new sender to this protocol.
+</p></div><dl class="paramcmts block"><dt class="param">sender</dt><dd class="cmt"><p>the new sender to connect.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">ProtocolUtils</a></dd></dl></div>
+    </li><li name="scala.Predef.ArrowAssoc#-&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="-&gt;[B](y:B):(A,B)"></a><a id="-&gt;[B](B):(ReactiveProtocol,B)"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#-&gt;[B](y:B):(A,B)" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $minus$greater" class="implicit">-&gt;</span><span class="tparams">[<span name="B">B</span>]</span><span class="params">(<span name="y">y: <span class="extype" name="scala.Predef.ArrowAssoc.-&gt;.B">B</span></span>)</span><span class="result">: (<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>, <span class="extype" name="scala.Predef.ArrowAssoc.-&gt;.B">B</span>)</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> to
+            <span class="extype" name="scala.Predef.ArrowAssoc">ArrowAssoc</span>[<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>] performed by method ArrowAssoc in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>ArrowAssoc</dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#==(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="neko.ProtocolUtils#ALL" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ALL:Set[neko.PID]"></a><a id="ALL:Set[PID]"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#ALL:Set[neko.PID]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ALL</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="PID.html" class="extype" name="neko.PID">PID</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">set of all processes in the system.</p><div class="fullcomment"><div class="comment cmt"><p>set of all processes in the system.
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">ProtocolUtils</a></dd></dl></div>
+    </li><li name="neko.Receiving#BROADCAST" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="BROADCAST(m:neko.BroadcastMessage):Unit"></a><a id="BROADCAST(BroadcastMessage):Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#BROADCAST(m:neko.BroadcastMessage):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">BROADCAST</span><span class="params">(<span name="m">m: <a href="BroadcastMessage.html" class="extype" name="neko.BroadcastMessage">BroadcastMessage</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Broadcasts a message using the sender set in the initializer where the protocol is created.</p><div class="fullcomment"><div class="comment cmt"><p>Broadcasts a message using the sender set in the initializer where the protocol is created.
+If no sender was explicitly set, the message will be set directly through the network.
+This is a wrapper for <a href="Receiving.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.Receiving#SEND">SEND</a>
+</p></div><dl class="paramcmts block"><dt class="param">m</dt><dd class="cmt"><p>the message to broadcast</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Receiving.html" class="extype" name="neko.Receiving">Receiving</a></dd></dl></div>
+    </li><li name="neko.ReactiveProtocol#DELIVER" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="DELIVER(m:neko.Event):Unit"></a><a id="DELIVER(Event):Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#DELIVER(m:neko.Event):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DELIVER</span><span class="params">(<span name="m">m: <a href="Event.html" class="extype" name="neko.Event">Event</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">provides the message or signal to the application.</p><div class="fullcomment"><div class="comment cmt"><p>provides the message or signal to the application. The message or signal passed as argument
+will be delivered to any protocol that has registered (e.g., using the method
+<a href="ListenerUtils.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ListenerUtils#listenTo">ListenerUtils!.listenTo</a>) for this type of message/signal to the dispatcher providing
+in <a href="#receiver:neko.Receiver" class="extmbr" name="neko.ReactiveProtocol#receiver">receiver</a>.</p></div><dl class="paramcmts block"><dt class="param">m</dt><dd class="cmt"><p>the message or signal to deliver</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> → <a href="Sending.html" class="extype" name="neko.Sending">Sending</a></dd></dl></div>
+    </li><li name="neko.ProtocolUtils#N" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="N:Int"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#N:Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">N</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Int.html#scala.Int" class="extype" name="scala.Int">Int</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">total number of processes running in the system.</p><div class="fullcomment"><div class="comment cmt"><p>total number of processes running in the system.
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">ProtocolUtils</a></dd></dl></div>
+    </li><li name="neko.ReactiveProtocol#SEND" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SEND(m:neko.Event):Unit"></a><a id="SEND(Event):Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#SEND(m:neko.Event):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SEND</span><span class="params">(<span name="m">m: <a href="Event.html" class="extype" name="neko.Event">Event</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Sends a message using the sender set in the initializer where the protocol is created.</p><div class="fullcomment"><div class="comment cmt"><p>Sends a message using the sender set in the initializer where the protocol is created.
+If no sender was explicitly set, the message will be set directly through the network.
+The destination for the message is defined when the message is created.
+</p></div><dl class="paramcmts block"><dt class="param">m</dt><dd class="cmt"><p>the message/signal to send</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> → <a href="Receiving.html" class="extype" name="neko.Receiving">Receiving</a></dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#asInstanceOf[T0]:T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#clone():Object" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="neko.Protocol#context" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="context:Some[neko.PID]"></a><a id="context:Some[PID]"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#context:Some[neko.PID]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">context</span><span class="result">: <span class="extype" name="scala.Some">Some</span>[<a href="PID.html" class="extype" name="neko.PID">PID</a>]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a> → <a href="NamedEntity.html" class="extype" name="neko.NamedEntity">NamedEntity</a></dd></dl></div>
+    </li><li name="neko.ReactiveProtocol#deliver" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="deliver(m:neko.Event):Unit"></a><a id="deliver(Event):Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#deliver(m:neko.Event):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">deliver</span><span class="params">(<span name="m">m: <a href="Event.html" class="extype" name="neko.Event">Event</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> → <a href="Receiving.html" class="extype" name="neko.Receiving">Receiving</a> → <a href="Receiver.html" class="extype" name="neko.Receiver">Receiver</a></dd></dl></div>
+    </li><li name="neko.ProtocolImpl#dispatcher" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="dispatcher:neko.kernel.Dispatcher"></a><a id="dispatcher:Dispatcher"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#dispatcher:neko.kernel.Dispatcher" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">dispatcher</span><span class="result">: <a href="kernel/Dispatcher.html" class="extype" name="neko.kernel.Dispatcher">Dispatcher</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">dispatcher to be used when delivering messages.</p><div class="fullcomment"><div class="comment cmt"><p>dispatcher to be used when delivering messages. Typically, this is the default dispatcher of
+the process.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>dispatcher for message delivery</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ProtocolImpl.html" class="extype" name="neko.ProtocolImpl">ProtocolImpl</a></dd></dl></div>
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:A=&gt;Boolean,msg:=&gt;Any):A"></a><a id="ensuring((ReactiveProtocol)⇒Boolean,⇒Any):ReactiveProtocol"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#ensuring(cond:A=&gt;Boolean,msg:=&gt;Any):A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: (<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>) ⇒ <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>, <span name="msg">msg: ⇒ <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></span>)</span><span class="result">: <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> to
+            <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>] performed by method Ensuring in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:A=&gt;Boolean):A"></a><a id="ensuring((ReactiveProtocol)⇒Boolean):ReactiveProtocol"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#ensuring(cond:A=&gt;Boolean):A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: (<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>) ⇒ <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>)</span><span class="result">: <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> to
+            <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>] performed by method Ensuring in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:Boolean,msg:=&gt;Any):A"></a><a id="ensuring(Boolean,⇒Any):ReactiveProtocol"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#ensuring(cond:Boolean,msg:=&gt;Any):A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>, <span name="msg">msg: ⇒ <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></span>)</span><span class="result">: <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> to
+            <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>] performed by method Ensuring in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:Boolean):A"></a><a id="ensuring(Boolean):ReactiveProtocol"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#ensuring(cond:Boolean):A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>)</span><span class="result">: <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> to
+            <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>] performed by method Ensuring in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="neko.ProtocolImpl#eventTracer" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eventTracer:neko.trace.EventTracer"></a><a id="eventTracer:EventTracer"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#eventTracer:neko.trace.EventTracer" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eventTracer</span><span class="result">: <a href="trace/EventTracer.html" class="extype" name="neko.trace.EventTracer">EventTracer</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ProtocolImpl.html" class="extype" name="neko.ProtocolImpl">ProtocolImpl</a></dd></dl></div>
+    </li><li name="scala.Predef.StringFormat#formatted" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="formatted(fmtstr:String):String"></a><a id="formatted(String):String"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#formatted(fmtstr:String):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="implicit">formatted</span><span class="params">(<span name="fmtstr">fmtstr: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> to
+            <span class="extype" name="scala.Predef.StringFormat">StringFormat</span>[<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>] performed by method StringFormat in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>StringFormat</dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#getClass():Class[_]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Int.html#scala.Int" class="extype" name="scala.Int">Int</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="neko.ProtocolImpl#id" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="id:neko.ProtoID"></a><a id="id:ProtoID"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#id:neko.ProtoID" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">id</span><span class="result">: <a href="ProtoID.html" class="extype" name="neko.ProtoID">ProtoID</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">identifier of the protocol.</p><div class="fullcomment"><div class="comment cmt"><p>identifier of the protocol.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>identifier of the protocol</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ProtocolImpl.html" class="extype" name="neko.ProtocolImpl">ProtocolImpl</a> → <a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a></dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#isInstanceOf[T0]:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="neko.ListenerUtils#listenTo" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="listenTo(clazz:Class[_&lt;:neko.Event]):Unit"></a><a id="listenTo(Class[_&lt;:Event]):Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">listenTo</span><span class="params">(<span name="clazz">clazz: <span class="extype" name="scala.Predef.Class">Class</span>[_ &lt;: <a href="Event.html" class="extype" name="neko.Event">Event</a>]</span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">called by the protocol to declare that it will listen to messages/event of the given type.</p><div class="fullcomment"><div class="comment cmt"><p>called by the protocol to declare that it will listen to messages/event of the given type.</p><pre><span class="kw">class</span> MyProtocol(...) <span class="kw">extends</span> ... <span class="kw">with</span> ListenerUtils
+{
+  listenTo(classOf[MyMessage])
+  listenTo(MyAlarm.getClass)
+  <span class="kw">def</span> onReceive = {
+    <span class="kw">case</span> MyMessage(...) <span class="kw">=&gt;</span> ...
+    <span class="kw">case</span> MyAlarm        <span class="kw">=&gt;</span> ...
+  }
+}
+<span class="kw">object</span> MyProtocol
+{
+  <span class="kw">case</span> <span class="kw">class</span> MyMessage(...) <span class="kw">extends</span> UnicastMessage(...)
+  <span class="kw">case</span> <span class="kw">object</span> MyAlarm <span class="kw">extends</span> Signal</pre></div><dl class="paramcmts block"><dt class="param">clazz</dt><dd class="cmt"><p>type of the message/event to listen to</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="ListenerUtils.html" class="extype" name="neko.ListenerUtils">ListenerUtils</a> → <a href="Listener.html" class="extype" name="neko.Listener">Listener</a></dd></dl></div>
+    </li><li name="neko.ProtocolUtils#me" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="me:neko.PID"></a><a id="me:PID"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#me:neko.PID" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">me</span><span class="result">: <a href="PID.html" class="extype" name="neko.PID">PID</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">identifier of the process in which the protocol is running.</p><div class="fullcomment"><div class="comment cmt"><p>identifier of the process in which the protocol is running.
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">ProtocolUtils</a></dd></dl></div>
+    </li><li name="neko.Protocol#name" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="name:String"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#name:String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">name</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">returns the name of the protocol</p><div class="fullcomment"><div class="comment cmt"><p>returns the name of the protocol</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>name of the protocol</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a> → <a href="NamedEntity.html" class="extype" name="neko.NamedEntity">NamedEntity</a></dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="neko.ProtocolUtils#neighbors" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="neighbors:Set[neko.PID]"></a><a id="neighbors:Set[PID]"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#neighbors:Set[neko.PID]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">neighbors</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="PID.html" class="extype" name="neko.PID">PID</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">set of processes that are direct neighbors to the process in which this instance of the
+protocol runs.</p><div class="fullcomment"><div class="comment cmt"><p>set of processes that are direct neighbors to the process in which this instance of the
+protocol runs.
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[this] </dd><dt>Definition Classes</dt><dd><a href="ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">ProtocolUtils</a></dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#notify():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#notifyAll():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="neko.Protocol#onError" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onError(e:Throwable):Unit"></a><a id="onError(Throwable):Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#onError(e:Throwable):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onError</span><span class="params">(<span name="e">e: <span class="extype" name="scala.Throwable">Throwable</span></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">override this method to report on errors whens the protocol is forcibly terminated due to an
+an error or exception.</p><div class="fullcomment"><div class="comment cmt"><p>override this method to report on errors whens the protocol is forcibly terminated due to an
+an error or exception. The method should never use any of the communication methods such as
+send, receive, or deliver.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a></dd></dl></div>
+    </li><li name="neko.ReactiveProtocol#onFinish" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onFinish():Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#onFinish():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onFinish</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">this method does nothing for reactive protocols; take downs should instead override the
+method <a href="#onShutdown():Unit" class="extmbr" name="neko.ReactiveProtocol#onShutdown">onShutdown</a>.</p><div class="fullcomment"><div class="comment cmt"><p>this method does nothing for reactive protocols; take downs should instead override the
+method <a href="#onShutdown():Unit" class="extmbr" name="neko.ReactiveProtocol#onShutdown">onShutdown</a>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> → <a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a></dd></dl></div>
+    </li><li name="neko.Protocol#onShutdown" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onShutdown():Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#onShutdown():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onShutdown</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">override this method to perform take downs after all processes have finished and before the
+process shuts down.</p><div class="fullcomment"><div class="comment cmt"><p>override this method to perform take downs after all processes have finished and before the
+process shuts down.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a></dd></dl></div>
+    </li><li name="neko.ProtocolImpl#out" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="out:java.io.PrintWriter"></a><a id="out:PrintWriter"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#out:java.io.PrintWriter" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">out</span><span class="result">: <span class="extype" name="java.io.PrintWriter">PrintWriter</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ProtocolImpl.html" class="extype" name="neko.ProtocolImpl">ProtocolImpl</a></dd></dl></div>
+    </li><li name="neko.Protocol#preStart" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="preStart():Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#preStart():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">preStart</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">override this method to perform initializations just before the process begins to run.</p><div class="fullcomment"><div class="comment cmt"><p>override this method to perform initializations just before the process begins to run.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a></dd></dl></div>
+    </li><li name="neko.ProtocolImpl#process" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="process:neko.PID"></a><a id="process:PID"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#process:neko.PID" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">process</span><span class="result">: <a href="PID.html" class="extype" name="neko.PID">PID</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">identifier of the process to which the protocol is attached.</p><div class="fullcomment"><div class="comment cmt"><p>identifier of the process to which the protocol is attached.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>identifier of the process</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ProtocolImpl.html" class="extype" name="neko.ProtocolImpl">ProtocolImpl</a> → <a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a></dd></dl></div>
+    </li><li name="neko.ProtocolUtils#receiver" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="receiver:neko.Receiver"></a><a id="receiver:Receiver"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#receiver:neko.Receiver" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">receiver</span><span class="result">: <a href="Receiver.html" class="extype" name="neko.Receiver">Receiver</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">receiver to which this protocol delivers messages.</p><div class="fullcomment"><div class="comment cmt"><p>receiver to which this protocol delivers messages. Typically, this is the message dispatcher
+of the process.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>receiver to which messages are delivered</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">ProtocolUtils</a></dd></dl></div>
+    </li><li name="neko.ProtocolUtils#receiver_=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="receiver_=(receiver:neko.Receiver):Unit"></a><a id="receiver_=(Receiver):Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#receiver_=(receiver:neko.Receiver):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: receiver_$eq" class="name">receiver_=</span><span class="params">(<span name="receiver">receiver: <a href="Receiver.html" class="extype" name="neko.Receiver">Receiver</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">sets a new receiver to which this protocol will deliver messages.</p><div class="fullcomment"><div class="comment cmt"><p>sets a new receiver to which this protocol will deliver messages. Normally, there is no need
+for the application programmer to use this, as the receiver is automatically set to a
+meaningful default value.
+</p></div><dl class="paramcmts block"><dt class="param">receiver</dt><dd class="cmt"><p>new receiver to which messages will be delivered</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">ProtocolUtils</a></dd></dl></div>
+    </li><li name="neko.ReactiveProtocol#send" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="send(m:neko.Event):Unit"></a><a id="send(Event):Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#send(m:neko.Event):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">send</span><span class="params">(<span name="m">m: <a href="Event.html" class="extype" name="neko.Event">Event</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Used to request the protocol to send a given message.</p><div class="fullcomment"><div class="comment cmt"><p>Used to request the protocol to send a given message.</p><p>The function translates to a call to <a href="#onSend:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onSend">onSend</a> in order to handle the message.</p></div><dl class="paramcmts block"><dt class="param">m</dt><dd class="cmt"><p>the message to send</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> → <a href="Sending.html" class="extype" name="neko.Sending">Sending</a> → <a href="Sender.html" class="extype" name="neko.Sender">Sender</a></dd></dl></div>
+    </li><li name="neko.ProtocolUtils#sender" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sender:neko.Sender"></a><a id="sender:Sender"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#sender:neko.Sender" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sender</span><span class="result">: <a href="Sender.html" class="extype" name="neko.Sender">Sender</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">target sender that will handle <a href="Sending.html#send(m:neko.Event):Unit" class="extmbr" name="neko.Sending#send">Sending#send</a> operations for this protocol.</p><div class="fullcomment"><div class="comment cmt"><p>target sender that will handle <a href="Sending.html#send(m:neko.Event):Unit" class="extmbr" name="neko.Sending#send">Sending#send</a> operations for this protocol.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>target sender</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">ProtocolUtils</a></dd></dl></div>
+    </li><li name="neko.ProtocolUtils#senderOpt" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="senderOpt:Option[neko.Sender]"></a><a id="senderOpt:Option[Sender]"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#senderOpt:Option[neko.Sender]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">senderOpt</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Option.html#scala.Option" class="extype" name="scala.Option">Option</a>[<a href="Sender.html" class="extype" name="neko.Sender">Sender</a>]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">ProtocolUtils</a></dd></dl></div>
+    </li><li name="neko.ReactiveProtocol#setTrace" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="setTrace[A](obj:A,nameOfVariable:String*)(implicitevidence$1:ReactiveProtocol.this.tracer.ru.TypeTag[A],implicitevidence$2:scala.reflect.ClassTag[A]):Unit"></a><a id="setTrace[A](A,String*)(scala.reflect.api.JavaUniverse.TypeTag[A],ClassTag[A]):Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#setTrace[A](obj:A,nameOfVariable:String*)(implicitevidence$1:ReactiveProtocol.this.tracer.ru.TypeTag[A],implicitevidence$2:scala.reflect.ClassTag[A]):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setTrace</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="obj">obj: <span class="extype" name="neko.ReactiveProtocol.setTrace.A">A</span></span>, <span name="nameOfVariable">nameOfVariable: <span class="extype" name="scala.Predef.String">String</span>*</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="neko.ReactiveProtocol.setTrace.A">A</span>]</span>, <span name="arg1">arg1: <a href="https://www.scala-lang.org/api/2.12.11/scala/reflect/ClassTag.html#scala.reflect.ClassTag" class="extype" name="scala.reflect.ClassTag">ClassTag</a>[<span class="extype" name="neko.ReactiveProtocol.setTrace.A">A</span>]</span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      
+    </li><li name="neko.Protocol#simpleName" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="simpleName:String"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#simpleName:String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">simpleName</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a> → <a href="NamedEntity.html" class="extype" name="neko.NamedEntity">NamedEntity</a></dd></dl></div>
+    </li><li name="neko.Protocol#start" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="start():Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#start():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">start</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">override this method to perform initialization just as the process starts.</p><div class="fullcomment"><div class="comment cmt"><p>override this method to perform initialization just as the process starts.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="neko.ProtocolImpl#system" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="system:neko.kernel.NekoSystem"></a><a id="system:NekoSystem"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#system:neko.kernel.NekoSystem" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">system</span><span class="result">: <a href="kernel/NekoSystem.html" class="extype" name="neko.kernel.NekoSystem">NekoSystem</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">system in which the protocol is running.</p><div class="fullcomment"><div class="comment cmt"><p>system in which the protocol is running. This gives access to some general information about
+the system, such as the total number of processes.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the system in which the protocol runs.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ProtocolImpl.html" class="extype" name="neko.ProtocolImpl">ProtocolImpl</a> → <a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a></dd></dl></div>
+    </li><li name="neko.ProtocolImpl#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#toString():String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="ProtocolImpl.html" class="extype" name="neko.ProtocolImpl">ProtocolImpl</a> → AnyRef → Any</dd></dl></div>
+    </li><li name="neko.trace.Tracing#tracer" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tracer:neko.trace.EventTracer"></a><a id="tracer:EventTracer"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#tracer:neko.trace.EventTracer" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tracer</span><span class="result">: <a href="trace/EventTracer.html" class="extype" name="neko.trace.EventTracer">EventTracer</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="trace/Tracing.html" class="extype" name="neko.trace.Tracing">Tracing</a></dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/Long.html#scala.Long" class="extype" name="scala.Long">Long</a></span>, <span name="arg1">arg1: <a href="https://www.scala-lang.org/api/2.12.11/scala/Int.html#scala.Int" class="extype" name="scala.Int">Int</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#wait(x$1:Long):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/Long.html#scala.Long" class="extype" name="scala.Long">Long</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Predef.ArrowAssoc#→" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="→[B](y:B):(A,B)"></a><a id="→[B](B):(ReactiveProtocol,B)"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#→[B](y:B):(A,B)" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $u2192" class="implicit">→</span><span class="tparams">[<span name="B">B</span>]</span><span class="params">(<span name="y">y: <span class="extype" name="scala.Predef.ArrowAssoc.→.B">B</span></span>)</span><span class="result">: (<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>, <span class="extype" name="scala.Predef.ArrowAssoc.→.B">B</span>)</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> to
+            <span class="extype" name="scala.Predef.ArrowAssoc">ArrowAssoc</span>[<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>] performed by method ArrowAssoc in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>ArrowAssoc</dd></dl></div>
+    </li>
+              </ol>
+            </div>
+
+        
+
+        <div class="values members">
+              <h3>Deprecated Value Members</h3>
+              <ol><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <span class="permalink">
+      <a href="../neko/ReactiveProtocol.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version ) see corresponding Javadoc for more information.">finalize</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+                <span class="name">@Deprecated</span>
+              
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version )</i> see corresponding Javadoc for more information.</p></dd></dl></div>
+    </li></ol>
+            </div>
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="neko.trace.Tracing">
+              <h3>Inherited from <a href="trace/Tracing.html" class="extype" name="neko.trace.Tracing">Tracing</a></h3>
+            </div><div class="parent" name="neko.Receiving">
+              <h3>Inherited from <a href="Receiving.html" class="extype" name="neko.Receiving">Receiving</a></h3>
+            </div><div class="parent" name="neko.Sending">
+              <h3>Inherited from <a href="Sending.html" class="extype" name="neko.Sending">Sending</a></h3>
+            </div><div class="parent" name="neko.Sender">
+              <h3>Inherited from <a href="Sender.html" class="extype" name="neko.Sender">Sender</a></h3>
+            </div><div class="parent" name="neko.ListenerUtils">
+              <h3>Inherited from <a href="ListenerUtils.html" class="extype" name="neko.ListenerUtils">ListenerUtils</a></h3>
+            </div><div class="parent" name="neko.Listener">
+              <h3>Inherited from <a href="Listener.html" class="extype" name="neko.Listener">Listener</a></h3>
+            </div><div class="parent" name="neko.Receiver">
+              <h3>Inherited from <a href="Receiver.html" class="extype" name="neko.Receiver">Receiver</a></h3>
+            </div><div class="parent" name="neko.ProtocolImpl">
+              <h3>Inherited from <a href="ProtocolImpl.html" class="extype" name="neko.ProtocolImpl">ProtocolImpl</a></h3>
+            </div><div class="parent" name="neko.ProtocolUtils">
+              <h3>Inherited from <a href="ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">ProtocolUtils</a></h3>
+            </div><div class="parent" name="neko.Protocol">
+              <h3>Inherited from <a href="Protocol.html" class="extype" name="neko.Protocol">Protocol</a></h3>
+            </div><div class="parent" name="neko.NamedEntity">
+              <h3>Inherited from <a href="NamedEntity.html" class="extype" name="neko.NamedEntity">NamedEntity</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></h3>
+            </div>
+        <div class="conversion" name="scala.Predef.any2stringadd">
+              <h3>Inherited by implicit conversion any2stringadd from
+                <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> to <span class="extype" name="scala.Predef.any2stringadd">any2stringadd</span>[<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>]
+              </h3>
+            </div><div class="conversion" name="scala.Predef.StringFormat">
+              <h3>Inherited by implicit conversion StringFormat from
+                <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> to <span class="extype" name="scala.Predef.StringFormat">StringFormat</span>[<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>]
+              </h3>
+            </div><div class="conversion" name="scala.Predef.Ensuring">
+              <h3>Inherited by implicit conversion Ensuring from
+                <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> to <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>]
+              </h3>
+            </div><div class="conversion" name="scala.Predef.ArrowAssoc">
+              <h3>Inherited by implicit conversion ArrowAssoc from
+                <a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a> to <span class="extype" name="scala.Predef.ArrowAssoc">ArrowAssoc</span>[<a href="" class="extype" name="neko.ReactiveProtocol">ReactiveProtocol</a>]
+              </h3>
+            </div>
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+    </body>
+          </div>
+        </div>
+      </div>
+    </body>
+      </html>

@@ -1,0 +1,771 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title></title>
+          <meta name="description" content="" />
+          <meta name="keywords" content="" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      
+      <link href="../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../../lib/index.js"></script>
+      <script type="text/javascript" src="../../index.js"></script>
+      <script type="text/javascript" src="../../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../lib/diagrams.js" id="diagrams-js"></script>
+      <script type="text/javascript">
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../../';
+      </script>
+    
+        </head>
+        <body>
+      <div id="search">
+        <span id="doc-title"><span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="../../index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../index.html"><span class="name">root</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.neko" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="neko"></a><a id="neko:neko"></a>
+      <span class="permalink">
+      <a href="../../neko/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="ScalaNeko is a framework designed to help with the prototyping of distributed algorithms." href="../index.html"><span class="name">neko</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">ScalaNeko is a framework designed to help with the prototyping of distributed algorithms.</p><div class="fullcomment"><div class="comment cmt"><h3>ScalaNeko Framework</h3><p>ScalaNeko is a framework designed to help with the prototyping of distributed algorithms. It is
+loosely based on the Neko framework [1] which was programmed in Java more than a decade earlier,
+mainly by Péter Urbán.</p><p>Whereas the original Neko framework was designed for performance evaluation and modeling, the
+main focus of ScalaNeko is to serve as a support for teaching distributed algorithms. Hence, the
+current version of ScalaNeko only supports simulated execution. However, we still have the
+intention to support actual distributed execution in a future version, and hence provide a full
+replacement of the original Neko.</p><h4>1. Architecture</h4><p>In order to effectively use ScalaNeko, it is helpful to understand its general architecture,
+which can be described as follows:</p><p>There are several important entities in ScalaNeko:</p><ul><li>The system is what handles the execution engine within the virtual machine and the
+   initialization procedure. There is exactly one instance running for every virtual machine.
+   The system also holds a discrete event simulator.
+   See <a href="../Main.html" class="extype" name="neko.Main">neko.Main</a> and <a href="../kernel/NekoSystem.html" class="extype" name="neko.kernel.NekoSystem">neko.kernel.NekoSystem</a>.</li><li>The network simulates the behavior of a network, and is responsible for transmitting messages
+   between processes. In the current version, it is running over a discrete-event simulation.
+   See <a href="../network/Network.html" class="extype" name="neko.network.Network">neko.network.Network</a> and <a href="../kernel/sim/Simulator.html" class="extype" name="neko.kernel.sim.Simulator">neko.kernel.sim.Simulator</a>.</li><li>The processes are the basic unit of concurrency, and represent a virtual computer connected
+   through a network. Every process has a unique identity represented by a <a href="../PID.html" class="extype" name="neko.PID">neko.PID</a>.
+   A process does nothing by itself and is merely a shell for protocols.
+   See <a href="../NekoProcess.html" class="extype" name="neko.NekoProcess">neko.NekoProcess</a> and <a href="../ProcessConfig.html" class="extype" name="neko.ProcessConfig">neko.ProcessConfig</a>.</li><li>The protocols are the actual logic of the system and implement the algorithms. A process holds
+   one or many protocols, which are organized as a stack. There are two kinds of protocols:
+   active and reactive ones. While active protocols carry their own flow of execution, that is,
+   act as a thread, concurrently with the system, the reactive protocols only execute code as a
+   reaction to incoming events.
+   See <a href="../ActiveProtocol.html" class="extype" name="neko.ActiveProtocol">neko.ActiveProtocol</a>, <a href="../ReactiveProtocol.html" class="extype" name="neko.ReactiveProtocol">neko.ReactiveProtocol</a>, <a href="../Protocol.html" class="extype" name="neko.Protocol">neko.Protocol</a>, and <a href="../ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">neko.ProtocolUtils</a>.</li><li>Protocols and processes exchange information through events. There are two types of events:
+   signals and messages. Signals allow protocols <b>within the same process</b> to notify each
+   other. In contrast, messages allow protocol instances to communicate
+   <b>across different processes</b>. In other words, only messages are transmitted through the
+   network.
+   See <a href="../Event.html" class="extype" name="neko.Event">neko.Event</a>, <a href="../Signal.html" class="extype" name="neko.Signal">neko.Signal</a>, <a href="../UnicastMessage.html" class="extype" name="neko.UnicastMessage">neko.UnicastMessage</a>, <a href="../MulticastMessage.html" class="extype" name="neko.MulticastMessage">neko.MulticastMessage</a>,
+   and <a href="../Wrapper.html" class="extype" name="neko.Wrapper">neko.Wrapper</a>.</li></ul><p>A simplified view of the architecture of an execution of ScalaNeko is depicted below:</p><pre>+-------------------------------------------------------+
+|       process p1                    process pn        |
+|  +-------------------+         +-------------------+  |
+|  | +---------------+ |         | +---------------+ |  |
+|  | | protocol p1:A | |         | | protocol pn:A | |  |
+|  | +-------------+-+ |         | +-------------+-+ |  |
+|  |   |           |   |   ...   |   |           |   |  |
+|  | +-+-----------V-+ |         | +-+-----------V-+ |  |
+|  | | protocol p1:B | |         | | protocol pn:B | |  |
+|  | +-------------+-+ |         | +-------------+-+ |  |
+|  +---|-----------|---+         +---|-----------|---+  |
+|      |           |                 |           |      |
+|  +---+-----------V-----------------+-----------V---+  |
+|  |                      network                    |  |
+|  +-------------------------------------------------+  |
+|                  +------------------+                 |
+|                  |     simulator    |                 |
+|                  +------------------+       system    |
++-------------------------------------------------------+</pre><p>Creating a ScalaNeko application typically requires to implement the following steps:</p><ol class="lowerAlpha"><li>Implement the protocols. At least, an application will require to implement an active
+    protocol, but also possibly a number of reusable reactive ones.</li><li>Each protocol is likely to define its own message types. The most appropriate location for
+    doing so is in a companion object of the protocol. Messages are best defined as a
+    <code>case class</code> so that they are ensured to be immutable and code for pattern matching is
+    automatically generated by the compiler.</li><li>Creating a process initializer that instantiates and connects the protocols of the processes.</li><li>Creating a main object which provides the basic parameters of the execution, such as the
+    total number of processes to create and their initializer.</li></ol><p>The initialization proceeds roughly as illustrated below:</p><pre>     creates            creates
+Main ------&gt; NekoSystem ------&gt; Network
+                        creates
+                  <span class="lit">''</span>    ------&gt; ProcessInitializer
+                        creates             creates
+                  <span class="lit">''</span>    ====<span class="kw">=&gt;</span>&gt; NekoProcess ====<span class="kw">=&gt;</span>&gt; Protocol</pre><h4>2. Creating protocols</h4><p>A protocol can be either active or reactive. An active protocol is one that executes its own
+thread, concurrently with that of the other protocols or processes. In contrast, a reactive
+protocol only executes as a reaction to events, and does not do anything otherwise.</p><h5>2.1 Active protocols</h5><p>An active protocol is typically defined as a subclass of <a href="../ActiveProtocol.html" class="extype" name="neko.ActiveProtocol">neko.ActiveProtocol</a>.</p><p>An active protocol has its own thread of control. The code of the protocol is implemented in its
+method <a href="../ActiveProtocol.html#run():Unit" class="extmbr" name="neko.ActiveProtocol#run">neko.ActiveProtocol.run</a>, which must be defined in the subclass. This code is executed
+concurrently with the rest of the system.</p><p>An active protocol has access to operations for sending and receiving message. New messages are
+sent with the method <a href="../ActiveProtocol.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ActiveProtocol#SEND">neko.ActiveProtocol.SEND</a>. While messages are received through
+<b>blocking</b> calls to <a href="../ActiveProtocol$Receive$.html" class="extype" name="neko.ActiveProtocol.Receive">neko.ActiveProtocol.Receive</a>,
+as illustrated below. Note that, in order to receive messages of a certain type, the protocol
+must register by calling <a href="../ActiveProtocol.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ActiveProtocol#listenTo">neko.ActiveProtocol.listenTo</a> for this type.</p><pre><span class="kw">class</span> PingPong(c: NekoProcessConfig) <span class="kw">extends</span> ActiveProtocol(c, <span class="lit">"ping-pong"</span>)
+{
+  <span class="kw">val</span> next = me.map{i <span class="kw">=&gt;</span> (i+<span class="num">1</span>) % N}
+  <span class="kw">var</span> record = <span class="std">Set</span>.empty[Event]
+
+  listenTo(classOf[Ping])
+  listenTo(classOf[Pong])
+  <span class="kw">def</span> run(): <span class="std">Unit</span> =
+  {
+    SEND(Ping(me, next))
+
+    Receive {
+      <span class="kw">case</span> Ping(from, _) <span class="kw">=&gt;</span> SEND(Pong(me, from))
+      <span class="kw">case</span> Pong(from, _) <span class="kw">=&gt;</span> SEND(Ping(me, from))
+    }
+
+    Receive { m <span class="kw">=&gt;</span>
+      record += m
+    }
+  }
+}</pre><p>It is also possible to override the method <a href="../ActiveProtocol.html#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ActiveProtocol#onReceive">neko.ActiveProtocol.onReceive</a>. By doing so,
+messages that are matched by <code>onReceive</code> are processed reactively upon arrival, while those that
+are not matched by <code>onReceive</code> are stored into the receive queue and must be handled by a
+blocking call to <a href="../ActiveProtocol$Receive$.html" class="extype" name="neko.ActiveProtocol.Receive">neko.ActiveProtocol.Receive</a>.</p><h5>2.2 Reactive protocols</h5><p>Most protocols in a process are reactive.
+A reactive protocol is usually sandwiched between a
+network and an application (or a lower-level protocol and a higher-level one).
+The simplest way to implement one is by extending <a href="../ReactiveProtocol.html" class="extype" name="neko.ReactiveProtocol">neko.ReactiveProtocol</a>. The information
+has two flows: downstream and upstream. This is illustrated in the figure below.</p><pre>         application
+  |                      ^
+  V                      |
++----------------------------+
+| onSend        DELIVER(...) |
+|                            | Reactive protocol
+| SEND(...)        onReceive |
++----------------------------+
+  |                      ^
+  V                      |
+          network</pre><p>For the downstream flow (from application to network), the code of the protocol is implemented
+in the method <a href="../ReactiveProtocol.html#onSend:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onSend">neko.ReactiveProtocol.onSend</a>, usually implemented as a <a href="https://www.scala-lang.org/api/2.12.11/scala/PartialFunction.html" class="extype" name="scala.PartialFunction">scala.PartialFunction</a> which
+reacts as appropriate to each event. The protocol can itself send messages through the
+<a href="../ReactiveProtocol.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#SEND">neko.ReactiveProtocol.SEND</a> method.</p><p>For the upstream flow (from network to application), the code of the protocol is implemented in
+the method <a href="../ReactiveProtocol.html#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onReceive">neko.ReactiveProtocol.onReceive</a>, also implemented as a <a href="https://www.scala-lang.org/api/2.12.11/scala/PartialFunction.html" class="extype" name="scala.PartialFunction">scala.PartialFunction</a> which
+reacts appropriately to each incoming events. Events of a certain type are delivered to the
+protocol only if it registers to the event type by calling the <a href="../ReactiveProtocol.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ReactiveProtocol#listenTo">neko.ReactiveProtocol.listenTo</a>
+method on that event type. The protocol can deliver a message to the application through the
+method <a href="../ReactiveProtocol.html#DELIVER(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#DELIVER">neko.ReactiveProtocol.DELIVER</a>.</p><p>Note that the two flows are not mutually exclusive. It is perfectly valid, and even frequent,
+for a protocol to call <a href="../ReactiveProtocol.html#DELIVER(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#DELIVER">neko.ReactiveProtocol.DELIVER</a> in <a href="../ReactiveProtocol.html#onSend:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onSend">neko.ReactiveProtocol.onSend</a>, or to call
+<a href="../ReactiveProtocol.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#SEND">neko.ReactiveProtocol.SEND</a> in <a href="../ReactiveProtocol.html#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onReceive">neko.ReactiveProtocol.onReceive</a> .</p><h4>3. Defining new events (messages and signals)</h4><p>Let's start with a little bit of terminology. An event denotes anything that happens in the
+system and is represented by the abstract class <a href="../Event.html" class="extype" name="neko.Event">neko.Event</a>. Events can be of two types:</p><ul><li>A signal is an event that occurs within one process, and can go from one protocol to another,
+   but never cross process boundaries. It is represented by the subclasses of <a href="../Signal.html" class="extype" name="neko.Signal">neko.Signal</a>.</li><li>A message is an event that crosses process boundaries, but is typically (but not necessarily)
+   interpreted by the same protocol in the target process. It is represented by the subclasses
+   of <a href="../Message.html" class="extype" name="neko.Message">neko.Message</a>.</li></ul><p>   A message can be &quot;top-level&quot; or a &quot;wrapper&quot;. A top-level message is one that is created by the
+   sending protocol. It has its own identity, as well as a source and destinations. In contrast,
+   a wrapper is simply a shell that extends the information of an existing message. It retains
+   the same identity, source, and destinations, but provides a shell to the message and can add
+   its own information. This results into messages of three types:</p><ul><li>A <a href="../MulticastMessage.html" class="extype" name="neko.MulticastMessage">neko.MulticastMessage</a> is a top-level message with multiple destinations. See the
+     example below on how to define a new message:</li></ul><pre><span class="kw">case</span> <span class="kw">class</span> Snapshot(
+    from: PID,
+    to: <span class="std">Set</span>[PID])
+  <span class="kw">extends</span> MulticastMessage</pre><p>     NB: The arguments *must* be named <code>from</code> and <code>to</code>.</p><ul><li>A <a href="../UnicastMessage.html" class="extype" name="neko.UnicastMessage">neko.UnicastMessage</a> is a top-level message with a single destination process.</li></ul><pre><span class="kw">case</span> <span class="kw">class</span> Token (
+    from: PID,
+    to: PID)
+  <span class="kw">extends</span> UnicastMessage</pre><p>     NB: The arguments *must* be named <code>from</code> and <code>to</code>.</p><ul><li>A <a href="../Wrapper.html" class="extype" name="neko.Wrapper">neko.Wrapper</a> is a shell that wraps an existing message. A wrapper can also extend
+     another wrapper; not only top-level messages. A wrapper preserves the identity, the source
+     and the destinations of the message it wraps.</li></ul><pre><span class="kw">case</span> <span class="kw">class</span> SequencedMessage(msg: Message, sn: <span class="std">Int</span>) <span class="kw">extends</span> Wrapper(msg)</pre><h4>4. Initialization of a process</h4><p>While processes are created automatically, their protocols are not, and must be initialized and
+connected. This is done through a process initializer, by providing an instance of
+<a href="../ProcessInitializer.html" class="extype" name="neko.ProcessInitializer">neko.ProcessInitializer</a>, whose sole role is to create the protocols of a process and
+combine them.</p><pre>ProcessInitializer { p <span class="kw">=&gt;</span>
+    <span class="kw">val</span> app  = <span class="kw">new</span> PingPong(p)
+    <span class="kw">val</span> fifo = <span class="kw">new</span> FIFOChannel(p)
+    app --&gt; fifo
+  }</pre><p>In the above example, each process is initialized by executing the above code. The code creates
+two protocols while registering them into the object <code>p</code> given as argument (which represents the
+process being initialized). Then, the two
+protocols are connected such that all <code>SEND</code> operations of protocol <code>app</code> are handed to
+protocol <code>fifo</code>. The send operations of protocol <code>fifo</code> use the default target which is
+the network interface of the process.</p><p>It is also possible to initialize processes differently, by discriminating based on the
+identifier of the process to initialize. That identifier is obtained from the argument
+with <code>p.pid</code>.</p><h4>5. Setting up a new system</h4><p>A new instance of a ScalaNeko system is created and configured by creating an object that
+extends <a href="../Main.html" class="extype" name="neko.Main">neko.Main</a>. The resulting object becomes a main object and is thus executable
+(<a href="../Main.html" class="extype" name="neko.Main">neko.Main</a> is a subclass of <a href="https://www.scala-lang.org/api/2.12.11/scala/App.html" class="extype" name="scala.App">scala.App</a>).</p><p>Class <a href="../Main.html" class="extype" name="neko.Main">neko.Main</a> requires to set parameters, such as the network topology and
+the process initializer, as illustrated below:</p><pre><span class="kw">object</span> PingPongApp <span class="kw">extends</span> Main(topology.Clique(<span class="num">3</span>))( ProcessInitializer { p<span class="kw">=&gt;</span> ... } )</pre><p>Future planned versions of ScalaNeko will make it possible to define many more parameters, such
+as the network topologyDescriptor, etc...</p><h4>References</h4><ol class="decimal"><li>Péter Urbán, Xavier Défago, André Schiper:
+    Neko: A Single Environment to Simulate and Prototype Distributed Algorithms.
+    J. Inf. Sci. Eng. 18(6): 981-997 (2002).</li></ol><h4>Contributors</h4><p>Lead architect: Xavier Défago</p><p>Other contributors:</p><ul><li>Naoyuki Onuki (trace system; integration with NekoViewer)
+</li></ul></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="neko.config" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="config"></a><a id="config:config"></a>
+      <span class="permalink">
+      <a href="../../neko/config/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../config/index.html"><span class="name">config</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.exceptions" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exceptions"></a><a id="exceptions:exceptions"></a>
+      <span class="permalink">
+      <a href="../../neko/exceptions/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../exceptions/index.html"><span class="name">exceptions</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.gui" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="gui"></a><a id="gui:gui"></a>
+      <span class="permalink">
+      <a href="../../neko/gui/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../gui/index.html"><span class="name">gui</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.io" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="io"></a><a id="io:io"></a>
+      <span class="permalink">
+      <a href="../../neko/io/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../io/index.html"><span class="name">io</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.kernel" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="kernel"></a><a id="kernel:kernel"></a>
+      <span class="permalink">
+      <a href="../../neko/kernel/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../kernel/index.html"><span class="name">kernel</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.network" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="network"></a><a id="network:network"></a>
+      <span class="permalink">
+      <a href="../../neko/network/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../network/index.html"><span class="name">network</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.protocol" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="protocol"></a><a id="protocol:protocol"></a>
+      <span class="permalink">
+      <a href="../../neko/protocol/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../protocol/index.html"><span class="name">protocol</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.topology" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="topology"></a><a id="topology:topology"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../topology/index.html"><span class="name">topology</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.trace" visbl="pub" class="indented2 current" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="trace"></a><a id="trace:trace"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">trace</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="object" href="ConsoleEventTracer$.html" title=""></a>
+                        <a href="ConsoleEventTracer$.html" title="">ConsoleEventTracer</a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="EventFormatter$.html" title=""></a>
+                        <a class="trait" href="EventFormatter.html" title=""></a>
+                        <a href="EventFormatter.html" title="">EventFormatter</a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="EventTracer$.html" title=""></a>
+                        <a class="trait" href="EventTracer.html" title=""></a>
+                        <a href="EventTracer.html" title="">EventTracer</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="FileEventTracer.html" title=""></a>
+                        <a href="FileEventTracer.html" title="">FileEventTracer</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="object" href="NullEventTracer$.html" title=""></a>
+                        <a href="NullEventTracer$.html" title="">NullEventTracer</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="ProtocolDB.html" title="Created by Onuki on 2017/02/28."></a>
+                        <a href="ProtocolDB.html" title="Created by Onuki on 2017/02/28.">ProtocolDB</a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="SingleFileTracer$.html" title=""></a>
+                        <a class="class" href="SingleFileTracer.html" title=""></a>
+                        <a href="SingleFileTracer.html" title="">SingleFileTracer</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="object" href="Tracer$.html" title=""></a>
+                        <a href="Tracer$.html" title="">Tracer</a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="Tracing$.html" title=""></a>
+                        <a class="trait" href="Tracing.html" title=""></a>
+                        <a href="Tracing.html" title="">Tracing</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="VariableNameDB.html" title="Created by Onuki on 2017/03/06."></a>
+                        <a href="VariableNameDB.html" title="Created by Onuki on 2017/03/06.">VariableNameDB</a>
+                      </li><li name="neko.util" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="util"></a><a id="util:util"></a>
+      <span class="permalink">
+      <a href="../../neko/util/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../util/index.html"><span class="name">util</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="package value">
+      <div id="definition">
+        <div class="big-circle package">p</div>
+        <p id="owner"><a href="../index.html" class="extype" name="neko">neko</a></p>
+        <h1>trace<span class="permalink">
+      <a href="../../neko/trace/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">trace</span>
+      </span>
+      </h4>
+
+      
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block diagram-container" id="content-diagram-container">
+                <span class="toggle diagram-link">
+                  Content Hierarchy
+                </span>
+                <div class="diagram" id="content-diagram"><svg class="package-diagram" id="graph1" viewBox="0.00 0.00 550.50 94.00" height="94pt" width="551pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 90)" class="graph" id="page0,1_graph0"><polygon points="-4,4 -4,-90 546.5,-90 546.5,4 -4,4" stroke="transparent" fill="white"></polygon><!-- node0 --><g class="node object" id="graph1_0"><g id="a_object|graph1_0"><a xlink:title="neko.trace.NullEventTracer" xlink:href="NullEventTracer$.html#inheritance-diagram"><path d="M108.67,-25C108.67,-25 8.33,-25 8.33,-25 4.17,-25 0,-20.83 0,-16.67 0,-16.67 0,-8.33 0,-8.33 0,-4.17 4.17,0 8.33,0 8.33,0 108.67,0 108.67,0 112.83,0 117,-4.17 117,-8.33 117,-8.33 117,-16.67 117,-16.67 117,-20.83 112.83,-25 108.67,-25" stroke="#103a51" fill="#103a51"></path><image xlink:href="../../lib/object_diagram.png" y="-19.5" x="10.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="31.1" text-anchor="start">NullEventTracer</text></a></g></g><!-- node1 --><g class="node class" id="graph1_1"><g id="a_class|graph1_1"><a xlink:title="neko.trace.FileEventTracer" xlink:href="FileEventTracer.html#inheritance-diagram"><path d="M243.67,-25C243.67,-25 143.33,-25 143.33,-25 139.17,-25 135,-20.83 135,-16.67 135,-16.67 135,-8.33 135,-8.33 135,-4.17 139.17,0 143.33,0 143.33,0 243.67,0 243.67,0 247.83,0 252,-4.17 252,-8.33 252,-8.33 252,-16.67 252,-16.67 252,-20.83 247.83,-25 243.67,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../../lib/class_diagram.png" y="-19.5" x="145.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="166.1" text-anchor="start">FileEventTracer</text></a></g></g><!-- node2 --><g class="node class" id="graph1_2"><g id="a_class|graph1_2"><a xlink:title="neko.trace.SingleFileTracer" xlink:href="SingleFileTracer.html#inheritance-diagram"><path d="M384.17,-25C384.17,-25 278.83,-25 278.83,-25 274.67,-25 270.5,-20.83 270.5,-16.67 270.5,-16.67 270.5,-8.33 270.5,-8.33 270.5,-4.17 274.67,0 278.83,0 278.83,0 384.17,0 384.17,0 388.33,0 392.5,-4.17 392.5,-8.33 392.5,-8.33 392.5,-16.67 392.5,-16.67 392.5,-20.83 388.33,-25 384.17,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../../lib/class_diagram.png" y="-19.5" x="280.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="301.2" text-anchor="start">SingleFileTracer</text></a></g></g><!-- node3 --><g class="node object" id="graph1_3"><g id="a_object|graph1_3"><a xlink:title="neko.trace.ConsoleEventTracer" xlink:href="ConsoleEventTracer$.html#inheritance-diagram"><path d="M534.17,-25C534.17,-25 418.83,-25 418.83,-25 414.67,-25 410.5,-20.83 410.5,-16.67 410.5,-16.67 410.5,-8.33 410.5,-8.33 410.5,-4.17 414.67,0 418.83,0 418.83,0 534.17,0 534.17,0 538.33,0 542.5,-4.17 542.5,-8.33 542.5,-8.33 542.5,-16.67 542.5,-16.67 542.5,-20.83 538.33,-25 534.17,-25" stroke="#103a51" fill="#103a51"></path><image xlink:href="../../lib/object_diagram.png" y="-19.5" x="420.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="441.4" text-anchor="start">ConsoleEventTracer</text></a></g></g><!-- node4 --><g class="node trait" id="graph1_4"><g id="a_trait|graph1_4"><a xlink:title="neko.trace.EventTracer" xlink:href="EventTracer.html#inheritance-diagram"><path d="M303.17,-86C303.17,-86 221.83,-86 221.83,-86 217.67,-86 213.5,-81.83 213.5,-77.67 213.5,-77.67 213.5,-69.33 213.5,-69.33 213.5,-65.17 217.67,-61 221.83,-61 221.83,-61 303.17,-61 303.17,-61 307.33,-61 311.5,-65.17 311.5,-69.33 311.5,-69.33 311.5,-77.67 311.5,-77.67 311.5,-81.83 307.33,-86 303.17,-86" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-80.5" x="223.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-71.63" x="244.2" text-anchor="start">EventTracer</text></a></g></g><!-- node4&#45;&gt;node0 --><g class="edge inheritance" id="graph1_4_0"><g id="a_inheritance|graph1_4_0"><a xlink:title="NullEventTracer is a subtype of EventTracer"><path d="M215.78,-58.99C180.37,-48.75 132.23,-34.82 98.57,-25.09" stroke="#d4d4d4" fill="none"></path><polygon points="215.28,-61.39 222.68,-60.98 216.64,-56.69 215.28,-61.39" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node4&#45;&gt;node1 --><g class="edge inheritance" id="graph1_4_1"><g id="a_inheritance|graph1_4_1"><a xlink:title="FileEventTracer is a subtype of EventTracer"><path d="M243.47,-56.23C231.94,-46.37 217.49,-34.01 207.1,-25.13" stroke="#d4d4d4" fill="none"></path><polygon points="241.96,-58.16 248.87,-60.84 245.14,-54.43 241.96,-58.16" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node4&#45;&gt;node2 --><g class="edge inheritance" id="graph1_4_2"><g id="a_inheritance|graph1_4_2"><a xlink:title="SingleFileTracer is a subtype of EventTracer"><path d="M281.53,-56.23C293.06,-46.37 307.51,-34.01 317.9,-25.13" stroke="#d4d4d4" fill="none"></path><polygon points="279.86,-54.43 276.13,-60.84 283.04,-58.16 279.86,-54.43" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node4&#45;&gt;node3 --><g class="edge inheritance" id="graph1_4_3"><g id="a_inheritance|graph1_4_3"><a xlink:title="ConsoleEventTracer is a subtype of EventTracer"><path d="M311.05,-59.12C348.24,-48.86 399.01,-34.86 434.47,-25.09" stroke="#d4d4d4" fill="none"></path><polygon points="310.37,-56.76 304.27,-60.98 311.67,-61.49 310.37,-56.76" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
+                <div id="diagram-controls" class="hiddenContent">
+                  <button id="diagram-zoom-out" class="diagram-btn"><i class="material-icons"></i></button>
+                  <button id="diagram-zoom-in" class="diagram-btn"><i class="material-icons"></i></button>
+                  <button title="Toggle full-screen" id="diagram-fs" class="diagram-btn to-full"><i class="material-icons"></i></button>
+                </div>
+              </div></div>
+        
+
+      <div id="mbrsel">
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
+            <ol>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              
+            </ol>
+          </div>
+          
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="neko.trace.EventFormatter" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="EventFormatterextendsAnyRef"></a><a id="EventFormatter:EventFormatter"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/EventFormatter.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="EventFormatter.html"><span class="name">EventFormatter</span></a><span class="result"> extends <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      
+      
+    </li><li name="neko.trace.EventTracer" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="EventTracerextendsAnyRef"></a><a id="EventTracer:EventTracer"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/EventTracer.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="EventTracer.html"><span class="name">EventTracer</span></a><span class="result"> extends <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      
+      
+    </li><li name="neko.trace.FileEventTracer" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="FileEventTracerextendsEventTracerwithProductwithSerializable"></a><a id="FileEventTracer:FileEventTracer"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/FileEventTracer.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="FileEventTracer.html"><span class="name">FileEventTracer</span></a><span class="params">(<span name="filename">filename: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="topology">topology: <a href="../topology/Topology.html" class="extype" name="neko.topology.Topology">Topology</a></span>)</span><span class="result"> extends <a href="EventTracer.html" class="extype" name="neko.trace.EventTracer">EventTracer</a> with <a href="https://www.scala-lang.org/api/2.12.11/scala/Product.html#scala.Product" class="extype" name="scala.Product">Product</a> with <a href="https://www.scala-lang.org/api/2.12.11/scala/Serializable.html#scala.Serializable" class="extype" name="scala.Serializable">Serializable</a></span>
+      </span>
+      
+      
+    </li><li name="neko.trace.ProtocolDB" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ProtocolDBextendsAnyRef"></a><a id="ProtocolDB:ProtocolDB"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/ProtocolDB.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Created by Onuki on 2017/02/28." href="ProtocolDB.html"><span class="name">ProtocolDB</span></a><span class="result"> extends <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Created by Onuki on 2017/02/28.</p>
+    </li><li name="neko.trace.SingleFileTracer" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SingleFileTracerextendsEventTracerwithProductwithSerializable"></a><a id="SingleFileTracer:SingleFileTracer"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/SingleFileTracer.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="SingleFileTracer.html"><span class="name">SingleFileTracer</span></a><span class="params">(<span name="topology">topology: <a href="../topology/Topology.html" class="extype" name="neko.topology.Topology">Topology</a></span>, <span name="out">out: <span class="extype" name="java.io.PrintStream">PrintStream</span></span>)</span><span class="result"> extends <a href="EventTracer.html" class="extype" name="neko.trace.EventTracer">EventTracer</a> with <a href="https://www.scala-lang.org/api/2.12.11/scala/Product.html#scala.Product" class="extype" name="scala.Product">Product</a> with <a href="https://www.scala-lang.org/api/2.12.11/scala/Serializable.html#scala.Serializable" class="extype" name="scala.Serializable">Serializable</a></span>
+      </span>
+      
+      
+    </li><li name="neko.trace.Tracing" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TracingextendsAnyRef"></a><a id="Tracing:Tracing"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/Tracing.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="Tracing.html"><span class="name">Tracing</span></a><span class="result"> extends <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      
+      
+    </li><li name="neko.trace.VariableNameDB" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="VariableNameDBextendsAnyRef"></a><a id="VariableNameDB:VariableNameDB"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/VariableNameDB.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="Created by Onuki on 2017/03/06." href="VariableNameDB.html"><span class="name">VariableNameDB</span></a><span class="result"> extends <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Created by Onuki on 2017/03/06.</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div class="values members">
+              <h3>Value Members</h3>
+              <ol>
+                <li name="neko.trace.ConsoleEventTracer" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ConsoleEventTracer"></a><a id="ConsoleEventTracer:ConsoleEventTracer"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/ConsoleEventTracer$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="ConsoleEventTracer$.html"><span class="name">ConsoleEventTracer</span></a><span class="result"> extends <a href="EventTracer.html" class="extype" name="neko.trace.EventTracer">EventTracer</a></span>
+      </span>
+      
+      
+    </li><li name="neko.trace.EventFormatter" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EventFormatter"></a><a id="EventFormatter:EventFormatter"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/EventFormatter$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="EventFormatter$.html"><span class="name">EventFormatter</span></a>
+      </span>
+      
+      
+    </li><li name="neko.trace.EventTracer" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EventTracer"></a><a id="EventTracer:EventTracer"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/EventTracer$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="EventTracer$.html"><span class="name">EventTracer</span></a>
+      </span>
+      
+      
+    </li><li name="neko.trace.NullEventTracer" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NullEventTracer"></a><a id="NullEventTracer:NullEventTracer"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/NullEventTracer$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="NullEventTracer$.html"><span class="name">NullEventTracer</span></a><span class="result"> extends <a href="EventTracer.html" class="extype" name="neko.trace.EventTracer">EventTracer</a></span>
+      </span>
+      
+      
+    </li><li name="neko.trace.SingleFileTracer" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SingleFileTracer"></a><a id="SingleFileTracer:SingleFileTracer"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/SingleFileTracer$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="SingleFileTracer$.html"><span class="name">SingleFileTracer</span></a><span class="result"> extends <a href="https://www.scala-lang.org/api/2.12.11/scala/Serializable.html#scala.Serializable" class="extype" name="scala.Serializable">Serializable</a></span>
+      </span>
+      
+      
+    </li><li name="neko.trace.Tracer" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Tracer"></a><a id="Tracer:Tracer"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/Tracer$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="Tracer$.html"><span class="name">Tracer</span></a>
+      </span>
+      
+      
+    </li><li name="neko.trace.Tracing" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Tracing"></a><a id="Tracing:Tracing"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/Tracing$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="Tracing$.html"><span class="name">Tracing</span></a>
+      </span>
+      
+      
+    </li>
+              </ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+    </body>
+          </div>
+        </div>
+      </div>
+    </body>
+      </html>

@@ -1,0 +1,1344 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title></title>
+          <meta name="description" content="" />
+          <meta name="keywords" content="" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      
+      <link href="../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../../../lib/index.js"></script>
+      <script type="text/javascript" src="../../../index.js"></script>
+      <script type="text/javascript" src="../../../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../../lib/diagrams.js" id="diagrams-js"></script>
+      <script type="text/javascript">
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../../../';
+      </script>
+    
+        </head>
+        <body>
+      <div id="search">
+        <span id="doc-title"><span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="../../../index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../../index.html"><span class="name">root</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.neko" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="neko"></a><a id="neko:neko"></a>
+      <span class="permalink">
+      <a href="../../../neko/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="ScalaNeko is a framework designed to help with the prototyping of distributed algorithms." href="../../index.html"><span class="name">neko</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">ScalaNeko is a framework designed to help with the prototyping of distributed algorithms.</p><div class="fullcomment"><div class="comment cmt"><h3>ScalaNeko Framework</h3><p>ScalaNeko is a framework designed to help with the prototyping of distributed algorithms. It is
+loosely based on the Neko framework [1] which was programmed in Java more than a decade earlier,
+mainly by Péter Urbán.</p><p>Whereas the original Neko framework was designed for performance evaluation and modeling, the
+main focus of ScalaNeko is to serve as a support for teaching distributed algorithms. Hence, the
+current version of ScalaNeko only supports simulated execution. However, we still have the
+intention to support actual distributed execution in a future version, and hence provide a full
+replacement of the original Neko.</p><h4>1. Architecture</h4><p>In order to effectively use ScalaNeko, it is helpful to understand its general architecture,
+which can be described as follows:</p><p>There are several important entities in ScalaNeko:</p><ul><li>The system is what handles the execution engine within the virtual machine and the
+   initialization procedure. There is exactly one instance running for every virtual machine.
+   The system also holds a discrete event simulator.
+   See <a href="../../Main.html" class="extype" name="neko.Main">neko.Main</a> and <a href="../../kernel/NekoSystem.html" class="extype" name="neko.kernel.NekoSystem">neko.kernel.NekoSystem</a>.</li><li>The network simulates the behavior of a network, and is responsible for transmitting messages
+   between processes. In the current version, it is running over a discrete-event simulation.
+   See <a href="../Network.html" class="extype" name="neko.network.Network">neko.network.Network</a> and <a href="../../kernel/sim/Simulator.html" class="extype" name="neko.kernel.sim.Simulator">neko.kernel.sim.Simulator</a>.</li><li>The processes are the basic unit of concurrency, and represent a virtual computer connected
+   through a network. Every process has a unique identity represented by a <a href="../../PID.html" class="extype" name="neko.PID">neko.PID</a>.
+   A process does nothing by itself and is merely a shell for protocols.
+   See <a href="../../NekoProcess.html" class="extype" name="neko.NekoProcess">neko.NekoProcess</a> and <a href="../../ProcessConfig.html" class="extype" name="neko.ProcessConfig">neko.ProcessConfig</a>.</li><li>The protocols are the actual logic of the system and implement the algorithms. A process holds
+   one or many protocols, which are organized as a stack. There are two kinds of protocols:
+   active and reactive ones. While active protocols carry their own flow of execution, that is,
+   act as a thread, concurrently with the system, the reactive protocols only execute code as a
+   reaction to incoming events.
+   See <a href="../../ActiveProtocol.html" class="extype" name="neko.ActiveProtocol">neko.ActiveProtocol</a>, <a href="../../ReactiveProtocol.html" class="extype" name="neko.ReactiveProtocol">neko.ReactiveProtocol</a>, <a href="../../Protocol.html" class="extype" name="neko.Protocol">neko.Protocol</a>, and <a href="../../ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">neko.ProtocolUtils</a>.</li><li>Protocols and processes exchange information through events. There are two types of events:
+   signals and messages. Signals allow protocols <b>within the same process</b> to notify each
+   other. In contrast, messages allow protocol instances to communicate
+   <b>across different processes</b>. In other words, only messages are transmitted through the
+   network.
+   See <a href="../../Event.html" class="extype" name="neko.Event">neko.Event</a>, <a href="../../Signal.html" class="extype" name="neko.Signal">neko.Signal</a>, <a href="../../UnicastMessage.html" class="extype" name="neko.UnicastMessage">neko.UnicastMessage</a>, <a href="../../MulticastMessage.html" class="extype" name="neko.MulticastMessage">neko.MulticastMessage</a>,
+   and <a href="../../Wrapper.html" class="extype" name="neko.Wrapper">neko.Wrapper</a>.</li></ul><p>A simplified view of the architecture of an execution of ScalaNeko is depicted below:</p><pre>+-------------------------------------------------------+
+|       process p1                    process pn        |
+|  +-------------------+         +-------------------+  |
+|  | +---------------+ |         | +---------------+ |  |
+|  | | protocol p1:A | |         | | protocol pn:A | |  |
+|  | +-------------+-+ |         | +-------------+-+ |  |
+|  |   |           |   |   ...   |   |           |   |  |
+|  | +-+-----------V-+ |         | +-+-----------V-+ |  |
+|  | | protocol p1:B | |         | | protocol pn:B | |  |
+|  | +-------------+-+ |         | +-------------+-+ |  |
+|  +---|-----------|---+         +---|-----------|---+  |
+|      |           |                 |           |      |
+|  +---+-----------V-----------------+-----------V---+  |
+|  |                      network                    |  |
+|  +-------------------------------------------------+  |
+|                  +------------------+                 |
+|                  |     simulator    |                 |
+|                  +------------------+       system    |
++-------------------------------------------------------+</pre><p>Creating a ScalaNeko application typically requires to implement the following steps:</p><ol class="lowerAlpha"><li>Implement the protocols. At least, an application will require to implement an active
+    protocol, but also possibly a number of reusable reactive ones.</li><li>Each protocol is likely to define its own message types. The most appropriate location for
+    doing so is in a companion object of the protocol. Messages are best defined as a
+    <code>case class</code> so that they are ensured to be immutable and code for pattern matching is
+    automatically generated by the compiler.</li><li>Creating a process initializer that instantiates and connects the protocols of the processes.</li><li>Creating a main object which provides the basic parameters of the execution, such as the
+    total number of processes to create and their initializer.</li></ol><p>The initialization proceeds roughly as illustrated below:</p><pre>     creates            creates
+Main ------&gt; NekoSystem ------&gt; Network
+                        creates
+                  <span class="lit">''</span>    ------&gt; ProcessInitializer
+                        creates             creates
+                  <span class="lit">''</span>    ====<span class="kw">=&gt;</span>&gt; NekoProcess ====<span class="kw">=&gt;</span>&gt; Protocol</pre><h4>2. Creating protocols</h4><p>A protocol can be either active or reactive. An active protocol is one that executes its own
+thread, concurrently with that of the other protocols or processes. In contrast, a reactive
+protocol only executes as a reaction to events, and does not do anything otherwise.</p><h5>2.1 Active protocols</h5><p>An active protocol is typically defined as a subclass of <a href="../../ActiveProtocol.html" class="extype" name="neko.ActiveProtocol">neko.ActiveProtocol</a>.</p><p>An active protocol has its own thread of control. The code of the protocol is implemented in its
+method <a href="../../ActiveProtocol.html#run():Unit" class="extmbr" name="neko.ActiveProtocol#run">neko.ActiveProtocol.run</a>, which must be defined in the subclass. This code is executed
+concurrently with the rest of the system.</p><p>An active protocol has access to operations for sending and receiving message. New messages are
+sent with the method <a href="../../ActiveProtocol.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ActiveProtocol#SEND">neko.ActiveProtocol.SEND</a>. While messages are received through
+<b>blocking</b> calls to <a href="../../ActiveProtocol$Receive$.html" class="extype" name="neko.ActiveProtocol.Receive">neko.ActiveProtocol.Receive</a>,
+as illustrated below. Note that, in order to receive messages of a certain type, the protocol
+must register by calling <a href="../../ActiveProtocol.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ActiveProtocol#listenTo">neko.ActiveProtocol.listenTo</a> for this type.</p><pre><span class="kw">class</span> PingPong(c: NekoProcessConfig) <span class="kw">extends</span> ActiveProtocol(c, <span class="lit">"ping-pong"</span>)
+{
+  <span class="kw">val</span> next = me.map{i <span class="kw">=&gt;</span> (i+<span class="num">1</span>) % N}
+  <span class="kw">var</span> record = <span class="std">Set</span>.empty[Event]
+
+  listenTo(classOf[Ping])
+  listenTo(classOf[Pong])
+  <span class="kw">def</span> run(): <span class="std">Unit</span> =
+  {
+    SEND(Ping(me, next))
+
+    Receive {
+      <span class="kw">case</span> Ping(from, _) <span class="kw">=&gt;</span> SEND(Pong(me, from))
+      <span class="kw">case</span> Pong(from, _) <span class="kw">=&gt;</span> SEND(Ping(me, from))
+    }
+
+    Receive { m <span class="kw">=&gt;</span>
+      record += m
+    }
+  }
+}</pre><p>It is also possible to override the method <a href="../../ActiveProtocol.html#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ActiveProtocol#onReceive">neko.ActiveProtocol.onReceive</a>. By doing so,
+messages that are matched by <code>onReceive</code> are processed reactively upon arrival, while those that
+are not matched by <code>onReceive</code> are stored into the receive queue and must be handled by a
+blocking call to <a href="../../ActiveProtocol$Receive$.html" class="extype" name="neko.ActiveProtocol.Receive">neko.ActiveProtocol.Receive</a>.</p><h5>2.2 Reactive protocols</h5><p>Most protocols in a process are reactive.
+A reactive protocol is usually sandwiched between a
+network and an application (or a lower-level protocol and a higher-level one).
+The simplest way to implement one is by extending <a href="../../ReactiveProtocol.html" class="extype" name="neko.ReactiveProtocol">neko.ReactiveProtocol</a>. The information
+has two flows: downstream and upstream. This is illustrated in the figure below.</p><pre>         application
+  |                      ^
+  V                      |
++----------------------------+
+| onSend        DELIVER(...) |
+|                            | Reactive protocol
+| SEND(...)        onReceive |
++----------------------------+
+  |                      ^
+  V                      |
+          network</pre><p>For the downstream flow (from application to network), the code of the protocol is implemented
+in the method <a href="../../ReactiveProtocol.html#onSend:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onSend">neko.ReactiveProtocol.onSend</a>, usually implemented as a <a href="https://www.scala-lang.org/api/2.12.11/scala/PartialFunction.html" class="extype" name="scala.PartialFunction">scala.PartialFunction</a> which
+reacts as appropriate to each event. The protocol can itself send messages through the
+<a href="../../ReactiveProtocol.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#SEND">neko.ReactiveProtocol.SEND</a> method.</p><p>For the upstream flow (from network to application), the code of the protocol is implemented in
+the method <a href="../../ReactiveProtocol.html#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onReceive">neko.ReactiveProtocol.onReceive</a>, also implemented as a <a href="https://www.scala-lang.org/api/2.12.11/scala/PartialFunction.html" class="extype" name="scala.PartialFunction">scala.PartialFunction</a> which
+reacts appropriately to each incoming events. Events of a certain type are delivered to the
+protocol only if it registers to the event type by calling the <a href="../../ReactiveProtocol.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ReactiveProtocol#listenTo">neko.ReactiveProtocol.listenTo</a>
+method on that event type. The protocol can deliver a message to the application through the
+method <a href="../../ReactiveProtocol.html#DELIVER(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#DELIVER">neko.ReactiveProtocol.DELIVER</a>.</p><p>Note that the two flows are not mutually exclusive. It is perfectly valid, and even frequent,
+for a protocol to call <a href="../../ReactiveProtocol.html#DELIVER(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#DELIVER">neko.ReactiveProtocol.DELIVER</a> in <a href="../../ReactiveProtocol.html#onSend:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onSend">neko.ReactiveProtocol.onSend</a>, or to call
+<a href="../../ReactiveProtocol.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#SEND">neko.ReactiveProtocol.SEND</a> in <a href="../../ReactiveProtocol.html#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onReceive">neko.ReactiveProtocol.onReceive</a> .</p><h4>3. Defining new events (messages and signals)</h4><p>Let's start with a little bit of terminology. An event denotes anything that happens in the
+system and is represented by the abstract class <a href="../../Event.html" class="extype" name="neko.Event">neko.Event</a>. Events can be of two types:</p><ul><li>A signal is an event that occurs within one process, and can go from one protocol to another,
+   but never cross process boundaries. It is represented by the subclasses of <a href="../../Signal.html" class="extype" name="neko.Signal">neko.Signal</a>.</li><li>A message is an event that crosses process boundaries, but is typically (but not necessarily)
+   interpreted by the same protocol in the target process. It is represented by the subclasses
+   of <a href="../../Message.html" class="extype" name="neko.Message">neko.Message</a>.</li></ul><p>   A message can be &quot;top-level&quot; or a &quot;wrapper&quot;. A top-level message is one that is created by the
+   sending protocol. It has its own identity, as well as a source and destinations. In contrast,
+   a wrapper is simply a shell that extends the information of an existing message. It retains
+   the same identity, source, and destinations, but provides a shell to the message and can add
+   its own information. This results into messages of three types:</p><ul><li>A <a href="../../MulticastMessage.html" class="extype" name="neko.MulticastMessage">neko.MulticastMessage</a> is a top-level message with multiple destinations. See the
+     example below on how to define a new message:</li></ul><pre><span class="kw">case</span> <span class="kw">class</span> Snapshot(
+    from: PID,
+    to: <span class="std">Set</span>[PID])
+  <span class="kw">extends</span> MulticastMessage</pre><p>     NB: The arguments *must* be named <code>from</code> and <code>to</code>.</p><ul><li>A <a href="../../UnicastMessage.html" class="extype" name="neko.UnicastMessage">neko.UnicastMessage</a> is a top-level message with a single destination process.</li></ul><pre><span class="kw">case</span> <span class="kw">class</span> Token (
+    from: PID,
+    to: PID)
+  <span class="kw">extends</span> UnicastMessage</pre><p>     NB: The arguments *must* be named <code>from</code> and <code>to</code>.</p><ul><li>A <a href="../../Wrapper.html" class="extype" name="neko.Wrapper">neko.Wrapper</a> is a shell that wraps an existing message. A wrapper can also extend
+     another wrapper; not only top-level messages. A wrapper preserves the identity, the source
+     and the destinations of the message it wraps.</li></ul><pre><span class="kw">case</span> <span class="kw">class</span> SequencedMessage(msg: Message, sn: <span class="std">Int</span>) <span class="kw">extends</span> Wrapper(msg)</pre><h4>4. Initialization of a process</h4><p>While processes are created automatically, their protocols are not, and must be initialized and
+connected. This is done through a process initializer, by providing an instance of
+<a href="../../ProcessInitializer.html" class="extype" name="neko.ProcessInitializer">neko.ProcessInitializer</a>, whose sole role is to create the protocols of a process and
+combine them.</p><pre>ProcessInitializer { p <span class="kw">=&gt;</span>
+    <span class="kw">val</span> app  = <span class="kw">new</span> PingPong(p)
+    <span class="kw">val</span> fifo = <span class="kw">new</span> FIFOChannel(p)
+    app --&gt; fifo
+  }</pre><p>In the above example, each process is initialized by executing the above code. The code creates
+two protocols while registering them into the object <code>p</code> given as argument (which represents the
+process being initialized). Then, the two
+protocols are connected such that all <code>SEND</code> operations of protocol <code>app</code> are handed to
+protocol <code>fifo</code>. The send operations of protocol <code>fifo</code> use the default target which is
+the network interface of the process.</p><p>It is also possible to initialize processes differently, by discriminating based on the
+identifier of the process to initialize. That identifier is obtained from the argument
+with <code>p.pid</code>.</p><h4>5. Setting up a new system</h4><p>A new instance of a ScalaNeko system is created and configured by creating an object that
+extends <a href="../../Main.html" class="extype" name="neko.Main">neko.Main</a>. The resulting object becomes a main object and is thus executable
+(<a href="../../Main.html" class="extype" name="neko.Main">neko.Main</a> is a subclass of <a href="https://www.scala-lang.org/api/2.12.11/scala/App.html" class="extype" name="scala.App">scala.App</a>).</p><p>Class <a href="../../Main.html" class="extype" name="neko.Main">neko.Main</a> requires to set parameters, such as the network topology and
+the process initializer, as illustrated below:</p><pre><span class="kw">object</span> PingPongApp <span class="kw">extends</span> Main(topology.Clique(<span class="num">3</span>))( ProcessInitializer { p<span class="kw">=&gt;</span> ... } )</pre><p>Future planned versions of ScalaNeko will make it possible to define many more parameters, such
+as the network topologyDescriptor, etc...</p><h4>References</h4><ol class="decimal"><li>Péter Urbán, Xavier Défago, André Schiper:
+    Neko: A Single Environment to Simulate and Prototype Distributed Algorithms.
+    J. Inf. Sci. Eng. 18(6): 981-997 (2002).</li></ol><h4>Contributors</h4><p>Lead architect: Xavier Défago</p><p>Other contributors:</p><ul><li>Naoyuki Onuki (trace system; integration with NekoViewer)
+</li></ul></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="neko.network" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="network"></a><a id="network:network"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../index.html"><span class="name">network</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.network.sim" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sim"></a><a id="sim:sim"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="index.html"><span class="name">sim</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko.network">network</a></dd></dl></div>
+    </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="ConstantSimNetwork.html" title=""></a>
+                        <a href="ConstantSimNetwork.html" title="">ConstantSimNetwork</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="" title="generic simulated network that adds a delay to messages."></a>
+                        <a href="" title="generic simulated network that adds a delay to messages.">DelaySimNetwork</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="RandomSimNetwork$.html" title=""></a>
+                        <a class="class" href="RandomSimNetwork.html" title="simulated network that adds a random delay to messages."></a>
+                        <a href="RandomSimNetwork.html" title="simulated network that adds a random delay to messages.">RandomSimNetwork</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="SimNetwork$.html" title=""></a>
+                        <a class="class" href="SimNetwork.html" title=""></a>
+                        <a href="SimNetwork.html" title="">SimNetwork</a>
+                      </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="class type">
+      <div id="definition">
+        <div class="big-circle class">c</div>
+        <p id="owner"><a href="../../index.html" class="extype" name="neko">neko</a>.<a href="../index.html" class="extype" name="neko.network">network</a>.<a href="index.html" class="extype" name="neko.network.sim">sim</a></p>
+        <h1>DelaySimNetwork<span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        <h3><span class="morelinks"></span></h3>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DelaySimNetwork</span><span class="result"> extends <a href="SimNetwork.html" class="extype" name="neko.network.sim.SimNetwork">SimNetwork</a> with <span class="extype" name="com.typesafe.scalalogging.LazyLogging">LazyLogging</span></span>
+      </span>
+      </h4>
+
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>generic simulated network that adds a delay to messages.
+</p></div><div class="toggleContainer block">
+          <span class="toggle">
+            Linear Supertypes
+          </span>
+          <div class="superTypes hiddenContent"><a href="SimNetwork.html" class="extype" name="neko.network.sim.SimNetwork">SimNetwork</a>, <a href="../AbstractNetwork.html" class="extype" name="neko.network.AbstractNetwork">AbstractNetwork</a>, <a href="../../trace/Tracing.html" class="extype" name="neko.trace.Tracing">Tracing</a>, <span class="extype" name="com.typesafe.scalalogging.LazyLogging">LazyLogging</span>, <a href="../Network.html" class="extype" name="neko.network.Network">Network</a>, <a href="../../Sender.html" class="extype" name="neko.Sender">Sender</a>, <a href="../../NamedEntity.html" class="extype" name="neko.NamedEntity">NamedEntity</a>, <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a>, <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></div>
+        </div><div class="toggleContainer block">
+            <span class="toggle">
+              Known Subclasses
+            </span>
+            <div class="subClasses hiddenContent"><a href="ConstantSimNetwork.html" class="extype" name="neko.network.sim.ConstantSimNetwork">ConstantSimNetwork</a>, <a href="RandomSimNetwork.html" class="extype" name="neko.network.sim.RandomSimNetwork">RandomSimNetwork</a></div>
+          </div><div class="toggleContainer block diagram-container" id="inheritance-diagram-container">
+                <span class="toggle diagram-link">
+                  Type Hierarchy
+                </span>
+                <div class="diagram" id="inheritance-diagram"><svg class="class-diagram" id="graph1" viewBox="0.00 0.00 280.00 155.00" height="155pt" width="280pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 151)" class="graph" id="page0,1_graph0"><polygon points="-4,4 -4,-151 276,-151 276,4 -4,4" stroke="transparent" fill="white"></polygon><g class="cluster" id="clust1"></g><g class="cluster" id="clust2"></g><!-- node0 --><g class="node this class" id="graph1_0"><g id="a_this class|graph1_0"><a xlink:title="neko.network.sim.DelaySimNetwork (this class)" xlink:href="#inheritance-diagram"><path d="M188.17,-86C188.17,-86 87.83,-86 87.83,-86 83.67,-86 79.5,-81.83 79.5,-77.67 79.5,-77.67 79.5,-69.33 79.5,-69.33 79.5,-65.17 83.67,-61 87.83,-61 87.83,-61 188.17,-61 188.17,-61 192.33,-61 196.5,-65.17 196.5,-69.33 196.5,-69.33 196.5,-77.67 196.5,-77.67 196.5,-81.83 192.33,-86 188.17,-86" stroke="#418565" fill="#418565"></path><image xlink:href="../../../lib/class_diagram.png" y="-80.5" x="90" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-71.63" x="110.6" text-anchor="start">DelaySimNetwork</text></a></g></g><!-- node1 --><g class="node class" id="graph1_1"><g id="a_class|graph1_1"><a xlink:title="neko.network.sim.ConstantSimNetwork" xlink:href="ConstantSimNetwork.html#inheritance-diagram"><path d="M123.67,-25C123.67,-25 8.33,-25 8.33,-25 4.17,-25 0,-20.83 0,-16.67 0,-16.67 0,-8.33 0,-8.33 0,-4.17 4.17,0 8.33,0 8.33,0 123.67,0 123.67,0 127.83,0 132,-4.17 132,-8.33 132,-8.33 132,-16.67 132,-16.67 132,-20.83 127.83,-25 123.67,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../../../lib/class_diagram.png" y="-19.5" x="10" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="30.9" text-anchor="start">ConstantSimNetwork</text></a></g></g><!-- node0&#45;&gt;node1 --><g class="edge inheritance" id="graph1_0_1"><g id="a_inheritance|graph1_0_1"><a xlink:title="ConstantSimNetwork is a subtype of DelaySimNetwork"><path d="M118.14,-56.23C106.11,-46.37 91.04,-34.01 80.2,-25.13" stroke="#d4d4d4" fill="none"></path><polygon points="116.81,-58.3 123.78,-60.84 119.91,-54.51 116.81,-58.3" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node2 --><g class="node class" id="graph1_2"><g id="a_class|graph1_2"><a xlink:title="neko.network.sim.RandomSimNetwork" xlink:href="RandomSimNetwork.html#inheritance-diagram"><path d="M263.67,-25C263.67,-25 158.33,-25 158.33,-25 154.17,-25 150,-20.83 150,-16.67 150,-16.67 150,-8.33 150,-8.33 150,-4.17 154.17,0 158.33,0 158.33,0 263.67,0 263.67,0 267.83,0 272,-4.17 272,-8.33 272,-8.33 272,-16.67 272,-16.67 272,-20.83 267.83,-25 263.67,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../../../lib/class_diagram.png" y="-19.5" x="160" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="180.7" text-anchor="start">RandomSimNetwork</text></a></g></g><!-- node0&#45;&gt;node2 --><g class="edge inheritance" id="graph1_0_2"><g id="a_inheritance|graph1_0_2"><a xlink:title="RandomSimNetwork is a subtype of DelaySimNetwork"><path d="M158.13,-56.23C170.34,-46.37 185.62,-34.01 196.61,-25.13" stroke="#d4d4d4" fill="none"></path><polygon points="156.33,-54.54 152.42,-60.84 159.41,-58.35 156.33,-54.54" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node3 --><g class="node class" id="graph1_3"><g id="a_class|graph1_3"><a xlink:title="neko.network.sim.SimNetwork" xlink:href="SimNetwork.html#inheritance-diagram"><path d="M119.17,-147C119.17,-147 42.83,-147 42.83,-147 38.67,-147 34.5,-142.83 34.5,-138.67 34.5,-138.67 34.5,-130.33 34.5,-130.33 34.5,-126.17 38.67,-122 42.83,-122 42.83,-122 119.17,-122 119.17,-122 123.33,-122 127.5,-126.17 127.5,-130.33 127.5,-130.33 127.5,-138.67 127.5,-138.67 127.5,-142.83 123.33,-147 119.17,-147" stroke="#418565" fill="#418565"></path><image xlink:href="../../../lib/class_diagram.png" y="-141.5" x="45" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-132.63" x="65.6" text-anchor="start">SimNetwork</text></a></g></g><!-- node3&#45;&gt;node0 --><g class="edge inheritance" id="graph1_3_0"><g id="a_inheritance|graph1_3_0"><a xlink:title="DelaySimNetwork is a subtype of SimNetwork"><path d="M97.24,-116.69C106.68,-106.92 118.34,-94.85 126.76,-86.13" stroke="#d4d4d4" fill="none"></path><polygon points="95.36,-115.11 92.26,-121.84 98.89,-118.51 95.36,-115.11" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node4 --><g class="node trait" id="graph1_4"><g id="a_trait|graph1_4"><a xlink:title="com.typesafe.scalalogging.LazyLogging"><path d="M235.67,-147C235.67,-147 154.33,-147 154.33,-147 150.17,-147 146,-142.83 146,-138.67 146,-138.67 146,-130.33 146,-130.33 146,-126.17 150.17,-122 154.33,-122 154.33,-122 235.67,-122 235.67,-122 239.83,-122 244,-126.17 244,-130.33 244,-130.33 244,-138.67 244,-138.67 244,-142.83 239.83,-147 235.67,-147" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../../lib/trait_diagram.png" y="-141.5" x="156" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-132.63" x="176.7" text-anchor="start">LazyLogging</text></a></g></g><!-- node4&#45;&gt;node0 --><g class="edge inheritance" id="graph1_4_0"><g id="a_inheritance|graph1_4_0"><a xlink:title="DelaySimNetwork is a subtype of LazyLogging"><path d="M178.76,-116.69C169.32,-106.92 157.66,-94.85 149.24,-86.13" stroke="#d4d4d4" fill="none"></path><polygon points="177.11,-118.51 183.74,-121.84 180.64,-115.11 177.11,-118.51" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
+                <div id="diagram-controls" class="hiddenContent">
+                  <button id="diagram-zoom-out" class="diagram-btn"><i class="material-icons"></i></button>
+                  <button id="diagram-zoom-in" class="diagram-btn"><i class="material-icons"></i></button>
+                  <button title="Toggle full-screen" id="diagram-fs" class="diagram-btn to-full"><i class="material-icons"></i></button>
+                </div>
+              </div></div>
+        
+
+      <div id="mbrsel">
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
+            <ol>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              <li class="inherit out"><span>By Inheritance</span></li>
+            </ol>
+          </div>
+          <div class="ancestors">
+                  <span class="filtertype">Inherited<br />
+                  </span>
+                  <ol id="linearization">
+                    <li class="in" name="neko.network.sim.DelaySimNetwork"><span>DelaySimNetwork</span></li><li class="in" name="neko.network.sim.SimNetwork"><span>SimNetwork</span></li><li class="in" name="neko.network.AbstractNetwork"><span>AbstractNetwork</span></li><li class="in" name="neko.trace.Tracing"><span>Tracing</span></li><li class="in" name="com.typesafe.scalalogging.LazyLogging"><span>LazyLogging</span></li><li class="in" name="neko.network.Network"><span>Network</span></li><li class="in" name="neko.Sender"><span>Sender</span></li><li class="in" name="neko.NamedEntity"><span>NamedEntity</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  </ol>
+                </div><div class="ancestors">
+                  <span class="filtertype">Implicitly<br />
+                  </span>
+                  <ol id="implicits"> <li class="in" name="scala.Predef.any2stringadd" data-hidden="true"><span>by any2stringadd</span></li><li class="in" name="scala.Predef.StringFormat" data-hidden="true"><span>by StringFormat</span></li><li class="in" name="scala.Predef.Ensuring" data-hidden="true"><span>by Ensuring</span></li><li class="in" name="scala.Predef.ArrowAssoc" data-hidden="true"><span>by ArrowAssoc</span></li>
+                  </ol>
+                </div><div class="ancestors">
+              <span class="filtertype"></span>
+              <ol>
+                <li class="hideall out"><span>Hide All</span></li>
+                <li class="showall in"><span>Show All</span></li>
+              </ol>
+            </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="neko.network.sim.DelaySimNetwork#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(system:neko.kernel.NekoSystem,sim:neko.kernel.sim.Simulator):neko.network.sim.DelaySimNetwork"></a><a id="&lt;init&gt;:DelaySimNetwork"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#&lt;init&gt;(system:neko.kernel.NekoSystem,sim:neko.kernel.sim.Simulator):neko.network.sim.DelaySimNetwork" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DelaySimNetwork</span><span class="params">(<span name="system">system: <a href="../../kernel/NekoSystem.html" class="extype" name="neko.kernel.NekoSystem">NekoSystem</a></span>, <span name="sim">sim: <a href="../../kernel/sim/Simulator.html" class="extype" name="neko.kernel.sim.Simulator">Simulator</a></span>)</span>
+      </span>
+      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">system</dt><dd class="cmt"><p>system in which the network runs.</p></dd><dt class="param">sim</dt><dd class="cmt"><p>simulator to be used by the network.</p></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div class="values members">
+              <h3>Abstract Value Members</h3>
+              <ol><li name="neko.network.sim.DelaySimNetwork#delayForMessage" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="delayForMessage(dest:neko.PID,m:neko.Message):Option[neko.util.Time]"></a><a id="delayForMessage(PID,Message):Option[Time]"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#delayForMessage(dest:neko.PID,m:neko.Message):Option[neko.util.Time]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">delayForMessage</span><span class="params">(<span name="dest">dest: <a href="../../PID.html" class="extype" name="neko.PID">PID</a></span>, <span name="m">m: <a href="../../Message.html" class="extype" name="neko.Message">Message</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Option.html#scala.Option" class="extype" name="scala.Option">Option</a>[<a href="../../util/Time.html" class="extype" name="neko.util.Time">Time</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">returns the amount of time that message <code>m</code> must be delayed before being delivered to process
+<code>dest</code>.</p><div class="fullcomment"><div class="comment cmt"><p>returns the amount of time that message <code>m</code> must be delayed before being delivered to process
+<code>dest</code>. A concrete instance must implement this method.
+</p></div><dl class="paramcmts block"><dt class="param">dest</dt><dd class="cmt"><p>intended destination of the message</p></dd><dt class="param">m</dt><dd class="cmt"><p>message to be delivered</p></dd><dt>returns</dt><dd class="cmt"><p>delivery delay for that message, or <code>None</code> if the message is to be dropped.</p></dd></dl></div>
+    </li></ol>
+            </div>
+
+        <div class="values members">
+              <h3>Concrete Value Members</h3>
+              <ol>
+                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#!=(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html###():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Int.html#scala.Int" class="extype" name="scala.Int">Int</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Predef.any2stringadd#+" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="+(other:String):String"></a><a id="+(String):String"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#+(other:String):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $plus" class="implicit">+</span><span class="params">(<span name="other">other: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> to
+            <span class="extype" name="scala.Predef.any2stringadd">any2stringadd</span>[<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>] performed by method any2stringadd in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>any2stringadd</dd></dl></div>
+    </li><li name="scala.Predef.ArrowAssoc#-&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="-&gt;[B](y:B):(A,B)"></a><a id="-&gt;[B](B):(DelaySimNetwork,B)"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#-&gt;[B](y:B):(A,B)" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $minus$greater" class="implicit">-&gt;</span><span class="tparams">[<span name="B">B</span>]</span><span class="params">(<span name="y">y: <span class="extype" name="scala.Predef.ArrowAssoc.-&gt;.B">B</span></span>)</span><span class="result">: (<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>, <span class="extype" name="scala.Predef.ArrowAssoc.-&gt;.B">B</span>)</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> to
+            <span class="extype" name="scala.Predef.ArrowAssoc">ArrowAssoc</span>[<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>] performed by method ArrowAssoc in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>ArrowAssoc</dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#==(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="neko.network.AbstractNetwork#N" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="N:Int"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#N:Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">N</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Int.html#scala.Int" class="extype" name="scala.Int">Int</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../AbstractNetwork.html" class="extype" name="neko.network.AbstractNetwork">AbstractNetwork</a></dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#asInstanceOf[T0]:T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#clone():Object" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="neko.NamedEntity#context" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="context:Option[neko.PID]"></a><a id="context:Option[PID]"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#context:Option[neko.PID]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">context</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Option.html#scala.Option" class="extype" name="scala.Option">Option</a>[<a href="../../PID.html" class="extype" name="neko.PID">PID</a>]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../NamedEntity.html" class="extype" name="neko.NamedEntity">NamedEntity</a></dd></dl></div>
+    </li><li name="neko.network.Network#doForProcess" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="doForProcess[T](pid:neko.PID)(action:neko.Receiver=&gt;T):Option[T]"></a><a id="doForProcess[T](PID)((Receiver)⇒T):Option[T]"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#doForProcess[T](pid:neko.PID)(action:neko.Receiver=&gt;T):Option[T]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">doForProcess</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="pid">pid: <a href="../../PID.html" class="extype" name="neko.PID">PID</a></span>)</span><span class="params">(<span name="action">action: (<a href="../../Receiver.html" class="extype" name="neko.Receiver">Receiver</a>) ⇒ <span class="extype" name="neko.network.Network.doForProcess.T">T</span></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Option.html#scala.Option" class="extype" name="scala.Option">Option</a>[<span class="extype" name="neko.network.Network.doForProcess.T">T</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">perform an action on the receiver of a given process, if found.</p><div class="fullcomment"><div class="comment cmt"><p>perform an action on the receiver of a given process, if found.
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>return type of the action</p></dd><dt class="param">pid</dt><dd class="cmt"><p>identifier of a process</p></dd><dt class="param">action</dt><dd class="cmt"><p>action to execute on the receiver of the process</p></dd><dt>returns</dt><dd class="cmt"><p>return value of the action, or <code>None</code> if no receiver was found for the process</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Network.html" class="extype" name="neko.network.Network">Network</a></dd></dl></div>
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:A=&gt;Boolean,msg:=&gt;Any):A"></a><a id="ensuring((DelaySimNetwork)⇒Boolean,⇒Any):DelaySimNetwork"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#ensuring(cond:A=&gt;Boolean,msg:=&gt;Any):A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: (<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>) ⇒ <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>, <span name="msg">msg: ⇒ <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></span>)</span><span class="result">: <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> to
+            <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>] performed by method Ensuring in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:A=&gt;Boolean):A"></a><a id="ensuring((DelaySimNetwork)⇒Boolean):DelaySimNetwork"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#ensuring(cond:A=&gt;Boolean):A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: (<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>) ⇒ <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>)</span><span class="result">: <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> to
+            <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>] performed by method Ensuring in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:Boolean,msg:=&gt;Any):A"></a><a id="ensuring(Boolean,⇒Any):DelaySimNetwork"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#ensuring(cond:Boolean,msg:=&gt;Any):A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>, <span name="msg">msg: ⇒ <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></span>)</span><span class="result">: <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> to
+            <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>] performed by method Ensuring in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:Boolean):A"></a><a id="ensuring(Boolean):DelaySimNetwork"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#ensuring(cond:Boolean):A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>)</span><span class="result">: <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> to
+            <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>] performed by method Ensuring in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Predef.StringFormat#formatted" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="formatted(fmtstr:String):String"></a><a id="formatted(String):String"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#formatted(fmtstr:String):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="implicit">formatted</span><span class="params">(<span name="fmtstr">fmtstr: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> to
+            <span class="extype" name="scala.Predef.StringFormat">StringFormat</span>[<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>] performed by method StringFormat in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>StringFormat</dd><dt>Annotations</dt><dd>
+                <span class="name">@inline</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#getClass():Class[_]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Int.html#scala.Int" class="extype" name="scala.Int">Int</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#isInstanceOf[T0]:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="com.typesafe.scalalogging.LazyLogging#logger" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="logger:com.typesafe.scalalogging.Logger"></a><a id="logger:Logger"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#logger:com.typesafe.scalalogging.Logger" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">logger</span><span class="result">: <span class="extype" name="com.typesafe.scalalogging.Logger">Logger</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>LazyLogging</dd><dt>Annotations</dt><dd>
+                <span class="name">@transient</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="neko.network.Network#name" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="name:String"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#name:String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">name</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Network.html" class="extype" name="neko.network.Network">Network</a> → <a href="../../NamedEntity.html" class="extype" name="neko.NamedEntity">NamedEntity</a></dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Boolean.html#scala.Boolean" class="extype" name="scala.Boolean">Boolean</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="neko.network.sim.DelaySimNetwork#neighborhoodFor" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="neighborhoodFor:Map[neko.PID,Set[neko.PID]]"></a><a id="neighborhoodFor:Map[PID,Set[PID]]"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#neighborhoodFor:Map[neko.PID,Set[neko.PID]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">neighborhoodFor</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="../../PID.html" class="extype" name="neko.PID">PID</a>, <span class="extype" name="scala.Predef.Set">Set</span>[<a href="../../PID.html" class="extype" name="neko.PID">PID</a>]]</span>
+      </span>
+      
+      
+    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#notify():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#notifyAll():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@HotSpotIntrinsicCandidate</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="neko.network.Network#preStart" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="preStart():Unit"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#preStart():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">preStart</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">hook called before the network is started.</p><div class="fullcomment"><div class="comment cmt"><p>hook called before the network is started.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Network.html" class="extype" name="neko.network.Network">Network</a></dd></dl></div>
+    </li><li name="neko.network.Network#receiverFor" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="receiverFor(pid:neko.PID):Option[neko.Receiver]"></a><a id="receiverFor(PID):Option[Receiver]"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#receiverFor(pid:neko.PID):Option[neko.Receiver]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">receiverFor</span><span class="params">(<span name="pid">pid: <a href="../../PID.html" class="extype" name="neko.PID">PID</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Option.html#scala.Option" class="extype" name="scala.Option">Option</a>[<a href="../../Receiver.html" class="extype" name="neko.Receiver">Receiver</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">returns the receiver corresponding to the process identifier given in argument, if any.</p><div class="fullcomment"><div class="comment cmt"><p>returns the receiver corresponding to the process identifier given in argument, if any.</p></div><dl class="paramcmts block"><dt class="param">pid</dt><dd class="cmt"><p>identifier of a process</p></dd><dt>returns</dt><dd class="cmt"><p>receiver of the given process if found, or <code>None</code>.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Network.html" class="extype" name="neko.network.Network">Network</a></dd></dl></div>
+    </li><li name="neko.network.AbstractNetwork#receivers" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="receivers:Map[neko.PID,neko.Receiver]"></a><a id="receivers:Map[PID,Receiver]"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#receivers:Map[neko.PID,neko.Receiver]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">receivers</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="../../PID.html" class="extype" name="neko.PID">PID</a>, <a href="../../Receiver.html" class="extype" name="neko.Receiver">Receiver</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">returns a mapping of process identifiers to their corresponding receiver.</p><div class="fullcomment"><div class="comment cmt"><p>returns a mapping of process identifiers to their corresponding receiver.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a mapping of process identifiers to their corresponding receiver.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../AbstractNetwork.html" class="extype" name="neko.network.AbstractNetwork">AbstractNetwork</a> → <a href="../Network.html" class="extype" name="neko.network.Network">Network</a></dd></dl></div>
+    </li><li name="neko.network.AbstractNetwork#receivers_=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="receivers_=(receivers:Map[neko.PID,neko.Receiver]):Unit"></a><a id="receivers_=(Map[PID,Receiver]):Unit"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#receivers_=(receivers:Map[neko.PID,neko.Receiver]):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: receivers_$eq" class="name">receivers_=</span><span class="params">(<span name="receivers">receivers: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="../../PID.html" class="extype" name="neko.PID">PID</a>, <a href="../../Receiver.html" class="extype" name="neko.Receiver">Receiver</a>]</span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Sets the list of possible destinations for this network.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the list of possible destinations for this network.
+</p></div><dl class="paramcmts block"><dt class="param">receivers</dt><dd class="cmt"><p>mapping of process identifiers to their corresponding receivers.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../AbstractNetwork.html" class="extype" name="neko.network.AbstractNetwork">AbstractNetwork</a> → <a href="../Network.html" class="extype" name="neko.network.Network">Network</a></dd></dl></div>
+    </li><li name="neko.network.AbstractNetwork#send" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="send(event:neko.Event):Unit"></a><a id="send(Event):Unit"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#send(event:neko.Event):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">send</span><span class="params">(<span name="event">event: <a href="../../Event.html" class="extype" name="neko.Event">Event</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Sends a new event through the network.</p><div class="fullcomment"><div class="comment cmt"><p>Sends a new event through the network. If <code>m</code> is a message, then it will be transmitted to its
+destinations. If <code>m</code> is a signal, the network will simply drop it, possibly leaving some
+warning in the logs.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../AbstractNetwork.html" class="extype" name="neko.network.AbstractNetwork">AbstractNetwork</a> → <a href="../Network.html" class="extype" name="neko.network.Network">Network</a> → <a href="../../Sender.html" class="extype" name="neko.Sender">Sender</a></dd></dl></div>
+    </li><li name="neko.network.sim.DelaySimNetwork#sendTo" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendTo(dest:neko.PID,m:neko.Message):Unit"></a><a id="sendTo(PID,Message):Unit"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#sendTo(dest:neko.PID,m:neko.Message):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sendTo</span><span class="params">(<span name="dest">dest: <a href="../../PID.html" class="extype" name="neko.PID">PID</a></span>, <span name="m">m: <a href="../../Message.html" class="extype" name="neko.Message">Message</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">delivers a message to a given destination process.</p><div class="fullcomment"><div class="comment cmt"><p>delivers a message to a given destination process.
+</p></div><dl class="paramcmts block"><dt class="param">dest</dt><dd class="cmt"><p>process to which <code>m</code> should be delivered</p></dd><dt class="param">m</dt><dd class="cmt"><p>message to deliver</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> → <a href="../AbstractNetwork.html" class="extype" name="neko.network.AbstractNetwork">AbstractNetwork</a></dd></dl></div>
+    </li><li name="neko.network.Network#senderOpt" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="senderOpt:None.type"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#senderOpt:None.type" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">senderOpt</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/None$.html#scala.None" class="extype" name="scala.None">None</a>.type</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Network.html" class="extype" name="neko.network.Network">Network</a> → <a href="../../NamedEntity.html" class="extype" name="neko.NamedEntity">NamedEntity</a></dd></dl></div>
+    </li><li name="neko.NamedEntity#simpleName" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="simpleName:String"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#simpleName:String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">simpleName</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../NamedEntity.html" class="extype" name="neko.NamedEntity">NamedEntity</a></dd></dl></div>
+    </li><li name="neko.network.sim.SimNetwork#simulator" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="simulator:neko.kernel.sim.Simulator"></a><a id="simulator:Simulator"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#simulator:neko.kernel.sim.Simulator" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">simulator</span><span class="result">: <a href="../../kernel/sim/Simulator.html" class="extype" name="neko.kernel.sim.Simulator">Simulator</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SimNetwork.html" class="extype" name="neko.network.sim.SimNetwork">SimNetwork</a></dd></dl></div>
+    </li><li name="neko.network.Network#start" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="start():Unit"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#start():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">start</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">hook called upon starting the network.</p><div class="fullcomment"><div class="comment cmt"><p>hook called upon starting the network.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Network.html" class="extype" name="neko.network.Network">Network</a></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="neko.network.AbstractNetwork#system" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="system:neko.kernel.NekoSystem"></a><a id="system:NekoSystem"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#system:neko.kernel.NekoSystem" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">system</span><span class="result">: <a href="../../kernel/NekoSystem.html" class="extype" name="neko.kernel.NekoSystem">NekoSystem</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../AbstractNetwork.html" class="extype" name="neko.network.AbstractNetwork">AbstractNetwork</a></dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#toString():String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="neko.network.AbstractNetwork#topology" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="topology:neko.topology.Topology"></a><a id="topology:Topology"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#topology:neko.topology.Topology" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">topology</span><span class="result">: <a href="../../topology/Topology.html" class="extype" name="neko.topology.Topology">Topology</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../AbstractNetwork.html" class="extype" name="neko.network.AbstractNetwork">AbstractNetwork</a> → <a href="../Network.html" class="extype" name="neko.network.Network">Network</a></dd></dl></div>
+    </li><li name="neko.trace.Tracing#tracer" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tracer:neko.trace.EventTracer"></a><a id="tracer:EventTracer"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#tracer:neko.trace.EventTracer" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tracer</span><span class="result">: <a href="../../trace/EventTracer.html" class="extype" name="neko.trace.EventTracer">EventTracer</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../../trace/Tracing.html" class="extype" name="neko.trace.Tracing">Tracing</a></dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/Long.html#scala.Long" class="extype" name="scala.Long">Long</a></span>, <span name="arg1">arg1: <a href="https://www.scala-lang.org/api/2.12.11/scala/Int.html#scala.Int" class="extype" name="scala.Int">Int</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#wait(x$1:Long):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="https://www.scala-lang.org/api/2.12.11/scala/Long.html#scala.Long" class="extype" name="scala.Long">Long</a></span>)</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Predef.ArrowAssoc#→" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="→[B](y:B):(A,B)"></a><a id="→[B](B):(DelaySimNetwork,B)"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#→[B](y:B):(A,B)" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $u2192" class="implicit">→</span><span class="tparams">[<span name="B">B</span>]</span><span class="params">(<span name="y">y: <span class="extype" name="scala.Predef.ArrowAssoc.→.B">B</span></span>)</span><span class="result">: (<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>, <span class="extype" name="scala.Predef.ArrowAssoc.→.B">B</span>)</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+            This member is added by an implicit conversion from <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> to
+            <span class="extype" name="scala.Predef.ArrowAssoc">ArrowAssoc</span>[<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>] performed by method ArrowAssoc in scala.Predef.
+            
+          </dd><dt>Definition Classes</dt><dd>ArrowAssoc</dd></dl></div>
+    </li>
+              </ol>
+            </div>
+
+        
+
+        <div class="values members">
+              <h3>Deprecated Value Members</h3>
+              <ol><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <span class="permalink">
+      <a href="../../../neko/network/sim/DelaySimNetwork.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version ) see corresponding Javadoc for more information.">finalize</span><span class="params">()</span><span class="result">: <a href="https://www.scala-lang.org/api/2.12.11/scala/Unit.html#scala.Unit" class="extype" name="scala.Unit">Unit</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+                <span class="name">@Deprecated</span>
+              
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version )</i> see corresponding Javadoc for more information.</p></dd></dl></div>
+    </li></ol>
+            </div>
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="neko.network.sim.SimNetwork">
+              <h3>Inherited from <a href="SimNetwork.html" class="extype" name="neko.network.sim.SimNetwork">SimNetwork</a></h3>
+            </div><div class="parent" name="neko.network.AbstractNetwork">
+              <h3>Inherited from <a href="../AbstractNetwork.html" class="extype" name="neko.network.AbstractNetwork">AbstractNetwork</a></h3>
+            </div><div class="parent" name="neko.trace.Tracing">
+              <h3>Inherited from <a href="../../trace/Tracing.html" class="extype" name="neko.trace.Tracing">Tracing</a></h3>
+            </div><div class="parent" name="com.typesafe.scalalogging.LazyLogging">
+              <h3>Inherited from <span class="extype" name="com.typesafe.scalalogging.LazyLogging">LazyLogging</span></h3>
+            </div><div class="parent" name="neko.network.Network">
+              <h3>Inherited from <a href="../Network.html" class="extype" name="neko.network.Network">Network</a></h3>
+            </div><div class="parent" name="neko.Sender">
+              <h3>Inherited from <a href="../../Sender.html" class="extype" name="neko.Sender">Sender</a></h3>
+            </div><div class="parent" name="neko.NamedEntity">
+              <h3>Inherited from <a href="../../NamedEntity.html" class="extype" name="neko.NamedEntity">NamedEntity</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <a href="https://www.scala-lang.org/api/2.12.11/scala/Any.html#scala.Any" class="extype" name="scala.Any">Any</a></h3>
+            </div>
+        <div class="conversion" name="scala.Predef.any2stringadd">
+              <h3>Inherited by implicit conversion any2stringadd from
+                <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> to <span class="extype" name="scala.Predef.any2stringadd">any2stringadd</span>[<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>]
+              </h3>
+            </div><div class="conversion" name="scala.Predef.StringFormat">
+              <h3>Inherited by implicit conversion StringFormat from
+                <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> to <span class="extype" name="scala.Predef.StringFormat">StringFormat</span>[<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>]
+              </h3>
+            </div><div class="conversion" name="scala.Predef.Ensuring">
+              <h3>Inherited by implicit conversion Ensuring from
+                <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> to <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>]
+              </h3>
+            </div><div class="conversion" name="scala.Predef.ArrowAssoc">
+              <h3>Inherited by implicit conversion ArrowAssoc from
+                <a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a> to <span class="extype" name="scala.Predef.ArrowAssoc">ArrowAssoc</span>[<a href="" class="extype" name="neko.network.sim.DelaySimNetwork">DelaySimNetwork</a>]
+              </h3>
+            </div>
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+    </body>
+          </div>
+        </div>
+      </div>
+    </body>
+      </html>

@@ -1,0 +1,814 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title></title>
+          <meta name="description" content="" />
+          <meta name="keywords" content="" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      
+      <link href="../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../../lib/index.js"></script>
+      <script type="text/javascript" src="../../index.js"></script>
+      <script type="text/javascript" src="../../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../lib/diagrams.js" id="diagrams-js"></script>
+      <script type="text/javascript">
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../../';
+      </script>
+    
+        </head>
+        <body>
+      <div id="search">
+        <span id="doc-title"><span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="../../index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../index.html"><span class="name">root</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.neko" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="neko"></a><a id="neko:neko"></a>
+      <span class="permalink">
+      <a href="../../neko/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="ScalaNeko is a framework designed to help with the prototyping of distributed algorithms." href="../index.html"><span class="name">neko</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">ScalaNeko is a framework designed to help with the prototyping of distributed algorithms.</p><div class="fullcomment"><div class="comment cmt"><h3>ScalaNeko Framework</h3><p>ScalaNeko is a framework designed to help with the prototyping of distributed algorithms. It is
+loosely based on the Neko framework [1] which was programmed in Java more than a decade earlier,
+mainly by Péter Urbán.</p><p>Whereas the original Neko framework was designed for performance evaluation and modeling, the
+main focus of ScalaNeko is to serve as a support for teaching distributed algorithms. Hence, the
+current version of ScalaNeko only supports simulated execution. However, we still have the
+intention to support actual distributed execution in a future version, and hence provide a full
+replacement of the original Neko.</p><h4>1. Architecture</h4><p>In order to effectively use ScalaNeko, it is helpful to understand its general architecture,
+which can be described as follows:</p><p>There are several important entities in ScalaNeko:</p><ul><li>The system is what handles the execution engine within the virtual machine and the
+   initialization procedure. There is exactly one instance running for every virtual machine.
+   The system also holds a discrete event simulator.
+   See <a href="../Main.html" class="extype" name="neko.Main">neko.Main</a> and <a href="../kernel/NekoSystem.html" class="extype" name="neko.kernel.NekoSystem">neko.kernel.NekoSystem</a>.</li><li>The network simulates the behavior of a network, and is responsible for transmitting messages
+   between processes. In the current version, it is running over a discrete-event simulation.
+   See <a href="../network/Network.html" class="extype" name="neko.network.Network">neko.network.Network</a> and <a href="../kernel/sim/Simulator.html" class="extype" name="neko.kernel.sim.Simulator">neko.kernel.sim.Simulator</a>.</li><li>The processes are the basic unit of concurrency, and represent a virtual computer connected
+   through a network. Every process has a unique identity represented by a <a href="../PID.html" class="extype" name="neko.PID">neko.PID</a>.
+   A process does nothing by itself and is merely a shell for protocols.
+   See <a href="../NekoProcess.html" class="extype" name="neko.NekoProcess">neko.NekoProcess</a> and <a href="../ProcessConfig.html" class="extype" name="neko.ProcessConfig">neko.ProcessConfig</a>.</li><li>The protocols are the actual logic of the system and implement the algorithms. A process holds
+   one or many protocols, which are organized as a stack. There are two kinds of protocols:
+   active and reactive ones. While active protocols carry their own flow of execution, that is,
+   act as a thread, concurrently with the system, the reactive protocols only execute code as a
+   reaction to incoming events.
+   See <a href="../ActiveProtocol.html" class="extype" name="neko.ActiveProtocol">neko.ActiveProtocol</a>, <a href="../ReactiveProtocol.html" class="extype" name="neko.ReactiveProtocol">neko.ReactiveProtocol</a>, <a href="../Protocol.html" class="extype" name="neko.Protocol">neko.Protocol</a>, and <a href="../ProtocolUtils.html" class="extype" name="neko.ProtocolUtils">neko.ProtocolUtils</a>.</li><li>Protocols and processes exchange information through events. There are two types of events:
+   signals and messages. Signals allow protocols <b>within the same process</b> to notify each
+   other. In contrast, messages allow protocol instances to communicate
+   <b>across different processes</b>. In other words, only messages are transmitted through the
+   network.
+   See <a href="../Event.html" class="extype" name="neko.Event">neko.Event</a>, <a href="../Signal.html" class="extype" name="neko.Signal">neko.Signal</a>, <a href="../UnicastMessage.html" class="extype" name="neko.UnicastMessage">neko.UnicastMessage</a>, <a href="../MulticastMessage.html" class="extype" name="neko.MulticastMessage">neko.MulticastMessage</a>,
+   and <a href="../Wrapper.html" class="extype" name="neko.Wrapper">neko.Wrapper</a>.</li></ul><p>A simplified view of the architecture of an execution of ScalaNeko is depicted below:</p><pre>+-------------------------------------------------------+
+|       process p1                    process pn        |
+|  +-------------------+         +-------------------+  |
+|  | +---------------+ |         | +---------------+ |  |
+|  | | protocol p1:A | |         | | protocol pn:A | |  |
+|  | +-------------+-+ |         | +-------------+-+ |  |
+|  |   |           |   |   ...   |   |           |   |  |
+|  | +-+-----------V-+ |         | +-+-----------V-+ |  |
+|  | | protocol p1:B | |         | | protocol pn:B | |  |
+|  | +-------------+-+ |         | +-------------+-+ |  |
+|  +---|-----------|---+         +---|-----------|---+  |
+|      |           |                 |           |      |
+|  +---+-----------V-----------------+-----------V---+  |
+|  |                      network                    |  |
+|  +-------------------------------------------------+  |
+|                  +------------------+                 |
+|                  |     simulator    |                 |
+|                  +------------------+       system    |
++-------------------------------------------------------+</pre><p>Creating a ScalaNeko application typically requires to implement the following steps:</p><ol class="lowerAlpha"><li>Implement the protocols. At least, an application will require to implement an active
+    protocol, but also possibly a number of reusable reactive ones.</li><li>Each protocol is likely to define its own message types. The most appropriate location for
+    doing so is in a companion object of the protocol. Messages are best defined as a
+    <code>case class</code> so that they are ensured to be immutable and code for pattern matching is
+    automatically generated by the compiler.</li><li>Creating a process initializer that instantiates and connects the protocols of the processes.</li><li>Creating a main object which provides the basic parameters of the execution, such as the
+    total number of processes to create and their initializer.</li></ol><p>The initialization proceeds roughly as illustrated below:</p><pre>     creates            creates
+Main ------&gt; NekoSystem ------&gt; Network
+                        creates
+                  <span class="lit">''</span>    ------&gt; ProcessInitializer
+                        creates             creates
+                  <span class="lit">''</span>    ====<span class="kw">=&gt;</span>&gt; NekoProcess ====<span class="kw">=&gt;</span>&gt; Protocol</pre><h4>2. Creating protocols</h4><p>A protocol can be either active or reactive. An active protocol is one that executes its own
+thread, concurrently with that of the other protocols or processes. In contrast, a reactive
+protocol only executes as a reaction to events, and does not do anything otherwise.</p><h5>2.1 Active protocols</h5><p>An active protocol is typically defined as a subclass of <a href="../ActiveProtocol.html" class="extype" name="neko.ActiveProtocol">neko.ActiveProtocol</a>.</p><p>An active protocol has its own thread of control. The code of the protocol is implemented in its
+method <a href="../ActiveProtocol.html#run():Unit" class="extmbr" name="neko.ActiveProtocol#run">neko.ActiveProtocol.run</a>, which must be defined in the subclass. This code is executed
+concurrently with the rest of the system.</p><p>An active protocol has access to operations for sending and receiving message. New messages are
+sent with the method <a href="../ActiveProtocol.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ActiveProtocol#SEND">neko.ActiveProtocol.SEND</a>. While messages are received through
+<b>blocking</b> calls to <a href="../ActiveProtocol$Receive$.html" class="extype" name="neko.ActiveProtocol.Receive">neko.ActiveProtocol.Receive</a>,
+as illustrated below. Note that, in order to receive messages of a certain type, the protocol
+must register by calling <a href="../ActiveProtocol.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ActiveProtocol#listenTo">neko.ActiveProtocol.listenTo</a> for this type.</p><pre><span class="kw">class</span> PingPong(c: NekoProcessConfig) <span class="kw">extends</span> ActiveProtocol(c, <span class="lit">"ping-pong"</span>)
+{
+  <span class="kw">val</span> next = me.map{i <span class="kw">=&gt;</span> (i+<span class="num">1</span>) % N}
+  <span class="kw">var</span> record = <span class="std">Set</span>.empty[Event]
+
+  listenTo(classOf[Ping])
+  listenTo(classOf[Pong])
+  <span class="kw">def</span> run(): <span class="std">Unit</span> =
+  {
+    SEND(Ping(me, next))
+
+    Receive {
+      <span class="kw">case</span> Ping(from, _) <span class="kw">=&gt;</span> SEND(Pong(me, from))
+      <span class="kw">case</span> Pong(from, _) <span class="kw">=&gt;</span> SEND(Ping(me, from))
+    }
+
+    Receive { m <span class="kw">=&gt;</span>
+      record += m
+    }
+  }
+}</pre><p>It is also possible to override the method <a href="../ActiveProtocol.html#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ActiveProtocol#onReceive">neko.ActiveProtocol.onReceive</a>. By doing so,
+messages that are matched by <code>onReceive</code> are processed reactively upon arrival, while those that
+are not matched by <code>onReceive</code> are stored into the receive queue and must be handled by a
+blocking call to <a href="../ActiveProtocol$Receive$.html" class="extype" name="neko.ActiveProtocol.Receive">neko.ActiveProtocol.Receive</a>.</p><h5>2.2 Reactive protocols</h5><p>Most protocols in a process are reactive.
+A reactive protocol is usually sandwiched between a
+network and an application (or a lower-level protocol and a higher-level one).
+The simplest way to implement one is by extending <a href="../ReactiveProtocol.html" class="extype" name="neko.ReactiveProtocol">neko.ReactiveProtocol</a>. The information
+has two flows: downstream and upstream. This is illustrated in the figure below.</p><pre>         application
+  |                      ^
+  V                      |
++----------------------------+
+| onSend        DELIVER(...) |
+|                            | Reactive protocol
+| SEND(...)        onReceive |
++----------------------------+
+  |                      ^
+  V                      |
+          network</pre><p>For the downstream flow (from application to network), the code of the protocol is implemented
+in the method <a href="../ReactiveProtocol.html#onSend:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onSend">neko.ReactiveProtocol.onSend</a>, usually implemented as a <a href="https://www.scala-lang.org/api/2.12.11/scala/PartialFunction.html" class="extype" name="scala.PartialFunction">scala.PartialFunction</a> which
+reacts as appropriate to each event. The protocol can itself send messages through the
+<a href="../ReactiveProtocol.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#SEND">neko.ReactiveProtocol.SEND</a> method.</p><p>For the upstream flow (from network to application), the code of the protocol is implemented in
+the method <a href="../ReactiveProtocol.html#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onReceive">neko.ReactiveProtocol.onReceive</a>, also implemented as a <a href="https://www.scala-lang.org/api/2.12.11/scala/PartialFunction.html" class="extype" name="scala.PartialFunction">scala.PartialFunction</a> which
+reacts appropriately to each incoming events. Events of a certain type are delivered to the
+protocol only if it registers to the event type by calling the <a href="../ReactiveProtocol.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ReactiveProtocol#listenTo">neko.ReactiveProtocol.listenTo</a>
+method on that event type. The protocol can deliver a message to the application through the
+method <a href="../ReactiveProtocol.html#DELIVER(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#DELIVER">neko.ReactiveProtocol.DELIVER</a>.</p><p>Note that the two flows are not mutually exclusive. It is perfectly valid, and even frequent,
+for a protocol to call <a href="../ReactiveProtocol.html#DELIVER(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#DELIVER">neko.ReactiveProtocol.DELIVER</a> in <a href="../ReactiveProtocol.html#onSend:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onSend">neko.ReactiveProtocol.onSend</a>, or to call
+<a href="../ReactiveProtocol.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ReactiveProtocol#SEND">neko.ReactiveProtocol.SEND</a> in <a href="../ReactiveProtocol.html#onReceive:PartialFunction[neko.Event,Unit]" class="extmbr" name="neko.ReactiveProtocol#onReceive">neko.ReactiveProtocol.onReceive</a> .</p><h4>3. Defining new events (messages and signals)</h4><p>Let's start with a little bit of terminology. An event denotes anything that happens in the
+system and is represented by the abstract class <a href="../Event.html" class="extype" name="neko.Event">neko.Event</a>. Events can be of two types:</p><ul><li>A signal is an event that occurs within one process, and can go from one protocol to another,
+   but never cross process boundaries. It is represented by the subclasses of <a href="../Signal.html" class="extype" name="neko.Signal">neko.Signal</a>.</li><li>A message is an event that crosses process boundaries, but is typically (but not necessarily)
+   interpreted by the same protocol in the target process. It is represented by the subclasses
+   of <a href="../Message.html" class="extype" name="neko.Message">neko.Message</a>.</li></ul><p>   A message can be &quot;top-level&quot; or a &quot;wrapper&quot;. A top-level message is one that is created by the
+   sending protocol. It has its own identity, as well as a source and destinations. In contrast,
+   a wrapper is simply a shell that extends the information of an existing message. It retains
+   the same identity, source, and destinations, but provides a shell to the message and can add
+   its own information. This results into messages of three types:</p><ul><li>A <a href="../MulticastMessage.html" class="extype" name="neko.MulticastMessage">neko.MulticastMessage</a> is a top-level message with multiple destinations. See the
+     example below on how to define a new message:</li></ul><pre><span class="kw">case</span> <span class="kw">class</span> Snapshot(
+    from: PID,
+    to: <span class="std">Set</span>[PID])
+  <span class="kw">extends</span> MulticastMessage</pre><p>     NB: The arguments *must* be named <code>from</code> and <code>to</code>.</p><ul><li>A <a href="../UnicastMessage.html" class="extype" name="neko.UnicastMessage">neko.UnicastMessage</a> is a top-level message with a single destination process.</li></ul><pre><span class="kw">case</span> <span class="kw">class</span> Token (
+    from: PID,
+    to: PID)
+  <span class="kw">extends</span> UnicastMessage</pre><p>     NB: The arguments *must* be named <code>from</code> and <code>to</code>.</p><ul><li>A <a href="../Wrapper.html" class="extype" name="neko.Wrapper">neko.Wrapper</a> is a shell that wraps an existing message. A wrapper can also extend
+     another wrapper; not only top-level messages. A wrapper preserves the identity, the source
+     and the destinations of the message it wraps.</li></ul><pre><span class="kw">case</span> <span class="kw">class</span> SequencedMessage(msg: Message, sn: <span class="std">Int</span>) <span class="kw">extends</span> Wrapper(msg)</pre><h4>4. Initialization of a process</h4><p>While processes are created automatically, their protocols are not, and must be initialized and
+connected. This is done through a process initializer, by providing an instance of
+<a href="../ProcessInitializer.html" class="extype" name="neko.ProcessInitializer">neko.ProcessInitializer</a>, whose sole role is to create the protocols of a process and
+combine them.</p><pre>ProcessInitializer { p <span class="kw">=&gt;</span>
+    <span class="kw">val</span> app  = <span class="kw">new</span> PingPong(p)
+    <span class="kw">val</span> fifo = <span class="kw">new</span> FIFOChannel(p)
+    app --&gt; fifo
+  }</pre><p>In the above example, each process is initialized by executing the above code. The code creates
+two protocols while registering them into the object <code>p</code> given as argument (which represents the
+process being initialized). Then, the two
+protocols are connected such that all <code>SEND</code> operations of protocol <code>app</code> are handed to
+protocol <code>fifo</code>. The send operations of protocol <code>fifo</code> use the default target which is
+the network interface of the process.</p><p>It is also possible to initialize processes differently, by discriminating based on the
+identifier of the process to initialize. That identifier is obtained from the argument
+with <code>p.pid</code>.</p><h4>5. Setting up a new system</h4><p>A new instance of a ScalaNeko system is created and configured by creating an object that
+extends <a href="../Main.html" class="extype" name="neko.Main">neko.Main</a>. The resulting object becomes a main object and is thus executable
+(<a href="../Main.html" class="extype" name="neko.Main">neko.Main</a> is a subclass of <a href="https://www.scala-lang.org/api/2.12.11/scala/App.html" class="extype" name="scala.App">scala.App</a>).</p><p>Class <a href="../Main.html" class="extype" name="neko.Main">neko.Main</a> requires to set parameters, such as the network topology and
+the process initializer, as illustrated below:</p><pre><span class="kw">object</span> PingPongApp <span class="kw">extends</span> Main(topology.Clique(<span class="num">3</span>))( ProcessInitializer { p<span class="kw">=&gt;</span> ... } )</pre><p>Future planned versions of ScalaNeko will make it possible to define many more parameters, such
+as the network topologyDescriptor, etc...</p><h4>References</h4><ol class="decimal"><li>Péter Urbán, Xavier Défago, André Schiper:
+    Neko: A Single Environment to Simulate and Prototype Distributed Algorithms.
+    J. Inf. Sci. Eng. 18(6): 981-997 (2002).</li></ol><h4>Contributors</h4><p>Lead architect: Xavier Défago</p><p>Other contributors:</p><ul><li>Naoyuki Onuki (trace system; integration with NekoViewer)
+</li></ul></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="neko.config" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="config"></a><a id="config:config"></a>
+      <span class="permalink">
+      <a href="../../neko/config/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../config/index.html"><span class="name">config</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.exceptions" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exceptions"></a><a id="exceptions:exceptions"></a>
+      <span class="permalink">
+      <a href="../../neko/exceptions/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../exceptions/index.html"><span class="name">exceptions</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.gui" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="gui"></a><a id="gui:gui"></a>
+      <span class="permalink">
+      <a href="../../neko/gui/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../gui/index.html"><span class="name">gui</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.io" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="io"></a><a id="io:io"></a>
+      <span class="permalink">
+      <a href="../../neko/io/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../io/index.html"><span class="name">io</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.kernel" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="kernel"></a><a id="kernel:kernel"></a>
+      <span class="permalink">
+      <a href="../../neko/kernel/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../kernel/index.html"><span class="name">kernel</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.network" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="network"></a><a id="network:network"></a>
+      <span class="permalink">
+      <a href="../../neko/network/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../network/index.html"><span class="name">network</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.protocol" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="protocol"></a><a id="protocol:protocol"></a>
+      <span class="permalink">
+      <a href="../../neko/protocol/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../protocol/index.html"><span class="name">protocol</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.topology" visbl="pub" class="indented2 current" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="topology"></a><a id="topology:topology"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">topology</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li class="current-entities indented2">
+                        <a class="object" href="Clique$.html" title="Factory object to create a clique topologyDescriptor."></a>
+                        <a class="class" href="Clique.html" title=""></a>
+                        <a href="Clique.html" title="">Clique</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="object" href="Combinator$.html" title=""></a>
+                        <a href="Combinator$.html" title="">Combinator</a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="DirectedRing$.html" title="Factory object to create an oriented ring topologyDescriptor."></a>
+                        <a class="class" href="DirectedRing.html" title=""></a>
+                        <a href="DirectedRing.html" title="">DirectedRing</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="object" href="GeometricRandom$.html" title="Factory object to create a geometric random graph."></a>
+                        <a href="GeometricRandom$.html" title="Factory object to create a geometric random graph.">GeometricRandom</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="GraphTopology.html" title=""></a>
+                        <a href="GraphTopology.html" title="">GraphTopology</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="object" href="Grid$.html" title="Factory object to generate a grid topologyDescriptor."></a>
+                        <a href="Grid$.html" title="Factory object to generate a grid topologyDescriptor.">Grid</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="object" href="Ladder$.html" title=""></a>
+                        <a href="Ladder$.html" title="">Ladder</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="object" href="Random$.html" title="Factory object to create a random graph (of type Erdös-Renyi)."></a>
+                        <a href="Random$.html" title="Factory object to create a random graph (of type Erdös-Renyi).">Random</a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="Ring$.html" title="Factory object to create a ring topologyDescriptor."></a>
+                        <a class="class" href="Ring.html" title=""></a>
+                        <a href="Ring.html" title="">Ring</a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="Topology$.html" title=""></a>
+                        <a class="trait" href="Topology.html" title="Describes a network topology."></a>
+                        <a href="Topology.html" title="Describes a network topology.">Topology</a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="TopologyFactory$.html" title=""></a>
+                        <a class="trait" href="TopologyFactory.html" title=""></a>
+                        <a href="TopologyFactory.html" title="">TopologyFactory</a>
+                      </li><li name="neko.trace" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="trace"></a><a id="trace:trace"></a>
+      <span class="permalink">
+      <a href="../../neko/trace/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../trace/index.html"><span class="name">trace</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li><li name="neko.util" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="util"></a><a id="util:util"></a>
+      <span class="permalink">
+      <a href="../../neko/util/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../util/index.html"><span class="name">util</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="neko">neko</a></dd></dl></div>
+    </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="package value">
+      <div id="definition">
+        <div class="big-circle package">p</div>
+        <p id="owner"><a href="../index.html" class="extype" name="neko">neko</a></p>
+        <h1>topology<span class="permalink">
+      <a href="../../neko/topology/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">topology</span>
+      </span>
+      </h4>
+
+      
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block diagram-container" id="content-diagram-container">
+                <span class="toggle diagram-link">
+                  Content Hierarchy
+                </span>
+                <div class="diagram" id="content-diagram"><svg class="package-diagram" id="graph1" viewBox="0.00 0.00 1113.50 94.00" height="94pt" width="1114pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 90)" class="graph" id="page0,1_graph0"><polygon points="-4,4 -4,-90 1109.5,-90 1109.5,4 -4,4" stroke="transparent" fill="white"></polygon><!-- node0 --><g class="node trait" id="graph1_0"><g id="a_trait|graph1_0"><a xlink:title="neko.topology.TopologyFactory" xlink:href="TopologyFactory.html#inheritance-diagram"><path d="M350.67,-86C350.67,-86 250.33,-86 250.33,-86 246.17,-86 242,-81.83 242,-77.67 242,-77.67 242,-69.33 242,-69.33 242,-65.17 246.17,-61 250.33,-61 250.33,-61 350.67,-61 350.67,-61 354.83,-61 359,-65.17 359,-69.33 359,-69.33 359,-77.67 359,-77.67 359,-81.83 354.83,-86 350.67,-86" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-80.5" x="252.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-71.63" x="273.1" text-anchor="start">TopologyFactory</text></a></g></g><!-- node2 --><g class="node object" id="graph1_2"><g id="a_object|graph1_2"><a xlink:title="neko.topology.Ring" xlink:href="Ring$.html#inheritance-diagram"><path d="M56.67,-25C56.67,-25 8.33,-25 8.33,-25 4.17,-25 0,-20.83 0,-16.67 0,-16.67 0,-8.33 0,-8.33 0,-4.17 4.17,0 8.33,0 8.33,0 56.67,0 56.67,0 60.83,0 65,-4.17 65,-8.33 65,-8.33 65,-16.67 65,-16.67 65,-20.83 60.83,-25 56.67,-25" stroke="#103a51" fill="#103a51"></path><image xlink:href="../../lib/object_diagram.png" y="-19.5" x="10.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="31.5" text-anchor="start">Ring</text></a></g></g><!-- node0&#45;&gt;node2 --><g class="edge inheritance" id="graph1_0_2"><g id="a_inheritance|graph1_0_2"><a xlink:title="Ring is a subtype of TopologyFactory"><path d="M234.64,-59.74C189.43,-50.72 128.14,-37.97 74.5,-25 71.41,-24.25 68.21,-23.44 65.01,-22.61" stroke="#d4d4d4" fill="none"></path><polygon points="234.41,-62.2 241.75,-61.16 235.36,-57.39 234.41,-62.2" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node4 --><g class="node object" id="graph1_4"><g id="a_object|graph1_4"><a xlink:title="neko.topology.Random" xlink:href="Random$.html#inheritance-diagram"><path d="M149.17,-25C149.17,-25 91.83,-25 91.83,-25 87.67,-25 83.5,-20.83 83.5,-16.67 83.5,-16.67 83.5,-8.33 83.5,-8.33 83.5,-4.17 87.67,0 91.83,0 91.83,0 149.17,0 149.17,0 153.33,0 157.5,-4.17 157.5,-8.33 157.5,-8.33 157.5,-16.67 157.5,-16.67 157.5,-20.83 153.33,-25 149.17,-25" stroke="#103a51" fill="#103a51"></path><image xlink:href="../../lib/object_diagram.png" y="-19.5" x="93.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="114.2" text-anchor="start">Random</text></a></g></g><!-- node0&#45;&gt;node4 --><g class="edge inheritance" id="graph1_0_4"><g id="a_inheritance|graph1_0_4"><a xlink:title="Random is a subtype of TopologyFactory"><path d="M258.49,-58.73C227.32,-48.51 185.31,-34.74 155.85,-25.09" stroke="#d4d4d4" fill="none"></path><polygon points="257.95,-61.13 265.37,-60.98 259.48,-56.48 257.95,-61.13" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node5 --><g class="node object" id="graph1_5"><g id="a_object|graph1_5"><a xlink:title="neko.topology.Ladder" xlink:href="Ladder$.html#inheritance-diagram"><path d="M241.17,-25C241.17,-25 183.83,-25 183.83,-25 179.67,-25 175.5,-20.83 175.5,-16.67 175.5,-16.67 175.5,-8.33 175.5,-8.33 175.5,-4.17 179.67,0 183.83,0 183.83,0 241.17,0 241.17,0 245.33,0 249.5,-4.17 249.5,-8.33 249.5,-8.33 249.5,-16.67 249.5,-16.67 249.5,-20.83 245.33,-25 241.17,-25" stroke="#103a51" fill="#103a51"></path><image xlink:href="../../lib/object_diagram.png" y="-19.5" x="185.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="206.2" text-anchor="start">Ladder</text></a></g></g><!-- node0&#45;&gt;node5 --><g class="edge inheritance" id="graph1_0_5"><g id="a_inheritance|graph1_0_5"><a xlink:title="Ladder is a subtype of TopologyFactory"><path d="M277.03,-56.76C262.19,-46.82 243.34,-34.18 229.85,-25.13" stroke="#d4d4d4" fill="none"></path><polygon points="275.94,-58.98 283.11,-60.84 278.66,-54.91 275.94,-58.98" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node6 --><g class="node object" id="graph1_6"><g id="a_object|graph1_6"><a xlink:title="neko.topology.Grid" xlink:href="Grid$.html#inheritance-diagram"><path d="M324.67,-25C324.67,-25 276.33,-25 276.33,-25 272.17,-25 268,-20.83 268,-16.67 268,-16.67 268,-8.33 268,-8.33 268,-4.17 272.17,0 276.33,0 276.33,0 324.67,0 324.67,0 328.83,0 333,-4.17 333,-8.33 333,-8.33 333,-16.67 333,-16.67 333,-20.83 328.83,-25 324.67,-25" stroke="#103a51" fill="#103a51"></path><image xlink:href="../../lib/object_diagram.png" y="-19.5" x="278.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="299.5" text-anchor="start">Grid</text></a></g></g><!-- node0&#45;&gt;node6 --><g class="edge inheritance" id="graph1_0_6"><g id="a_inheritance|graph1_0_6"><a xlink:title="Grid is a subtype of TopologyFactory"><path d="M300.5,-53.76C300.5,-44.37 300.5,-33.29 300.5,-25.13" stroke="#d4d4d4" fill="none"></path><polygon points="298.05,-53.84 300.5,-60.84 302.95,-53.84 298.05,-53.84" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node8 --><g class="node object" id="graph1_8"><g id="a_object|graph1_8"><a xlink:title="neko.topology.GeometricRandom" xlink:href="GeometricRandom$.html#inheritance-diagram"><path d="M459.67,-25C459.67,-25 359.33,-25 359.33,-25 355.17,-25 351,-20.83 351,-16.67 351,-16.67 351,-8.33 351,-8.33 351,-4.17 355.17,0 359.33,0 359.33,0 459.67,0 459.67,0 463.83,0 468,-4.17 468,-8.33 468,-8.33 468,-16.67 468,-16.67 468,-20.83 463.83,-25 459.67,-25" stroke="#103a51" fill="#103a51"></path><image xlink:href="../../lib/object_diagram.png" y="-19.5" x="361.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="382.1" text-anchor="start">GeometricRandom</text></a></g></g><!-- node0&#45;&gt;node8 --><g class="edge inheritance" id="graph1_0_8"><g id="a_inheritance|graph1_0_8"><a xlink:title="GeometricRandom is a subtype of TopologyFactory"><path d="M328.33,-57.44C346.85,-47.41 370.82,-34.43 387.91,-25.19" stroke="#d4d4d4" fill="none"></path><polygon points="326.76,-55.5 321.78,-60.98 329.1,-59.81 326.76,-55.5" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node9 --><g class="node object" id="graph1_9"><g id="a_object|graph1_9"><a xlink:title="neko.topology.DirectedRing" xlink:href="DirectedRing$.html#inheritance-diagram"><path d="M580.67,-25C580.67,-25 494.33,-25 494.33,-25 490.17,-25 486,-20.83 486,-16.67 486,-16.67 486,-8.33 486,-8.33 486,-4.17 490.17,0 494.33,0 494.33,0 580.67,0 580.67,0 584.83,0 589,-4.17 589,-8.33 589,-8.33 589,-16.67 589,-16.67 589,-20.83 584.83,-25 580.67,-25" stroke="#103a51" fill="#103a51"></path><image xlink:href="../../lib/object_diagram.png" y="-19.5" x="496.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="517.3" text-anchor="start">DirectedRing</text></a></g></g><!-- node0&#45;&gt;node9 --><g class="edge inheritance" id="graph1_0_9"><g id="a_inheritance|graph1_0_9"><a xlink:title="DirectedRing is a subtype of TopologyFactory"><path d="M353.75,-59.24C394.98,-48.98 451.52,-34.9 490.95,-25.09" stroke="#d4d4d4" fill="none"></path><polygon points="352.96,-56.92 346.76,-60.98 354.14,-61.67 352.96,-56.92" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node11 --><g class="node object" id="graph1_11"><g id="a_object|graph1_11"><a xlink:title="neko.topology.Clique" xlink:href="Clique$.html#inheritance-diagram"><path d="M673.17,-25C673.17,-25 615.83,-25 615.83,-25 611.67,-25 607.5,-20.83 607.5,-16.67 607.5,-16.67 607.5,-8.33 607.5,-8.33 607.5,-4.17 611.67,0 615.83,0 615.83,0 673.17,0 673.17,0 677.33,0 681.5,-4.17 681.5,-8.33 681.5,-8.33 681.5,-16.67 681.5,-16.67 681.5,-20.83 677.33,-25 673.17,-25" stroke="#103a51" fill="#103a51"></path><image xlink:href="../../lib/object_diagram.png" y="-19.5" x="617.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="638.2" text-anchor="start">Clique</text></a></g></g><!-- node0&#45;&gt;node11 --><g class="edge inheritance" id="graph1_0_11"><g id="a_inheritance|graph1_0_11"><a xlink:title="Clique is a subtype of TopologyFactory"><path d="M366.28,-63.55C426.65,-54.96 518.44,-40.97 597.5,-25 600.71,-24.35 604.04,-23.63 607.36,-22.88" stroke="#d4d4d4" fill="none"></path><polygon points="365.67,-61.16 359.08,-64.57 366.35,-66.01 365.67,-61.16" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node1 --><g class="node trait" id="graph1_1"><g id="a_trait|graph1_1"><a xlink:title="neko.topology.Topology" xlink:href="Topology.html#inheritance-diagram"><path d="M933.17,-86C933.17,-86 865.83,-86 865.83,-86 861.67,-86 857.5,-81.83 857.5,-77.67 857.5,-77.67 857.5,-69.33 857.5,-69.33 857.5,-65.17 861.67,-61 865.83,-61 865.83,-61 933.17,-61 933.17,-61 937.33,-61 941.5,-65.17 941.5,-69.33 941.5,-69.33 941.5,-77.67 941.5,-77.67 941.5,-81.83 937.33,-86 933.17,-86" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-80.5" x="867.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-71.63" x="888.4" text-anchor="start">Topology</text></a></g></g><!-- node3 --><g class="node class" id="graph1_3"><g id="a_class|graph1_3"><a xlink:title="neko.topology.Ring" xlink:href="Ring.html#inheritance-diagram"><path d="M756.67,-25C756.67,-25 708.33,-25 708.33,-25 704.17,-25 700,-20.83 700,-16.67 700,-16.67 700,-8.33 700,-8.33 700,-4.17 704.17,0 708.33,0 708.33,0 756.67,0 756.67,0 760.83,0 765,-4.17 765,-8.33 765,-8.33 765,-16.67 765,-16.67 765,-20.83 760.83,-25 756.67,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../../lib/class_diagram.png" y="-19.5" x="710.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="731.5" text-anchor="start">Ring</text></a></g></g><!-- node1&#45;&gt;node3 --><g class="edge inheritance" id="graph1_1_3"><g id="a_inheritance|graph1_1_3"><a xlink:title="Ring is a subtype of Topology"><path d="M860.14,-58.59C831.16,-48.36 792.23,-34.6 765.01,-24.99" stroke="#d4d4d4" fill="none"></path><polygon points="859.49,-60.96 866.9,-60.98 861.12,-56.34 859.49,-60.96" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node7 --><g class="node trait" id="graph1_7"><g id="a_trait|graph1_7"><a xlink:title="neko.topology.GraphTopology" xlink:href="GraphTopology.html#inheritance-diagram"><path d="M883.17,-25C883.17,-25 791.83,-25 791.83,-25 787.67,-25 783.5,-20.83 783.5,-16.67 783.5,-16.67 783.5,-8.33 783.5,-8.33 783.5,-4.17 787.67,0 791.83,0 791.83,0 883.17,0 883.17,0 887.33,0 891.5,-4.17 891.5,-8.33 891.5,-8.33 891.5,-16.67 891.5,-16.67 891.5,-20.83 887.33,-25 883.17,-25" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-19.5" x="793.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="814.4" text-anchor="start">GraphTopology</text></a></g></g><!-- node1&#45;&gt;node7 --><g class="edge inheritance" id="graph1_1_7"><g id="a_inheritance|graph1_1_7"><a xlink:title="GraphTopology is a subtype of Topology"><path d="M882.12,-55.96C871.8,-46.14 858.97,-33.93 849.72,-25.13" stroke="#d4d4d4" fill="none"></path><polygon points="880.49,-57.79 887.25,-60.84 883.87,-54.24 880.49,-57.79" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node10 --><g class="node class" id="graph1_10"><g id="a_class|graph1_10"><a xlink:title="neko.topology.DirectedRing" xlink:href="DirectedRing.html#inheritance-diagram"><path d="M1004.67,-25C1004.67,-25 918.33,-25 918.33,-25 914.17,-25 910,-20.83 910,-16.67 910,-16.67 910,-8.33 910,-8.33 910,-4.17 914.17,0 918.33,0 918.33,0 1004.67,0 1004.67,0 1008.83,0 1013,-4.17 1013,-8.33 1013,-8.33 1013,-16.67 1013,-16.67 1013,-20.83 1008.83,-25 1004.67,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../../lib/class_diagram.png" y="-19.5" x="920.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="941.3" text-anchor="start">DirectedRing</text></a></g></g><!-- node1&#45;&gt;node10 --><g class="edge inheritance" id="graph1_1_10"><g id="a_inheritance|graph1_1_10"><a xlink:title="DirectedRing is a subtype of Topology"><path d="M916.88,-55.96C927.2,-46.14 940.03,-33.93 949.28,-25.13" stroke="#d4d4d4" fill="none"></path><polygon points="915.13,-54.24 911.75,-60.84 918.51,-57.79 915.13,-54.24" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node12 --><g class="node class" id="graph1_12"><g id="a_class|graph1_12"><a xlink:title="neko.topology.Clique" xlink:href="Clique.html#inheritance-diagram"><path d="M1097.17,-25C1097.17,-25 1039.83,-25 1039.83,-25 1035.67,-25 1031.5,-20.83 1031.5,-16.67 1031.5,-16.67 1031.5,-8.33 1031.5,-8.33 1031.5,-4.17 1035.67,0 1039.83,0 1039.83,0 1097.17,0 1097.17,0 1101.33,0 1105.5,-4.17 1105.5,-8.33 1105.5,-8.33 1105.5,-16.67 1105.5,-16.67 1105.5,-20.83 1101.33,-25 1097.17,-25" stroke="#418565" fill="#418565"></path><image xlink:href="../../lib/class_diagram.png" y="-19.5" x="1041.5" preserveAspectRatio="xMinYMin meet" height="15px" width="15px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-10.63" x="1062.2" text-anchor="start">Clique</text></a></g></g><!-- node1&#45;&gt;node12 --><g class="edge inheritance" id="graph1_1_12"><g id="a_inheritance|graph1_1_12"><a xlink:title="Clique is a subtype of Topology"><path d="M939.31,-58.6C968.53,-48.4 1007.77,-34.7 1035.31,-25.09" stroke="#d4d4d4" fill="none"></path><polygon points="938.29,-56.36 932.49,-60.98 939.9,-60.99 938.29,-56.36" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
+                <div id="diagram-controls" class="hiddenContent">
+                  <button id="diagram-zoom-out" class="diagram-btn"><i class="material-icons"></i></button>
+                  <button id="diagram-zoom-in" class="diagram-btn"><i class="material-icons"></i></button>
+                  <button title="Toggle full-screen" id="diagram-fs" class="diagram-btn to-full"><i class="material-icons"></i></button>
+                </div>
+              </div></div>
+        
+
+      <div id="mbrsel">
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
+            <ol>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              
+            </ol>
+          </div>
+          
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="neko.topology.Clique" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CliqueextendsTopology"></a><a id="Clique:Clique"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/Clique.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="Clique.html"><span class="name">Clique</span></a><span class="result"> extends <a href="Topology.html" class="extype" name="neko.topology.Topology">Topology</a></span>
+      </span>
+      
+      
+    </li><li name="neko.topology.DirectedRing" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DirectedRingextendsTopology"></a><a id="DirectedRing:DirectedRing"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/DirectedRing.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="DirectedRing.html"><span class="name">DirectedRing</span></a><span class="result"> extends <a href="Topology.html" class="extype" name="neko.topology.Topology">Topology</a></span>
+      </span>
+      
+      
+    </li><li name="neko.topology.GraphTopology" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="GraphTopologyextendsTopology"></a><a id="GraphTopology:GraphTopology"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/GraphTopology.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="GraphTopology.html"><span class="name">GraphTopology</span></a><span class="result"> extends <a href="Topology.html" class="extype" name="neko.topology.Topology">Topology</a></span>
+      </span>
+      
+      
+    </li><li name="neko.topology.Ring" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RingextendsTopology"></a><a id="Ring:Ring"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/Ring.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="Ring.html"><span class="name">Ring</span></a><span class="result"> extends <a href="Topology.html" class="extype" name="neko.topology.Topology">Topology</a></span>
+      </span>
+      
+      
+    </li><li name="neko.topology.Topology" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="TopologyextendsAnyRef"></a><a id="Topology:Topology"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/Topology.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a title="Describes a network topology." href="Topology.html"><span class="name">Topology</span></a><span class="result"> extends <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Describes a network topology.</p><div class="fullcomment"><div class="comment cmt"><p>Describes a network topology.</p><p>It consists in a set of processes, and possibly an underlying graph.</p></div></div>
+    </li><li name="neko.topology.TopologyFactory" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TopologyFactoryextendsAnyRef"></a><a id="TopologyFactory:TopologyFactory"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/TopologyFactory.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="TopologyFactory.html"><span class="name">TopologyFactory</span></a><span class="result"> extends <a href="https://www.scala-lang.org/api/2.12.11/scala/AnyRef.html#scala.AnyRef" class="extype" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div class="values members">
+              <h3>Value Members</h3>
+              <ol>
+                <li name="neko.topology.Clique" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Clique"></a><a id="Clique:Clique"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/Clique$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="Factory object to create a clique topologyDescriptor." href="Clique$.html"><span class="name">Clique</span></a><span class="result"> extends <a href="TopologyFactory.html" class="extype" name="neko.topology.TopologyFactory">TopologyFactory</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Factory object to create a clique topologyDescriptor.</p>
+    </li><li name="neko.topology.Combinator" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Combinator"></a><a id="Combinator:Combinator"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/Combinator$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="Combinator$.html"><span class="name">Combinator</span></a>
+      </span>
+      
+      
+    </li><li name="neko.topology.DirectedRing" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DirectedRing"></a><a id="DirectedRing:DirectedRing"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/DirectedRing$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="Factory object to create an oriented ring topologyDescriptor." href="DirectedRing$.html"><span class="name">DirectedRing</span></a><span class="result"> extends <a href="TopologyFactory.html" class="extype" name="neko.topology.TopologyFactory">TopologyFactory</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Factory object to create an oriented ring topologyDescriptor.</p>
+    </li><li name="neko.topology.GeometricRandom" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="GeometricRandom"></a><a id="GeometricRandom:GeometricRandom"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/GeometricRandom$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="Factory object to create a geometric random graph." href="GeometricRandom$.html"><span class="name">GeometricRandom</span></a><span class="result"> extends <a href="TopologyFactory.html" class="extype" name="neko.topology.TopologyFactory">TopologyFactory</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Factory object to create a geometric random graph.</p><div class="fullcomment"><div class="comment cmt"><p>Factory object to create a geometric random graph.</p><p>The idea is to generate positions for the nodes uniformly at random in a 1 x 1 square plane.
+Then, given a radius r, two nodes are neighbors iff. their Euclidean distance is less than r.</p><p>The critical radius is calculated from the following formula (linked to percolation theory):</p><pre><span class="kw">val</span> r = math.sqrt( (math.log(N) + alpha) / (math.Pi * N))</pre><p>where alpha is an adjustment parameter to increase the likelihood that the resulting graph is
+connected.
+</p></div></div>
+    </li><li name="neko.topology.Grid" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Grid"></a><a id="Grid:Grid"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/Grid$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="Factory object to generate a grid topologyDescriptor." href="Grid$.html"><span class="name">Grid</span></a><span class="result"> extends <a href="TopologyFactory.html" class="extype" name="neko.topology.TopologyFactory">TopologyFactory</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Factory object to generate a grid topologyDescriptor.</p>
+    </li><li name="neko.topology.Ladder" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Ladder"></a><a id="Ladder:Ladder"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/Ladder$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="Ladder$.html"><span class="name">Ladder</span></a><span class="result"> extends <a href="TopologyFactory.html" class="extype" name="neko.topology.TopologyFactory">TopologyFactory</a></span>
+      </span>
+      
+      
+    </li><li name="neko.topology.Random" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Random"></a><a id="Random:Random"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/Random$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="Factory object to create a random graph (of type Erdös-Renyi)." href="Random$.html"><span class="name">Random</span></a><span class="result"> extends <a href="TopologyFactory.html" class="extype" name="neko.topology.TopologyFactory">TopologyFactory</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Factory object to create a random graph (of type Erdös-Renyi).</p><div class="fullcomment"><div class="comment cmt"><p>Factory object to create a random graph (of type Erdös-Renyi).</p><p>The threshold for deciding whether an edge exists is log(n) / (n-1), where n is the
+size of the range given as parameter.
+This choice is because this is a little above the bond percolation threshold for a
+clique.
+</p></div></div>
+    </li><li name="neko.topology.Ring" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Ring"></a><a id="Ring:Ring"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/Ring$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="Factory object to create a ring topologyDescriptor." href="Ring$.html"><span class="name">Ring</span></a><span class="result"> extends <a href="TopologyFactory.html" class="extype" name="neko.topology.TopologyFactory">TopologyFactory</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Factory object to create a ring topologyDescriptor.</p>
+    </li><li name="neko.topology.Topology" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Topology"></a><a id="Topology:Topology"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/Topology$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="Topology$.html"><span class="name">Topology</span></a>
+      </span>
+      
+      
+    </li><li name="neko.topology.TopologyFactory" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TopologyFactory"></a><a id="TopologyFactory:TopologyFactory"></a>
+      <span class="permalink">
+      <a href="../../neko/topology/TopologyFactory$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="TopologyFactory$.html"><span class="name">TopologyFactory</span></a>
+      </span>
+      
+      
+    </li>
+              </ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+    </body>
+          </div>
+        </div>
+      </div>
+    </body>
+      </html>
