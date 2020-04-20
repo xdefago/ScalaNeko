@@ -20,6 +20,8 @@ project/plugins/project/
 *.code-workspace
 .metals
 project/metals.sbt
+.bloop
+
 
 # addendum project specific
 project/target/
