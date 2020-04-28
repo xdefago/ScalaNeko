@@ -4,7 +4,7 @@ name := "ScalaNeko"
 
 organization := "titech.c.coord"
 
-version := "0.21.0-SNAPSHOT"
+version := "0.21.0"
 
 scalaVersion := "2.12.11"
 
