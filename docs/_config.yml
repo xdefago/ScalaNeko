@@ -1,1 +1,3 @@
 exclude: latest, sbt-repo
+
+keep_files: latest, sbt-repo
