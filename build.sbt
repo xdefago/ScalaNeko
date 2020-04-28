@@ -75,9 +75,11 @@ fork in run := true
 // Settings for publishing to repository over github
 //
 
-publishTo := Some(
-  Resolver.file("scalaneko", file(Path.userHome.absolutePath + "/GithubLocal/sbt-repo"))
-)
+//publishTo := Some(
+//  Resolver.file("scalaneko", file(Path.userHome.absolutePath + "/GithubLocal/sbt-repo"))
+//)
+
+publishTo := Some(Resolver.file("scalaneko", baseDirectory.value / "docs/sbt-repo" ))
 
 // to use:
 //   resolvers += "titech.c.coord" at "https://github.com/xdefago/sbt-repo/"
