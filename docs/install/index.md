@@ -142,7 +142,7 @@ object HelloWorld
 
 You should see the following message
 
-```sbt
+```shell
 > run
 [info] Running p01.HelloWorld 
 Hello World! p0
@@ -171,7 +171,7 @@ object HelloWorld
 
 The following information should now be displayed:
 
-```sbt
+```shell
 > run
 [info] Running p01.HelloWorld 
 20:00:38.925 [run-main-3] INFO  neko.NekoMain - Starting
