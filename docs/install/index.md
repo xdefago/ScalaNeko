@@ -1,6 +1,8 @@
 ---
 title: Installing ScalaNeko Programming Environment
-has_code: true
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
 ---
 # Installing Programming Environment
 
@@ -66,7 +68,7 @@ This page explains how to install, from scratch, a working environment for devel
 
 2. Add the `libraryDependencies` and `resolvers` lines to the file _(make sure to keep an empty line between each line)_:
 
-~~~scala
+```scala
 name := "DistribCourse"
 
 version := "1.0"
@@ -76,7 +78,7 @@ scalaVersion := "2.11.8"
 resolvers += "titech.c.coord" at "https://github.com/xdefago/sbt-repo/raw/master/"
 
 libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.18.0"
-~~~
+```
 
 3. Save the file
 
@@ -109,7 +111,7 @@ Let's make a simple ScalaNeko program to illustrate the settings required for ex
 
 5. Edit the file `HelloWorld.scala` as follows:
 
-~~~scala
+```scala
 package p01
 
 import neko._
@@ -126,7 +128,7 @@ object HelloWorld
   extends Main (topology.Clique(2)) (
     ProcessInitializer { p=> new MyProcess(p) }
   )
-~~~
+```
 
 ## Compile and Run the Program
 
@@ -140,14 +142,14 @@ object HelloWorld
 
 You should see the following message
 
-~~~sbt
+```sbt
 > run
 [info] Running p01.HelloWorld 
 Hello World! p0
 Hello World! p1
 [success] Total time: 3 s, completed ...
 > 
-~~~
+```
 
 The program was configured with one single process, which prints the message `"Hello neko"`.
 
@@ -155,7 +157,7 @@ Before going any further with the program, we modify the program to display trac
 
 1. Update the program by changing the log level to `TRACE` as follows:
 
-~~~scala
+```scala
 object HelloWorld
   extends Main (
     topology.Clique(2),
@@ -163,13 +165,13 @@ object HelloWorld
   ) (
     ProcessInitializer { p=> new MyProcess(p) }
   )
-~~~
+```
 
 2. Go back to the SBT console and `run`.
 
 The following information should now be displayed:
 
-~~~sbt
+```sbt
 > run
 [info] Running p01.HelloWorld 
 20:00:38.925 [run-main-3] INFO  neko.NekoMain - Starting
@@ -199,7 +201,7 @@ Hello World! p1
 20:00:38.972 [run-main-3] INFO  neko.sim.NekoSimSystem - JOIN: All activities finished
 20:00:38.973 [run-main-3] INFO  neko.NekoMain - Exiting
 [success] Total time: 3 s, completed Jun 16, 2015 8:00:38 PM
-~~~
+```
 
 This provides information showing the initialization sequence of ScalaNeko before the single process is executed and displays its message to the console.
 
