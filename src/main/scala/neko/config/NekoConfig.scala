@@ -59,10 +59,6 @@ class NekoConfig(
 
 object NekoConfig
 {
-  @deprecated(
-    message = "The use of NekoProcessInitializer has been deprecated. Use other constructors instead.",
-    since = "0.19.0"
-  )
   def apply(
       config: Config,
       topologyDescriptor: TopologyFactory,

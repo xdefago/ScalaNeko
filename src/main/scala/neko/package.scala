@@ -132,7 +132,7 @@
  * as illustrated below. Note that, in order to receive messages of a certain type, the protocol
  * must register by calling [[neko.ActiveProtocol.listenTo]] for this type.
  * {{{
- * class PingPong(c: NekoProcessConfig) extends ActiveProtocol(c, "ping-pong")
+ * class PingPong(c: ProcessConfig) extends ActiveProtocol(c, "ping-pong")
  * {
  *   val next = me.map{i => (i+1) % N}
  *   var record = Set.empty[Event]
