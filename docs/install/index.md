@@ -8,16 +8,15 @@ kramdown:
 
 This page explains how to install, from scratch, a working environment for developing ScalaNeko programs.
 
-
 ## Preliminary Downloads
 
 1. (Mac only) On Mac OS X, you will possibly be required to install the execution environment for Java 1.6 as well. To do so, open the `Terminal` application, type `java -version`. If Java is not installed, you will be prompted to install it (just follow the instruction which will guide you through the download and install process). If it is already installed, you're all good so far and can simply go to the next step. 
 
-2. Download and install **Java SE Development Kit** _(JDK 8)_ from Oracle at <http://www.oracle.com/technetwork/java/javase/downloads/index.html>. You need to install the JDK (not the JRE).
+2. Download and install **Java SE Development Kit** _(Java SE 11)_ from Oracle at <https://www.oracle.com/java/technologies/javase-downloads.html>. You need to install the JDK (not the JRE). On Mac, you can alternatively install it via Homebrew: `brew install openjdk@11`
 
-3. Download and install **IntelliJ IDEA** _(version 2017.x)_ from JetBrains at <https://www.jetbrains.com/idea/download/>. If unsure, select the Community Edition.
+3. Download and install **IntelliJ IDEA** _(version 2020.1)_ from JetBrains at <https://www.jetbrains.com/idea/download/>. If unsure, select the Community Edition. You can request an academic license for the Ultimate version by registering with your titech email address.
 
-	
+
 
 ## Setting up IDEA
 
@@ -40,9 +39,8 @@ This page explains how to install, from scratch, a working environment for devel
 		1. Select **Configure** and **Plugins**.
 		2. Click on button **Browse repositories...**
 		3. In the search box, type `scala`
-		4. Find plugin called `SBT` and click **Install plugin**.
-		5. If not already installed, find plugin called `Scala` and click **Install plugin**
-		6. Click **Close**, then **OK**, then **Restart**
+		4. If not already installed, find plugin called `Scala` and click **Install plugin**
+		5. Click **Close**, then **OK**, then **Restart**
 
 ## Create and Configure New Project
 
@@ -64,7 +62,7 @@ This page explains how to install, from scratch, a working environment for devel
 
 ### Configure New Project
 
-1. Open the file `build.sbt`. It is in the outline view on the left side of the window.
+1. Open the file `build.sbt`. It is in the outline view on the left-hand side of the window.
 
 2. Add the `libraryDependencies` and `resolvers` lines to the file _(make sure to keep an empty line between each line)_:
 
@@ -73,18 +71,18 @@ name := "DistribCourse"
 
 version := "1.0"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.11"
 
-resolvers += "titech.c.coord" at "https://github.com/xdefago/sbt-repo/raw/master/"
+resolvers += "titech.c.coord" at "https://xdefago.github.io/ScalaNeko/sbt-repo/"
 
-libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.18.0"
+libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.21.0"
 ```
 
 3. Save the file
 
-4. Wait until a directory `src` appears in the project. Normally, this can take several minutes, as all libraries are being downloaded. You can check the status bar at the bottom to see if IntelliJ is still working. Once it has finished, the directory `src` should finally appear. If it does not appear, then you can do the following:
+4. Wait until a directory `src` appears in the project. Normally, this can take several minutes (don't despair...) until all libraries get downloaded. You can check the status bar at the bottom to see if IntelliJ is still working. Once it has finished, the directory `src` should finally appear. If it does not appear, then you can do the following:
 
-	1. Click on **SBT Console** (at bottom left) 
+	1. Click on **sbt shell** (at bottom left) 
 	2. In the SBT console window, click on the green triangle.
 	3. Wait for the console to start.
 	4. At the prompt, type `reload`
@@ -92,7 +90,7 @@ libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.18.0"
 
 	After that, if the `src` directory is still not there, then try the following:
 	
-	1. Click on **SBT** (at top right)
+	1. Click on **sbt** (at top right)
 	2. In the new window, click on the two circular arrows (Refresh all SBT projects).
 	3. Wait again.
 
@@ -105,48 +103,49 @@ Let's make a simple ScalaNeko program to illustrate the settings required for ex
 
 2. Menu "File" -> "New..." -> "Scala Class"
 
-3. Name: `p01.HelloWorld`; Kind: **Object**
+3. Name: `session0.HelloWorld`; Kind: **Object**
 
 4. Click "OK"
 
 5. Edit the file `HelloWorld.scala` as follows:
 
 ```scala
-package p01
+package session0
 
 import neko._
 
-class MyProcess(c: ProcessConfig) extends ActiveProtocol(c)
+class Hello(p: ProcessConfig) extends ActiveProtocol(p, "hello")
 {
-  def run (): Unit =
-  {
-    println(s"Hello World! ${me.name}")
+  def run() {
+    println(s"Process ${me.name} says: 'Hello Neko World!'")
   }
 }
 
-object HelloWorld
-  extends Main (topology.Clique(2)) (
-    ProcessInitializer { p=> new MyProcess(p) }
+object HelloNeko
+  extends Main(topology.Clique(2))(
+    ProcessInitializer { p => new Hello(p) }
   )
 ```
 
+This creates a distributed system consisting of two processes connected as a complete graph (clique). Each of the two processes runs an instance of class `Hello` as its code.
+
 ## Compile and Run the Program
 
-1. Click on **"SBT Console"**
+1. Click on **"sbt shell"**
 
-2. Click on green arrow to start the console
+2. Click on green arrow to start the console if necessary
 
 3. Type `compile`
 
-4. Type `run`
+4. Type `run` or `runMain session0.HelloWorld`
 
 You should see the following message
 
 ```shell
 > run
-[info] Running p01.HelloWorld 
-Hello World! p0
-Hello World! p1
+[info] Running session0.HelloWorld
+Process p0 says: 'Hello Neko World!
+Process p1 says: 'Hello Neko World!
 [success] Total time: 3 s, completed ...
 > 
 ```
@@ -155,7 +154,7 @@ The program was configured with one single process, which prints the message `"H
 
 Before going any further with the program, we modify the program to display trace information and see what happens under the hood.
 
-1. Update the program by changing the log level to `TRACE` as follows:
+1. Update the program by changing the log level to `ALL` as follows:
 
 ```scala
 object HelloWorld
@@ -167,13 +166,13 @@ object HelloWorld
   )
 ```
 
-2. Go back to the SBT console and `run`.
+2. Go back to the sbt shell and `run`.
 
 The following information should now be displayed:
 
 ```shell
 > run
-[info] Running p01.HelloWorld 
+[info] Running session0.HelloWorld 
 20:00:38.925 [run-main-3] INFO  neko.NekoMain - Starting
 20:00:38.937 [run-main-3] INFO  neko.sim.NekoSimSystem - INIT: creating networks
 20:00:38.942 [run-main-3] INFO  neko.sim.NekoSimSystem - INIT: creating processes
@@ -191,8 +190,8 @@ The following information should now be displayed:
 20:00:38.960 [run-main-3] INFO  neko.sim.NekoSimSystem - INIT: starting processes
 20:00:38.961 [run-main-3] TRACE neko.kernel.ActivityManager - willStart(p0:πρ[app])
 20:00:38.962 [run-main-3] TRACE neko.kernel.ActivityManager - willStart(p1:πρ[app])
-Hello World! p0
-Hello World! p1
+Process p0 says: 'Hello Neko World!
+Process p1 says: 'Hello Neko World!
 20:00:38.965 [pool-11-thread-1] TRACE neko.kernel.ActivityManager - willFinish(p0:πρ[app]). Unfinished = 
 20:00:38.965 [pool-11-thread-2] TRACE neko.kernel.ActivityManager - willFinish(p1:πρ[app]). Unfinished = 
 20:00:38.967 [pool-11-thread-2] TRACE neko.kernel.ActivityManager - Scheduler actions : p0:πρ[app]/Finished, p1:πρ[app]/Finished
@@ -205,6 +204,7 @@ Hello World! p1
 
 This provides information showing the initialization sequence of ScalaNeko before the single process is executed and displays its message to the console.
 
-The rest will be done together during the lecture and possibly detailed in other documents later. Meanwhile, you can continue from here by browsing the [API documentation](api/neko/) in which you can find many examples.
+The rest will be done together during the lecture and possibly detailed in other documents later. Meanwhile, you can continue from here by browsing the [API documentation](/latest/api/neko/) in which you can find many examples.
 
+NB: Visual Studio Code is also a good environment for developing in Scala/SBT/ScalaNeko, but you're on your own.
 
