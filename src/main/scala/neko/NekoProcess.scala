@@ -44,7 +44,7 @@ class NekoProcess(val id: PID, val system: NekoSystem)(config: NekoConfig, outOp
     config.process.initializer match {
 
       case Success(initializer) =>
-        val processConfig  = new NekoProcessConfig(system, this.id, dispatcher, config.tracer, out)
+        val processConfig  = new ProcessConfig(system, this.id, dispatcher, config.tracer, out)
         initializer.apply(processConfig)
         val protocols = processConfig.registeredProtocols
         processConfig.registeredProtocols

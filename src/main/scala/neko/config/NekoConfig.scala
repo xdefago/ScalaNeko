@@ -16,17 +16,17 @@
 package neko.config
 
 import com.typesafe.config.Config
+import neko.ProcessInitializer
 import neko.network.Network
 import neko.topology.{ Topology, TopologyFactory }
 import neko.trace.{ EventTracer, NullEventTracer }
-import neko.{ NekoProcessInitializer, ProcessInitializer }
 
 import scala.util.{ Success, Try }
 
 
 class NekoConfig(
     config: Config,
-    init: Try[NekoProcessInitializer],
+    init: Try[ProcessInitializer],
     topologyDescriptor: TopologyFactory,
     val tracer: EventTracer
 )
@@ -69,7 +69,7 @@ object NekoConfig
       tracer: EventTracer): NekoConfig =
     new NekoConfig(
       config,
-      NekoProcessInitializer.forName(config.getString(CF.PROCESS_INIT)),
+      ProcessInitializer.forName(config.getString(CF.PROCESS_INIT)),
       topologyDescriptor,
       tracer
     )
@@ -102,6 +102,6 @@ object NekoConfig
 
   trait ProcessConf
   {
-    def initializer: Try[NekoProcessInitializer]
+    def initializer: Try[ProcessInitializer]
   }
 }

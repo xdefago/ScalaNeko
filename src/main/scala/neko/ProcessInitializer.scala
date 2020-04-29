@@ -20,19 +20,6 @@ import java.io.PrintWriter
 import neko.kernel.{ Dispatcher, NekoSystem }
 import neko.trace.EventTracer
 
-@deprecated(
-  message = "The class neko.NekoProcessConfig has been deprecated in favor of the class neko.ProcessConfig.",
-  since = "0.19.0"
-)
-class NekoProcessConfig(
-    system: NekoSystem,
-    pid: PID,
-    dispatcher: Dispatcher,
-    tracer: EventTracer,
-    out: PrintWriter
-) extends ProcessConfig(system, pid, dispatcher, tracer, out)
-
-
 
 class ProcessConfig(
     val system: NekoSystem,
@@ -52,81 +39,6 @@ class ProcessConfig(
   def registeredProtocols = _registeredProtocols
 }
 
-
-/**
- * Implements the initialization of a process by creating the protocols and connecting them.
- * The initializer is executed once for each process upon their initialization.
- *
- * Example:
- * {{{
- *   class PingPongInitializer extends NekoProcessInitializer
- *   {
- *     override def apply (config: NekoProcessConfig): Unit =
- *     {
- *       val app  = config.register(new PingPong(config))
- *       val fifo = config.register(new FIFOChannel(config))
- *       app --> fifo
- *     }
- *   }
- * }}}
- *
- */
-@deprecated(
-  message = "The class neko.NekoProcessInitializer has been deprecated in favor of the class neko.ProcessInitializer.",
-  since = "0.19.0"
-)
-trait NekoProcessInitializer extends Function[NekoProcessConfig, Unit]
-{
-  /**
-   * Creates and connects protocols for a given process.
-   *
-   * Given the configuration of a process, the method creates the protocols for that process,
-   * registering them to the configuration through [[neko.NekoProcessConfig.register]] and
-   * connecting them through [[neko.ReactiveProtocol.-->]] or [[neko.ActiveProtocol.-->]].
-   *
-   * Example:
-   * {{{
-   *   class PingPongInitializer extends NekoProcessInitializer
-   *   {
-   *     override def apply (config: NekoProcessConfig): Unit =
-   *     {
-   *       val app  = config.register(new PingPong(config))
-   *       val fifo = config.register(new FIFOChannel(config))
-   *       app --> fifo
-   *     }
-   *   }
-   * }}}
-   *
-   * In order to discriminate code based on the process identifier, it is possible to obtain and
-   * test the identifier of the process being initialized through [[neko.NekoProcessConfig.pid]].
-   *
-   * @param config configuration for a given process.
-   */
-  def apply(config: NekoProcessConfig): Unit
-}
-
-
-@deprecated(
-  message = "The class neko.NekoProcessInitializer has been deprecated in favor of the class neko.ProcessInitializer.",
-  since = "0.19.0"
-)
-object NekoProcessInitializer
-{
-  import scala.util.Try
-
-  /**
-   * creates a new instance of [[NekoProcessInitializer]] from the given class name.
-   * @param className name of the subclass of [[NekoProcessInitializer]] to instantiate.
-   * @return `Success` with the new instance if successful, or `Failure` otherwise.
-   */
-  def forName(className: String): Try[NekoProcessInitializer] =
-    Try {
-      Class
-        .forName(className)
-        .asSubclass(classOf[NekoProcessInitializer])
-        .newInstance()
-    }
-}
 
 
 /**
@@ -176,11 +88,10 @@ object NekoProcessInitializer
  * Without a block, the initializer does nothing by default, thus resulting in
  * an "empty" process.
  */
-trait ProcessInitializer extends Function[ProcessConfig, Unit] with NekoProcessInitializer
+trait ProcessInitializer extends Function[ProcessConfig, Unit]
 {
   private var init : Function[ProcessConfig, Unit] = { p => /* nothing */ }
   final def apply(p: ProcessConfig)     { init(p) }
-  final def apply(p: NekoProcessConfig) { init(p) }
 
   /**
    * Initialization code for a process.
