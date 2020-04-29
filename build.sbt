@@ -113,10 +113,15 @@ publishTo := Some(Resolver.file("scalaneko", baseDirectory.value / "docs/sbt-rep
 autoAPIMappings := true
 
 // builds -doc-external-doc
+/*
 apiMappings += (
     file("/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib/rt.jar") ->
     url("https://docs.oracle.com/en/java/javase/11/docs/api")
 )
+*/
+
+
+/*
 
 lazy val fixJavaLinksTask = taskKey[Unit](
     "Fix Java links - replace #java.io.File with ?java/io/File.html"
@@ -141,3 +146,5 @@ def hasJavadocApiLink(f: File): Boolean = (javadocApiLink findFirstIn IO.read(f)
 
 // fixJavaLinksTask <<= fixJavaLinksTask triggeredBy (doc in Compile)
 fixJavaLinksTask := (fixJavaLinksTask triggeredBy (doc in Compile) ).value
+
+*/
