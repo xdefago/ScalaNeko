@@ -206,5 +206,5 @@ This provides information showing the initialization sequence of ScalaNeko befor
 
 The rest will be done together during the lecture and possibly detailed in other documents later. Meanwhile, you can continue from here by browsing the [API documentation](/latest/api/neko/) in which you can find many examples.
 
-NB: Visual Studio Code is also a good environment for developing in Scala/SBT/ScalaNeko, but you're on your own.
+NB: Visual Studio Code is also a good environment for developing in Scala/SBT/ScalaNeko, but then you're on your own.
 
