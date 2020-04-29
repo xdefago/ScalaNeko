@@ -17,9 +17,10 @@
 /**
  * =ScalaNeko Framework=
  *
- * ScalaNeko is a framework designed to help with the prototyping of distributed algorithms. It is
- * loosely based on the Neko framework [1] which was programmed in Java more than a decade earlier,
- * mainly by Péter Urbán.
+ * <a href='https://xdefago.github.io/ScalaNeko/'>ScalaNeko</a> is a framework designed to help with
+ * the prototyping of distributed algorithms.
+ * It is loosely based on the Neko framework [1] which was programmed in Java more than a decade
+ * earlier, mainly by Péter Urbán.
  *
  * Whereas the original Neko framework was designed for performance evaluation and modeling, the
  * main focus of ScalaNeko is to serve as a support for teaching distributed algorithms. Hence, the

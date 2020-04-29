@@ -84,9 +84,11 @@
         <a title="ScalaNeko is a framework designed to help with the prototyping of distributed algorithms." href="../index.html"><span class="name">neko</span></a>
       </span>
       
-      <p class="shortcomment cmt">ScalaNeko is a framework designed to help with the prototyping of distributed algorithms.</p><div class="fullcomment"><div class="comment cmt"><h3>ScalaNeko Framework</h3><p>ScalaNeko is a framework designed to help with the prototyping of distributed algorithms. It is
-loosely based on the Neko framework [1] which was programmed in Java more than a decade earlier,
-mainly by Péter Urbán.</p><p>Whereas the original Neko framework was designed for performance evaluation and modeling, the
+      <p class="shortcomment cmt"><a href='https://xdefago.github.io/ScalaNeko/'>ScalaNeko</a> is a framework designed to help with
+the prototyping of distributed algorithms.</p><div class="fullcomment"><div class="comment cmt"><h3>ScalaNeko Framework</h3><p><a href='https://xdefago.github.io/ScalaNeko/'>ScalaNeko</a> is a framework designed to help with
+the prototyping of distributed algorithms.
+It is loosely based on the Neko framework [1] which was programmed in Java more than a decade
+earlier, mainly by Péter Urbán.</p><p>Whereas the original Neko framework was designed for performance evaluation and modeling, the
 main focus of ScalaNeko is to serve as a support for teaching distributed algorithms. Hence, the
 current version of ScalaNeko only supports simulated execution. However, we still have the
 intention to support actual distributed execution in a future version, and hence provide a full
@@ -146,7 +148,7 @@ concurrently with the rest of the system.</p><p>An active protocol has access to
 sent with the method <a href="../ActiveProtocol.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ActiveProtocol#SEND">neko.ActiveProtocol.SEND</a>. While messages are received through
 <b>blocking</b> calls to <a href="../ActiveProtocol$Receive$.html" class="extype" name="neko.ActiveProtocol.Receive">neko.ActiveProtocol.Receive</a>,
 as illustrated below. Note that, in order to receive messages of a certain type, the protocol
-must register by calling <a href="../ActiveProtocol.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ActiveProtocol#listenTo">neko.ActiveProtocol.listenTo</a> for this type.</p><pre><span class="kw">class</span> PingPong(c: NekoProcessConfig) <span class="kw">extends</span> ActiveProtocol(c, <span class="lit">"ping-pong"</span>)
+must register by calling <a href="../ActiveProtocol.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ActiveProtocol#listenTo">neko.ActiveProtocol.listenTo</a> for this type.</p><pre><span class="kw">class</span> PingPong(c: ProcessConfig) <span class="kw">extends</span> ActiveProtocol(c, <span class="lit">"ping-pong"</span>)
 {
   <span class="kw">val</span> next = me.map{i <span class="kw">=&gt;</span> (i+<span class="num">1</span>) % N}
   <span class="kw">var</span> record = <span class="std">Set</span>.empty[Event]
@@ -490,6 +492,22 @@ as the network topologyDescriptor, etc...</p><h4>References</h4><ol class="decim
       </span>
       
       
+    </li><li name="neko.config.NekoConfig#apply" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="apply(config:com.typesafe.config.Config,topologyDescriptor:neko.topology.TopologyFactory,tracer:neko.trace.EventTracer):neko.config.NekoConfig"></a><a id="apply(Config,TopologyFactory,EventTracer):NekoConfig"></a>
+      <span class="permalink">
+      <a href="../../neko/config/NekoConfig$.html#apply(config:com.typesafe.config.Config,topologyDescriptor:neko.topology.TopologyFactory,tracer:neko.trace.EventTracer):neko.config.NekoConfig" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">apply</span><span class="params">(<span name="config">config: <span class="extype" name="com.typesafe.config.Config">Config</span></span>, <span name="topologyDescriptor">topologyDescriptor: <a href="../topology/TopologyFactory.html" class="extype" name="neko.topology.TopologyFactory">TopologyFactory</a></span>, <span name="tracer">tracer: <a href="../trace/EventTracer.html" class="extype" name="neko.trace.EventTracer">EventTracer</a></span>)</span><span class="result">: <a href="NekoConfig.html" class="extype" name="neko.config.NekoConfig">NekoConfig</a></span>
+      </span>
+      
+      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
@@ -788,26 +806,7 @@ as the network topologyDescriptor, etc...</p><h4>References</h4><ol class="decim
 
         <div class="values members">
               <h3>Deprecated Value Members</h3>
-              <ol><li name="neko.config.NekoConfig#apply" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="apply(config:com.typesafe.config.Config,topologyDescriptor:neko.topology.TopologyFactory,tracer:neko.trace.EventTracer):neko.config.NekoConfig"></a><a id="apply(Config,TopologyFactory,EventTracer):NekoConfig"></a>
-      <span class="permalink">
-      <a href="../../neko/config/NekoConfig$.html#apply(config:com.typesafe.config.Config,topologyDescriptor:neko.topology.TopologyFactory,tracer:neko.trace.EventTracer):neko.config.NekoConfig" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name deprecated" title="Deprecated: (Since version 0.19.0) The use of NekoProcessInitializer has been deprecated. Use other constructors instead.">apply</span><span class="params">(<span name="config">config: <span class="extype" name="com.typesafe.config.Config">Config</span></span>, <span name="topologyDescriptor">topologyDescriptor: <a href="../topology/TopologyFactory.html" class="extype" name="neko.topology.TopologyFactory">TopologyFactory</a></span>, <span name="tracer">tracer: <a href="../trace/EventTracer.html" class="extype" name="neko.trace.EventTracer">EventTracer</a></span>)</span><span class="result">: <a href="NekoConfig.html" class="extype" name="neko.config.NekoConfig">NekoConfig</a></span>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
-                <span class="name">@deprecated</span>
-              
-        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.19.0)</i> The use of NekoProcessInitializer has been deprecated. Use other constructors instead.</p></dd></dl></div>
-    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+              <ol><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
       <a href="../../neko/config/NekoConfig$.html#finalize():Unit" title="Permalink">

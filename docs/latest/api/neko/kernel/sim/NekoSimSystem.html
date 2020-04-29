@@ -84,9 +84,11 @@
         <a title="ScalaNeko is a framework designed to help with the prototyping of distributed algorithms." href="../../index.html"><span class="name">neko</span></a>
       </span>
       
-      <p class="shortcomment cmt">ScalaNeko is a framework designed to help with the prototyping of distributed algorithms.</p><div class="fullcomment"><div class="comment cmt"><h3>ScalaNeko Framework</h3><p>ScalaNeko is a framework designed to help with the prototyping of distributed algorithms. It is
-loosely based on the Neko framework [1] which was programmed in Java more than a decade earlier,
-mainly by Péter Urbán.</p><p>Whereas the original Neko framework was designed for performance evaluation and modeling, the
+      <p class="shortcomment cmt"><a href='https://xdefago.github.io/ScalaNeko/'>ScalaNeko</a> is a framework designed to help with
+the prototyping of distributed algorithms.</p><div class="fullcomment"><div class="comment cmt"><h3>ScalaNeko Framework</h3><p><a href='https://xdefago.github.io/ScalaNeko/'>ScalaNeko</a> is a framework designed to help with
+the prototyping of distributed algorithms.
+It is loosely based on the Neko framework [1] which was programmed in Java more than a decade
+earlier, mainly by Péter Urbán.</p><p>Whereas the original Neko framework was designed for performance evaluation and modeling, the
 main focus of ScalaNeko is to serve as a support for teaching distributed algorithms. Hence, the
 current version of ScalaNeko only supports simulated execution. However, we still have the
 intention to support actual distributed execution in a future version, and hence provide a full
@@ -146,7 +148,7 @@ concurrently with the rest of the system.</p><p>An active protocol has access to
 sent with the method <a href="../../ActiveProtocol.html#SEND(m:neko.Event):Unit" class="extmbr" name="neko.ActiveProtocol#SEND">neko.ActiveProtocol.SEND</a>. While messages are received through
 <b>blocking</b> calls to <a href="../../ActiveProtocol$Receive$.html" class="extype" name="neko.ActiveProtocol.Receive">neko.ActiveProtocol.Receive</a>,
 as illustrated below. Note that, in order to receive messages of a certain type, the protocol
-must register by calling <a href="../../ActiveProtocol.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ActiveProtocol#listenTo">neko.ActiveProtocol.listenTo</a> for this type.</p><pre><span class="kw">class</span> PingPong(c: NekoProcessConfig) <span class="kw">extends</span> ActiveProtocol(c, <span class="lit">"ping-pong"</span>)
+must register by calling <a href="../../ActiveProtocol.html#listenTo(clazz:Class[_&lt;:neko.Event]):Unit" class="extmbr" name="neko.ActiveProtocol#listenTo">neko.ActiveProtocol.listenTo</a> for this type.</p><pre><span class="kw">class</span> PingPong(c: ProcessConfig) <span class="kw">extends</span> ActiveProtocol(c, <span class="lit">"ping-pong"</span>)
 {
   <span class="kw">val</span> next = me.map{i <span class="kw">=&gt;</span> (i+<span class="num">1</span>) % N}
   <span class="kw">var</span> record = <span class="std">Set</span>.empty[Event]
