@@ -14,7 +14,7 @@ This page explains how to install, from scratch, a working environment for devel
 
 2. Download and install **Java SE Development Kit** _(Java SE 11)_ from Oracle at <https://www.oracle.com/java/technologies/javase-downloads.html>. You need to install the JDK (not the JRE). On Mac, you can alternatively install it via Homebrew: `brew install openjdk@11`
 
-3. Download and install **IntelliJ IDEA** _(version 2020.1)_ from JetBrains at <https://www.jetbrains.com/idea/download/>. If unsure, select the Community Edition. You can request an academic license for the Ultimate version by registering with your titech email address.
+3. Download and install **IntelliJ IDEA** _(version 2021.1)_ from JetBrains at <https://www.jetbrains.com/idea/download/>. If unsure, select the Community Edition. You can request an academic license for the Ultimate version by registering with your titech email address.
 
 
 
