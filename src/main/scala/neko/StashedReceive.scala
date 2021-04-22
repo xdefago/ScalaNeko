@@ -19,6 +19,7 @@ package neko
 import scala.collection.immutable.Queue
 
 
+
 trait StashedReceive { this: ActiveProtocol =>
   private var _stash = Queue.empty[Event]
   
