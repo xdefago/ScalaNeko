@@ -80,7 +80,7 @@ protected[neko] case class ActivityID(value: Int) extends ID[Int]
  *    used in the implementation of [[neko.ActiveProtocol]]) or it must have a reserved location
  *    for every producer activity.
  */
-protected[neko] class ActivityManager(val system: NekoSystem) extends Mutable with LazyLogging
+protected[neko] class ActivityManager(val system: NekoSystem) extends LazyLogging
 {
   import ActivityManager._
 
@@ -277,7 +277,7 @@ protected[neko] class ActivityManager(val system: NekoSystem) extends Mutable wi
           // register cyclic Runnable executing the cyclic actions
           val action = new Runnable with OnCompleteRunnable {
             val actions = barrierActions.reverse
-            def run() {
+            def run() = {
               logger.trace(s"Managed Activities: MUTEX START")
               logger.trace(s"Scheduler actions : $dumpActivitiesStatus")
 

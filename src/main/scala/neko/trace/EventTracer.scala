@@ -27,13 +27,13 @@ import scala.reflect.ClassTag
 
 trait EventTracer
 {
-  def send(at: Time, by: PID, who: NamedEntity)(event: Event)
+  def send(at: Time, by: PID, who: NamedEntity)(event: Event): Unit
 
-  def deliver(at: Time, by: PID, who: NamedEntity)(event: Event)
+  def deliver(at: Time, by: PID, who: NamedEntity)(event: Event): Unit
 
-  def SEND(at: Time, by: PID, who: NamedEntity)(event: Event)
+  def SEND(at: Time, by: PID, who: NamedEntity)(event: Event): Unit
 
-  def DELIVER(at: Time, by: PID, who: NamedEntity)(event: Event)
+  def DELIVER(at: Time, by: PID, who: NamedEntity)(event: Event): Unit
 
   def register(entity: NamedEntity) = { entities += entity }
   
@@ -333,7 +333,7 @@ case class SingleFileTracer(topology: Topology, out: PrintStream)
     
     val encoders =
       nameLookupByPID.mapValues (
-        _.mapValues (reverseNameLookup).withDefaultValue(-1)
+        _.mapValues (reverseNameLookup).toMap.withDefaultValue(-1)
       )
     
     for (event <- events) {

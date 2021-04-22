@@ -91,7 +91,7 @@ class ProcessConfig(
 trait ProcessInitializer extends Function[ProcessConfig, Unit]
 {
   private var init : Function[ProcessConfig, Unit] = { p => /* nothing */ }
-  final def apply(p: ProcessConfig)     { init(p) }
+  final def apply(p: ProcessConfig) = { init(p) }
 
   /**
    * Initialization code for a process.
@@ -119,7 +119,7 @@ trait ProcessInitializer extends Function[ProcessConfig, Unit]
    * @param initializer  the block which, given a process configuration as argument, creates and
    * connects the protocols.
    */
-  protected[this] def forProcess (initializer: ProcessConfig => Unit) { init = initializer }
+  protected[this] def forProcess (initializer: ProcessConfig => Unit): Unit = { init = initializer }
 
   /**
    * Initialization code for a process. (same as [[ProcessInitializer.forProcess]])

@@ -21,7 +21,7 @@ import neko._
 trait SnapshotClient
 { this: Receiving with Listener =>
 
-  def initiate() { SEND(SnapshotClient.Initiate) }
+  def initiate() = { SEND(SnapshotClient.Initiate) }
 
   listenTo(SnapshotClient.SaveState.getClass)
   listenTo(classOf[SnapshotClient.SnapshotDone])

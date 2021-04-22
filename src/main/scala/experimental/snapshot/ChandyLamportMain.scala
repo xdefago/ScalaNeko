@@ -99,7 +99,7 @@ class MultiTokenRotation(p: ProcessConfig, maxTokens: Int = 10)
 
   listenTo(classOf[Token])
 
-  override def run() {
+  override def run(): Unit = {
     for (tok <- tokenSet) {
       SEND(forwardToken(tok))
       tokenSet -= tok

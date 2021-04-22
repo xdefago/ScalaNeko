@@ -23,9 +23,9 @@ import scala.collection.immutable.Queue
 trait StashedReceive { this: ActiveProtocol =>
   private var _stash = Queue.empty[Event]
   
-  protected def stashForLater(m: Event) { _stash = _stash enqueue m }
+  protected def stashForLater(m: Event): Unit = { _stash = _stash enqueue m }
   protected def stash: Seq[Event] = _stash
-  protected def ReceiveOrStash(pf: PartialFunction[Event,Unit]) {
+  protected def ReceiveOrStash(pf: PartialFunction[Event,Unit]): Unit = {
     _stash
       .find(pf.isDefinedAt)
       .fold{

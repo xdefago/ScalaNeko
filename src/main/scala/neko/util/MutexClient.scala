@@ -20,8 +20,8 @@ import neko._
 trait MutexClient
 { this: Receiving with Listener =>
 
-  def request() { SEND(MutexClient.Request) }
-  def release() { SEND(MutexClient.Release) }
+  def request() = { SEND(MutexClient.Request) }
+  def release() = { SEND(MutexClient.Release) }
   listenTo(MutexClient.CanEnter.getClass)
 }
 

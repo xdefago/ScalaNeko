@@ -41,7 +41,7 @@ class SafraTerminationDetection(config: ProcessConfig)
   private var token : Option[Token] = if (me == initiator) Some(Token(White, 0)) else None
 
 
-  private def transmitToken(token: Option[Token]) {
+  private def transmitToken(token: Option[Token]) = {
     token match {
       case Some(_) if me == initiator =>
         color = White

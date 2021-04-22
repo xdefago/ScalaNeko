@@ -67,11 +67,11 @@ abstract class NekoSystem(val config: NekoConfig) extends LazyLogging
   logger.info("INIT: creating processes")
   val processes: Map[PID, NekoProcess] =
     processIDs
-      .map { pid => pid -> new NekoProcess(pid, this)(config) }.toMap
+      .map { pid => pid -> new NekoProcess(pid, this)(config) } .toMap
 
   // INIT.3: register processes to networks (currently supports only one network)
   logger.info("INIT: registering processes to networks")
-  network.receivers = processes.mapValues { p=> p.receivers.head }
+  network.receivers = processes.mapValues { p=> p.receivers.head } .toMap
 
   // INIT.4: start network
   logger.info("INIT: starting networks")

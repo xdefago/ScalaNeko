@@ -20,7 +20,7 @@ import neko._
 trait SpanningTreeClient
 { this: Receiving with Listener =>
 
-  def initiate() { SEND (SpanningTreeClient.Initiate) }
+  def initiate() = { SEND (SpanningTreeClient.Initiate) }
   listenTo(classOf[SpanningTreeClient.Done])
 }
 

@@ -44,7 +44,7 @@ trait Sending extends Sender
    * The function translates to a call to [[onSend]] in order to handle the message.
    * @param m  the message to send
    */
-  def send(m: Event) { this.synchronized { onSend(m) } }
+  def send(m: Event) = { this.synchronized { onSend(m) } }
 
   /**
    * Implements the behavior of the protocol when sending a message.
@@ -80,7 +80,7 @@ trait Sending extends Sender
    * in [[receiver]].
    * @param m the message or signal to deliver
    */
-  protected[this] def DELIVER(m: Event) { receiver.deliver(m) }
+  protected[this] def DELIVER(m: Event) = { receiver.deliver(m) }
 }
 
 
@@ -93,5 +93,5 @@ trait Sender extends NamedEntity
    * sends a given message or signal (event).
    * @param m the event to be sent by the protocol
    */
-  def send(m: Event)
+  def send(m: Event) : Unit
 }

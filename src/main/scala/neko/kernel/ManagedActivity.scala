@@ -42,7 +42,7 @@ trait ManagedActivity
   final override def start(): Unit =
   {
     val wrapper = new Runnable {
-      def run() {
+      def run() = {
         try {
           self.run ()
           self.onFinish ()

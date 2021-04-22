@@ -6,7 +6,12 @@ organization := "titech.c.coord"
 
 version := "0.22.0"
 
-scalaVersion := "2.12.11"
+scalaVersion := "2.13.5"
+
+
+//githubOwner := "xdefago"
+//githubRepository := "ScalaNeko"
+
 
 initialCommands in console := "import neko._"
 
@@ -96,15 +101,6 @@ publishTo := Some(Resolver.file("scalaneko", baseDirectory.value / "docs/sbt-rep
 // TO USE:
 //resolvers += "Defago at Tokyo Tech" at "http://www.coord.c.titech.ac.jp/sbt-repo"
 //libraryDependencies += ("jp.ac.titech.c.coord.defago" %% "scalaneko" % "0.15")
-
-
-//publishTo := Some(Resolver.ssh("Defago at JAIST", "www.jaist.ac.jp", "public_html/sbt-repo") as "defago" withPermissions "0644")
-
-// HAS ISSUES: publishTo := Some(Resolver.file("Defago at JAIST", Path.userHome / "Dropbox" / "Web" / "JAIST" / "public_html" / "sbt-repo"))
-
-// TO USE:
-//resolvers += "Defago at JAIST" at "https://www.jaist.ac.jp/~defago/sbt-repo"
-//libraryDependencies += ("jp.ac.jaist.defago" %% "scalaneko" % "0.6.1")
 
 
 // enablePlugins(SiteScaladocPlugin)

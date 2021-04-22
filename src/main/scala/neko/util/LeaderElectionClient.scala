@@ -45,7 +45,7 @@ import neko._
 trait LeaderElectionClient
 { this: Receiving with Listener =>
   
-  def candidate() { SEND(LeaderElectionClient.Candidate) }
+  def candidate() = { SEND(LeaderElectionClient.Candidate) }
   
   listenTo(classOf[LeaderElectionClient.Elected])
 }

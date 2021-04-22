@@ -21,7 +21,7 @@ import neko._
 trait WaveClient
 { this: Receiving with Listener =>
 
-  def initiate() { SEND(WaveClient.Initiate) }
+  def initiate() = { SEND(WaveClient.Initiate) }
   listenTo(classOf[WaveClient.Visit])
   listenTo(WaveClient.Done.getClass)
 }

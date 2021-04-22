@@ -29,21 +29,21 @@ import scala.concurrent.duration.{ Duration, NANOSECONDS }
  */
 case class Time(value: Long) extends Serializable with Ordered[Time]
 {
-  def + (that: Time) = map2(that)(_ + _)
-  def - (that: Time) = map2(that)(_ - _)
-  def / (that: Time) = combine(that)(_ / _)
-  def / (divisor: Long)   = Time(value / divisor)
-  def / (divisor: Double) = Time((value / divisor).toLong)
-  def * (factor: Long)    = Time(value * factor)
-  def * (factor: Double)  = Time((value * factor).toLong)
+  def + (that: Time):Time = map2(that)(_ + _)
+  def - (that: Time):Time = map2(that)(_ - _)
+  def / (that: Time):Long = combine(that)(_ / _)
+  def / (divisor: Long):Time   = Time(value / divisor)
+  def / (divisor: Double):Time = Time((value / divisor).toLong)
+  def * (factor: Long):Time    = Time(value * factor)
+  def * (factor: Double):Time  = Time((value * factor).toLong)
 
   def compare (that: Time): Int = combine(that)(_ compare _)
 
   def succ : Time = map (_+1)
   def pred : Time = map (_-1)
 
-  def before (that: Time) = this < that
-  def after  (that: Time) = this > that
+  def before (that: Time): Boolean = this < that
+  def after  (that: Time): Boolean = this > that
 
   def min (that: Time): Time = if (this <= that) this else that
   def max (that: Time): Time = if (this >= that) this else that
@@ -79,22 +79,22 @@ object Time
 {
   val ZERO = Time(0)
 
-  val nanosecond  = Time(1)
-  val microsecond = nanosecond * 1000
-  val millisecond = microsecond * 1000
-  val second      = millisecond * 1000
+  val nanosecond : Time = Time(1)
+  val microsecond: Time = nanosecond  * 1000
+  val millisecond: Time = microsecond * 1000
+  val second     : Time = millisecond * 1000
 
-  val NANOSECOND  = nanosecond.value
-  val MICROSECOND = microsecond.value
-  val MILLISECOND = millisecond.value
-  val SECOND      = second.value
+  val NANOSECOND : Long = nanosecond.value
+  val MICROSECOND: Long = microsecond.value
+  val MILLISECOND: Long = millisecond.value
+  val SECOND     : Long = second.value
 
   private val decimalFormat = new DecimalFormat("0.##################")
 
   def formatTime(time: Time, unit: Time, round: Time): String =
   {
     assume(unit >= round)
-    val numDigits = math.round(math.log10(unit.value / round.value)).toInt
+    val numDigits = math.round(math.log10((unit.value / round.value).toDouble)).toInt
     val decimal   = (BigDecimal(time.value) / BigDecimal(unit.value)).setScale(numDigits, BigDecimal.RoundingMode.HALF_UP)
     if (numDigits <= 3) {
       decimal.toString()

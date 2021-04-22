@@ -24,7 +24,7 @@ import scala.language.reflectiveCalls
  */
 trait ListenerUtils extends Listener
 { this: { def dispatcher : neko.kernel.Dispatcher } =>
-  protected[this] def listenTo(clazz: Class[_ <: Event])
+  protected[this] def listenTo(clazz: Class[_ <: Event]) =
   {
     dispatcher.registerFor(clazz, this)
   }
@@ -89,7 +89,7 @@ trait ProtocolUtils
    *
    * @param receiver new receiver to which messages will be delivered
    */
-  def receiver_= (receiver: Receiver) { this._receiver = receiver }
+  def receiver_= (receiver: Receiver) = { this._receiver = receiver }
 
   /**
    * target sender that will handle [[Sending#send]] operations for this protocol.
@@ -104,7 +104,7 @@ trait ProtocolUtils
    *
    * @param sender the new sender to connect.
    */
-  def --> (sender: Sender) { this._sender = sender }
+  def --> (sender: Sender) = { this._sender = sender }
 
 
   private var _sender : Sender     = system.network

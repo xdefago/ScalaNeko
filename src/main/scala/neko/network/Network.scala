@@ -39,7 +39,7 @@ trait Network extends NamedEntity with Sender
    *
    * @param m the event to be sent by the protocol
    */
-  def send(m: Event)
+  def send(m: Event): Unit
 
   /**
    * returns a mapping of process identifiers to their corresponding receiver.
@@ -65,7 +65,7 @@ trait Network extends NamedEntity with Sender
    */
   def doForProcess[T](pid: PID)(action: Receiver => T): Option[T] = receivers.get(pid).map(action)
 
-  protected[neko] def receivers_=(receivers: Map[PID, Receiver])
+  protected[neko] def receivers_=(receivers: Map[PID, Receiver]): Unit
 
   /**
    * hook called before the network is started.

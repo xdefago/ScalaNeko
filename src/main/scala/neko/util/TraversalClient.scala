@@ -21,7 +21,7 @@ import neko._
 trait TraversalClient
 { this: Receiving with Listener =>
 
-  def initiate() { SEND(TraversalClient.Initiate) }
+  def initiate() = { SEND(TraversalClient.Initiate) }
   listenTo(TraversalClient.Visit.getClass)
   listenTo(TraversalClient.Done.getClass)
 }

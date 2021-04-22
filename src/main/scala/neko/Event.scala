@@ -44,7 +44,7 @@ import java.util.UUID
  * lead to faulty behavior that is difficult to reproduce and thus will be extremely difficult to
  * detect.
  */
-sealed trait Event extends Immutable
+sealed trait Event
 {
   type IDType <: ID[_]
   def id: IDType

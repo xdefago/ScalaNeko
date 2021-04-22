@@ -43,7 +43,7 @@ class RoundBasedWithFailures(config: ProcessConfig, faultySet: Set[PID]=Set.empt
 
   private def nextBoolean() = rand.nextBoolean() // && rand.nextBoolean()
 
-  private def checkCrashing() {
+  private def checkCrashing() = {
     if (faultySet.contains(me) && nextBoolean()) { state = State.Crashing }
   }
 
@@ -82,7 +82,7 @@ class RoundBasedWithFailures(config: ProcessConfig, faultySet: Set[PID]=Set.empt
         case Some(PartialCrashed(_,crashed)) if crashed.contains(me) => None
         case Some(PartialCrashed(m,_))                               => Some(m)
         case m => m
-      }
+      } .toMap
       round = r
       checkCrashing() ; DELIVER(StartRound(r,batch))
   }

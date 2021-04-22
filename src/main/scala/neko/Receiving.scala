@@ -18,7 +18,7 @@ package neko
 
 trait Receiver
 {
-  def deliver(m: Event)
+  def deliver(m: Event): Unit
 }
 
 
@@ -47,12 +47,12 @@ trait Listener extends Receiver
    * }}}
    * @param clazz type of the message/event to listen to
    */
-  protected[this] def listenTo(clazz: Class[_ <: Event])
+  protected[this] def listenTo(clazz: Class[_ <: Event]): Unit
 }
 
 trait Receiving extends Receiver
 {
-  def deliver(m: Event) { this.synchronized { onReceive(m) } }
+  def deliver(m: Event): Unit = { this.synchronized { onReceive(m) } }
   
   /**
    * Implements the behavior of the protocol when receiving a message (or signal).
@@ -87,7 +87,7 @@ trait Receiving extends Receiver
    *
    * @param m  the message/signal to send
    */
-  def SEND(m: Event) { sender.send(m) }
+  def SEND(m: Event): Unit = { sender.send(m) }
   
   /**
    * Broadcasts a message using the sender set in the initializer where the protocol is created.
@@ -96,5 +96,5 @@ trait Receiving extends Receiver
    *
    * @param m  the message to broadcast
    */
-  def BROADCAST(m: BroadcastMessage) { this.SEND(m) }
+  def BROADCAST(m: BroadcastMessage): Unit = { this.SEND(m) }
 }

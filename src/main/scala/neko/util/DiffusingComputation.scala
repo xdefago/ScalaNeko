@@ -20,7 +20,7 @@ import neko._
 trait DiffusingComputation // extends TerminationDetectionClient
 { this: Receiving with TerminationDetectionClient =>
 
-  def initiate() { SEND(DiffusingComputation.Initiate) }
+  def initiate() = { SEND(DiffusingComputation.Initiate) }
 }
 
 object DiffusingComputation

@@ -21,7 +21,7 @@ import neko.util.TerminationDetectionClient._
 trait TerminationDetectionClient
 { this: Receiving with Listener =>
 
-  def becomePassive() { SEND(BecomePassive) }
+  def becomePassive() = { SEND(BecomePassive) }
   listenTo(Terminate.getClass)
 }
 

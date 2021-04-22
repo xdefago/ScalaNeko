@@ -20,7 +20,7 @@ import neko._
 trait ConsensusClient[A]
 { this: Receiving with Listener =>
 
-  def propose(v: A) { SEND (ConsensusClient.Propose(v)) }
+  def propose(v: A) = { SEND (ConsensusClient.Propose(v)) }
   listenTo(classOf[ConsensusClient.Decide[A]])
 }
 
