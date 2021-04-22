@@ -144,8 +144,8 @@ You should see the following message
 ```shell
 > run
 [info] Running session0.HelloWorld
-Process p0 says: 'Hello Neko World!
-Process p1 says: 'Hello Neko World!
+Process p0 says: 'Hello Neko World!'
+Process p1 says: 'Hello Neko World!'
 [success] Total time: 3 s, completed ...
 > 
 ```
