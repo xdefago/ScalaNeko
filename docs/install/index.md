@@ -71,11 +71,11 @@ name := "DistribCourse"
 
 version := "1.0"
 
-scalaVersion := "2.12.11"
+scalaVersion := "2.13.5"
 
 resolvers += "titech.c.coord" at "https://xdefago.github.io/ScalaNeko/sbt-repo/"
 
-libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.21.0"
+libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.22.0"
 ```
 
 3. Save the file
@@ -116,7 +116,7 @@ import neko._
 
 class Hello(p: ProcessConfig) extends ActiveProtocol(p, "hello")
 {
-  def run() {
+  def run(): Unit = {
     println(s"Process ${me.name} says: 'Hello Neko World!'")
   }
 }
