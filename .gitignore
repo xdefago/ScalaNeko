@@ -1,16 +1,18 @@
 *.class
 *.log
 
-# sbt specific
+# scala/sbt specific
 .cache
 .history
 .lib/
+.metals
 dist/*
 target/
 lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
+project/metals.sbt
 
 # Scala-IDE specific
 .scala_dependencies
@@ -18,10 +20,8 @@ project/plugins/project/
 
 # VScode specific
 *.code-workspace
-.metals
-project/metals.sbt
+.vscode/
 .bloop
-
 
 # addendum project specific
 project/target/
@@ -33,3 +33,6 @@ project/project/
 # ScalaNeko specific
 src/test/scala/experimental/
 src/main/scala/experimental/
+
+# Mac specific
+.DS_Store
