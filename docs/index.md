@@ -16,5 +16,5 @@ Currently, this page is preliminary and functions only as an index to other reso
 
 ## Documentation (crude)
 
-* [Getting started with IntalliJ IDEA](install/)
+* [Getting started with IntelliJ IDEA](install/)
 * [API documentation](latest/api/neko/)
