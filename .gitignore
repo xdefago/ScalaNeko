@@ -5,6 +5,7 @@
 .cache
 .history
 .lib/
+.bsp/
 .metals
 dist/*
 target/

@@ -9,15 +9,11 @@ version := "0.22.0"
 scalaVersion := "2.13.5"
 
 
-//githubOwner := "xdefago"
-//githubRepository := "ScalaNeko"
+console / initialCommands := "import neko._"
 
+Compile / doc / scalacOptions ++= Seq("-groups", "-implicits", "-author", "-diagrams")
 
-initialCommands in console := "import neko._"
-
-scalacOptions in (Compile,doc) ++= Seq("-groups", "-implicits", "-author", "-diagrams")
-
-scalacOptions in (Compile,doc) ++= Seq("-skip-packages", "experimental:nekox")
+Compile / doc / scalacOptions ++= Seq("-skip-packages", "experimental:nekox")
 
 scalacOptions += "-deprecation"
 
@@ -74,7 +70,7 @@ libraryDependencies ++= javaFXModules.map( m =>
   "org.openjfx" % s"javafx-$m" % "12.0.2" classifier osName
 )
 
-fork in run := true
+run / fork := true
 
 //
 // Settings for publishing to repository over github
@@ -89,18 +85,6 @@ publishTo := Some(Resolver.file("scalaneko", baseDirectory.value / "docs/sbt-rep
 // to use:
 //   resolvers += "titech.c.coord" at "https://github.com/xdefago/sbt-repo/"
 //   libraryDependencies += "titech.c.coord" %% "ocelot" % <version>
-
-
-
-//publishTo :=
-//  Some (
-//    Resolver.ssh ("Defago at Tokyo Tech", "web-o1.noc.titech.ac.jp", "www/sbt-repo") as
-//    "c0004" withPermissions "0644"
-//  )
-
-// TO USE:
-//resolvers += "Defago at Tokyo Tech" at "http://www.coord.c.titech.ac.jp/sbt-repo"
-//libraryDependencies += ("jp.ac.titech.c.coord.defago" %% "scalaneko" % "0.15")
 
 
 // enablePlugins(SiteScaladocPlugin)

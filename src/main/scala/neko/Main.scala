@@ -71,7 +71,7 @@ class Main (
   
   private var _args: Array[String] = _
   
-  //åprivate val initCode = new ListBuffer[() => Unit]
+  // private val initCode = new ListBuffer[() => Unit]
   
   /**
    * The main method.
