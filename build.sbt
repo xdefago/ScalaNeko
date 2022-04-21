@@ -18,10 +18,10 @@ Compile / doc / scalacOptions ++= Seq("-skip-packages", "experimental:nekox")
 scalacOptions += "-deprecation"
 
 libraryDependencies ++= {
-  lazy val graphV = "1.13.1"
-  lazy val logbackV = "1.2.3"
-  lazy val configV = "1.4.0"
-  lazy val loggingV = "3.9.2"
+  lazy val graphV = "1.13.4"
+  lazy val logbackV = "1.2.11"
+  lazy val configV = "1.4.2"
+  lazy val loggingV = "3.9.4"
   lazy val scalaTestV = "3.1.1"
   Seq(
     /*
@@ -44,9 +44,6 @@ libraryDependencies ++= {
     "org.scalatest" %% "scalatest" % scalaTestV % "test"
   )
 }
-
-
-// libraryDependencies += "com.h2database" % "h2" % "1.4.194"
 
 //
 // Settings for JavaFX/ScalaFX
