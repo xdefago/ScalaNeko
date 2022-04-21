@@ -4,9 +4,9 @@ name := "ScalaNeko"
 
 organization := "titech.c.coord"
 
-version := "0.22.0"
+version := "0.23.0"
 
-scalaVersion := "2.13.5"
+scalaVersion := "2.13.8"
 
 
 console / initialCommands := "import neko._"
