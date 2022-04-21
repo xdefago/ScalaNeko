@@ -64,7 +64,7 @@ object Initializer
   }
 
   def fromMap(configMap: Map[String, _<:Any]): Config = {
-    import scala.collection.JavaConverters._
+    import scala.jdk.CollectionConverters._
     ConfigFactory.parseMap(configMap.asJava)
   }
 

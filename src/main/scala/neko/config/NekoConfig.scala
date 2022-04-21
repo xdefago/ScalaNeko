@@ -31,7 +31,7 @@ class NekoConfig(
     val tracer: EventTracer
 )
 {
-  import scala.collection.JavaConverters._
+  import scala.jdk.CollectionConverters._
 
   val isSimulation = config.getBoolean(CF.SIMULATION)
 

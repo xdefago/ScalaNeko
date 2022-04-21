@@ -53,6 +53,8 @@ class SynchronousRounds(config: ProcessConfig)
           throw new Exception (
             s"p$me: (round=$recvRound) got message for older round ($round): $m"
           )
+
+        case _ => /* ignore */
       }
     }
   }

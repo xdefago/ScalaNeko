@@ -127,7 +127,7 @@ object Topology
         for {
           i <- range
           j <- range
-          if j > i && random.nextDouble < threshold
+          if j > i && random.nextDouble() < threshold
         } yield i ~ j
     )
   }

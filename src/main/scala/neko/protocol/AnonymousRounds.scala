@@ -57,7 +57,7 @@ class AnonymousRounds(config: ProcessConfig)
 
     case SynchronousRounds.StartRound(round, ms) =>
       if (ms.values.forall(opt => opt.fold(true)(_.isInstanceOf[Anonymized]))) {
-        val msgs = ms.mapValues {_.map(_.asInstanceOf[Anonymized])}
+        val msgs = ms.view.mapValues {_.map(_.asInstanceOf[Anonymized])}
         val mine = msgs(me).get.content
         val other = msgs.filterKeys( p => p != me).values.flatten.map(_.content).toSeq
         val shuffled = scala.util.Random.shuffle(other)

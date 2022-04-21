@@ -22,6 +22,8 @@ import neko.ID
 import neko.exceptions.{ ActivityAbortedError, InitializationError }
 
 import scala.concurrent.OnCompleteRunnable
+import scala.concurrent.Batchable
+
 
 /**
  * identifier of an activity. Activities are represented by the trait [[ManagedActivity]].
@@ -275,9 +277,9 @@ protected[neko] class ActivityManager(val system: NekoSystem) extends LazyLoggin
           registeredActivities.foreach { info => info.status = Status.Running }
 
           // register cyclic Runnable executing the cyclic actions
-          val action = new Runnable with OnCompleteRunnable {
-            val actions = barrierActions.reverse
-            def run() = {
+          val action = new Runnable with Batchable {
+            val actions: Seq[() => Unit] = barrierActions.reverse
+            def run(): Unit = {
               logger.trace(s"Managed Activities: MUTEX START")
               logger.trace(s"Scheduler actions : $dumpActivitiesStatus")
 

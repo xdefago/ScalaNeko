@@ -1,4 +1,4 @@
-import scala.util.matching.Regex.Match
+//import scala.util.matching.Regex.Match
 
 name := "ScalaNeko"
 
@@ -14,6 +14,8 @@ console / initialCommands := "import neko._"
 Compile / doc / scalacOptions ++= Seq("-groups", "-implicits", "-author", "-diagrams")
 
 Compile / doc / scalacOptions ++= Seq("-skip-packages", "experimental:nekox")
+
+Global / onChangedBuildSource := ReloadOnSourceChanges
 
 scalacOptions += "-deprecation"
 

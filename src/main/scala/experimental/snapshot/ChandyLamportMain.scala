@@ -142,6 +142,8 @@ class MultiTokenRotation(p: ProcessConfig, maxTokens: Int = 10)
           println(s"${me.name}: SNAPSHOT DONE -> " + tokens)
           system.timer.cancel(alarmTask)
           return
+
+        case _ => /* ignore */
       }
     }
   }

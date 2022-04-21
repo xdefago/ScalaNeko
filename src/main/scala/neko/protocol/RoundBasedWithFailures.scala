@@ -77,7 +77,7 @@ class RoundBasedWithFailures(config: ProcessConfig, faultySet: Set[PID]=Set.empt
       checkCrashing() ; DELIVER (InitRound)
 
     case RoundBased.StartRound(r,msgs) =>
-      val batch = msgs.mapValues {
+      val batch = msgs.view.mapValues {
         case Some(_:Crashed)                                         => None
         case Some(PartialCrashed(_,crashed)) if crashed.contains(me) => None
         case Some(PartialCrashed(m,_))                               => Some(m)

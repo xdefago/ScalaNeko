@@ -250,11 +250,12 @@ case class SingleFileTracer(topology: Topology, out: PrintStream)
     val entitiesByPIDName =
       entities
         .groupBy(_.context)
+        .view
         .mapValues { _.groupBy(_.simpleName) }
     
     val nameCountByPID =
       entitiesByPIDName
-        .mapValues( _.mapValues(_.size) )
+        .mapValues( _.view.mapValues(_.size) )
 
     val nameLookupByPID =
       entitiesByPIDName
@@ -333,7 +334,7 @@ case class SingleFileTracer(topology: Topology, out: PrintStream)
     
     val encoders =
       nameLookupByPID.mapValues (
-        _.mapValues (reverseNameLookup).toMap.withDefaultValue(-1)
+        _.view.mapValues (reverseNameLookup).toMap.withDefaultValue(-1)
       )
     
     for (event <- events) {
@@ -399,46 +400,46 @@ case class FileEventTracer(filename: String, topology: Topology)
   val protocolPattern = """[\s\S]*πρ\[([\s\S]*)\][\s\S]*""".r
   val networkPattern = """[\s\S]*network[\s\S]*""".r
 
-  def send(at: Time, by: PID, who: NamedEntity)(event: Event) =
+  def send(at: Time, by: PID, who: NamedEntity)(event: Event): Unit =
     synchronized {
       initFile()
       val proto = usingName(who.toString)
       if (traceName.isEmpty || traceName.get.contains(proto)) {
         val str = stringFor(sSend, at, by, event, proto)
-        printFile(str.length + "," + str + reflect(by, who.toString))
+        printFile(s"${str.length},$str${reflect(by, who.toString)}")
         //eventDB.addEvent(EventForDB(by.name, protocolDB.getID(proto), Time.formatTimeSeconds(at), sSend.name, messageDB.getID(event.toString), id, event.messageID))
       }
     }
   
-  def deliver(at: Time, by: PID, who: NamedEntity)(event: Event) =
+  def deliver(at: Time, by: PID, who: NamedEntity)(event: Event): Unit =
     synchronized {
       initFile()
       val proto = usingName(who.toString)
       if (traceName.isEmpty || traceName.get.contains(proto)) {
         val str = stringFor(sDelv, at, by, event, proto)
-        printFile(str.length + "," + str + reflect(by, who.toString))
+        printFile(s"${str.length},$str${reflect(by, who.toString)}")
         //eventDB.addEvent(EventForDB(by.name, protocolDB.getID(proto), Time.formatTimeSeconds(at), sDelv.name, messageDB.getID(event.toString), id, event.messageID))
       }
     }
   
-  def SEND(at: Time, by: PID, who: NamedEntity)(event: Event) =
+  def SEND(at: Time, by: PID, who: NamedEntity)(event: Event): Unit =
     synchronized {
       initFile()
       val proto = usingName(who.toString)
       if (traceName.isEmpty || traceName.get.contains(proto)) {
         val str = stringFor(lSend, at, by, event, proto)
-        printFile(str.length + "," + str + reflect(by, who.toString))
+        printFile(s"${str.length},$str${reflect(by, who.toString)}")
         //eventDB.addEvent(EventForDB(by.name, protocolDB.getID(proto), Time.formatTimeSeconds(at), lSend.name, messageDB.getID(event.toString), id, event.messageID))
       }
     }
   
-  def DELIVER(at: Time, by: PID, who: NamedEntity)(event: Event) =
+  def DELIVER(at: Time, by: PID, who: NamedEntity)(event: Event): Unit =
     synchronized {
       initFile()
       val proto = usingName(who.toString)
       if (traceName.isEmpty || traceName.get.contains(proto)) {
         val str = stringFor(lDelv, at, by, event, proto)
-        printFile(str.length + "," + str + reflect(by, who.toString))
+        printFile(s"${str.length},$str${reflect(by, who.toString)}")
         //eventDB.addEvent(EventForDB(by.name, protocolDB.getID(proto), Time.formatTimeSeconds(at), lDelv.name, messageDB.getID(event.toString), id, event.messageID))
       }
     }
@@ -522,7 +523,7 @@ case class FileEventTracer(filename: String, topology: Topology)
     }
   }
 
-  def printFile(s: String) = {
+  def printFile(s: String): Unit = {
     initFile()
     file.get.write("\n" + s.length + "," + s)
     file.get.flush()
@@ -532,8 +533,8 @@ case class FileEventTracer(filename: String, topology: Topology)
 
 object NullEventTracer extends EventTracer
 {
-  def send(at: Time, by: PID, who: NamedEntity)(event: Event) = {}
-  def deliver(at: Time, by: PID, who: NamedEntity)(event: Event) = {}
-  def SEND(at: Time, by: PID, who: NamedEntity)(event: Event) = {}
-  def DELIVER(at: Time, by: PID, who: NamedEntity)(event: Event) = {}
+  def send(at: Time, by: PID, who: NamedEntity)(event: Event): Unit = {}
+  def deliver(at: Time, by: PID, who: NamedEntity)(event: Event): Unit = {}
+  def SEND(at: Time, by: PID, who: NamedEntity)(event: Event): Unit = {}
+  def DELIVER(at: Time, by: PID, who: NamedEntity)(event: Event): Unit = {}
 }
