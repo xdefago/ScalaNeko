@@ -17,13 +17,13 @@ package tests
 
 import com.typesafe.config.{ Config, ConfigFactory }
 import neko.config._
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 import tests.init.DummyProcessInitializer
 
 import scala.util.Random
 
 
-class NekoConfigSpec extends FlatSpec
+class NekoConfigSpec extends AnyFlatSpec
 {
   val randSeed = 0xcafebabefeedbeefL
   val rand = new Random(randSeed)

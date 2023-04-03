@@ -16,11 +16,11 @@
 package tests
 
 import neko.kernel._
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
 import scala.concurrent.ExecutionContext
 
-class SchedulerSpec extends FlatSpec with SchedulerBehaviors
+class SchedulerSpec extends AnyFlatSpec with SchedulerBehaviors
 {
   val numIterations = 10
   val executor = ExecutionContext.global

@@ -17,9 +17,9 @@ package tests
 
 import neko.PID
 import neko.topology._
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
-class TopologySpec extends FlatSpec
+class TopologySpec extends AnyFlatSpec
 {
   val ranges = List(0 until 10, 5 until 15, 2 until 30, 10 until 100, 0 until 1000)
 

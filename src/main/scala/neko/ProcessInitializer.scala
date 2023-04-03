@@ -145,6 +145,7 @@ object ProcessInitializer
       Class
         .forName(className)
         .asSubclass(classOf[ProcessInitializer])
+        .getConstructor()
         .newInstance()
     }
   

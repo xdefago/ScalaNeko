@@ -16,9 +16,9 @@
 package tests
 
 import neko._
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
-class IDSpec extends FlatSpec
+class IDSpec extends AnyFlatSpec
 {
   behavior of "PID"
 

@@ -21,9 +21,7 @@ import com.typesafe.scalalogging.LazyLogging
 import neko.ID
 import neko.exceptions.{ ActivityAbortedError, InitializationError }
 
-import scala.concurrent.OnCompleteRunnable
 import scala.concurrent.Batchable
-
 
 /**
  * identifier of an activity. Activities are represented by the trait [[ManagedActivity]].

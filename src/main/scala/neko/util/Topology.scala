@@ -37,7 +37,7 @@ object Topology
     val edgeSet  = edgeSetToOuter(g.edges)
     val edgesDot = edgeSet.map {
         case e : DiEdge[Int]   => s"${e.from} -> ${e.to}"
-        case e : UnDiEdge[Int] => s"${e._1  } -- ${e._2}"
+        case e : UnDiEdge[Int] => s"${e._1} -- ${e._2}"
         case _ => ""
       }
     (if (g.isDirected) "digraph G {" else "graph G {") +

@@ -17,10 +17,10 @@ package tests
 
 import neko.Timer
 import neko.util.Time
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
 trait TimerBehaviors
-{ this: FlatSpec =>
+{ this: AnyFlatSpec =>
   val numIterations = 10
 
   def normalTimer(newTimer: => Timer): Unit = {

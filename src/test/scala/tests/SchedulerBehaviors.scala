@@ -17,10 +17,10 @@ package tests
 
 import neko.kernel.{ PeriodicTask, Scheduler, SimpleTask }
 import neko.util.Time
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
 trait SchedulerBehaviors
-{ this: FlatSpec =>
+{ this: AnyFlatSpec =>
 
   def normalScheduler(newScheduler: => Scheduler): Unit = {
     val numIterations = 10

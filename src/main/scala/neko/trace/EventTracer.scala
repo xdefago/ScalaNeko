@@ -255,6 +255,7 @@ case class SingleFileTracer(topology: Topology, out: PrintStream)
     
     val nameCountByPID =
       entitiesByPIDName
+        .view
         .mapValues( _.view.mapValues(_.size) )
 
     val nameLookupByPID =
@@ -333,7 +334,7 @@ case class SingleFileTracer(topology: Topology, out: PrintStream)
     val events = this.events.reverse.toIndexedSeq
     
     val encoders =
-      nameLookupByPID.mapValues (
+      nameLookupByPID.view.mapValues (
         _.view.mapValues (reverseNameLookup).toMap.withDefaultValue(-1)
       )
     
@@ -406,7 +407,7 @@ case class FileEventTracer(filename: String, topology: Topology)
       val proto = usingName(who.toString)
       if (traceName.isEmpty || traceName.get.contains(proto)) {
         val str = stringFor(sSend, at, by, event, proto)
-        printFile(s"${str.length},$str${reflect(by, who.toString)}")
+        printFile(s"${str.length},${str}${reflect(by, who.toString)}")
         //eventDB.addEvent(EventForDB(by.name, protocolDB.getID(proto), Time.formatTimeSeconds(at), sSend.name, messageDB.getID(event.toString), id, event.messageID))
       }
     }
@@ -417,7 +418,7 @@ case class FileEventTracer(filename: String, topology: Topology)
       val proto = usingName(who.toString)
       if (traceName.isEmpty || traceName.get.contains(proto)) {
         val str = stringFor(sDelv, at, by, event, proto)
-        printFile(s"${str.length},$str${reflect(by, who.toString)}")
+        printFile(s"${str.length},${str}${reflect(by, who.toString)}")
         //eventDB.addEvent(EventForDB(by.name, protocolDB.getID(proto), Time.formatTimeSeconds(at), sDelv.name, messageDB.getID(event.toString), id, event.messageID))
       }
     }
@@ -428,7 +429,7 @@ case class FileEventTracer(filename: String, topology: Topology)
       val proto = usingName(who.toString)
       if (traceName.isEmpty || traceName.get.contains(proto)) {
         val str = stringFor(lSend, at, by, event, proto)
-        printFile(s"${str.length},$str${reflect(by, who.toString)}")
+        printFile(s"${str.length},${str}${reflect(by, who.toString)}")
         //eventDB.addEvent(EventForDB(by.name, protocolDB.getID(proto), Time.formatTimeSeconds(at), lSend.name, messageDB.getID(event.toString), id, event.messageID))
       }
     }
@@ -439,7 +440,7 @@ case class FileEventTracer(filename: String, topology: Topology)
       val proto = usingName(who.toString)
       if (traceName.isEmpty || traceName.get.contains(proto)) {
         val str = stringFor(lDelv, at, by, event, proto)
-        printFile(s"${str.length},$str${reflect(by, who.toString)}")
+        printFile(s"${str.length},${str}${reflect(by, who.toString)}")
         //eventDB.addEvent(EventForDB(by.name, protocolDB.getID(proto), Time.formatTimeSeconds(at), lDelv.name, messageDB.getID(event.toString), id, event.messageID))
       }
     }

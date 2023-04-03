@@ -17,9 +17,10 @@ package tests
 
 import neko._
 import neko.kernel.Dispatcher
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
+import scala.annotation.nowarn
 
-class DispatcherSpec extends FlatSpec
+class DispatcherSpec extends AnyFlatSpec
 {
   val numIterations = 10
 
@@ -36,7 +37,7 @@ class DispatcherSpec extends FlatSpec
 
   it should "register and unregister Receivers properly" in {
     val disp = Dispatcher.withClassLookup()
-    val receivers = for (i <- 1 to numIterations) yield DummyReceiver { ev => i }
+    val receivers = for (i <- 1 to numIterations) yield DummyReceiver { ev => i: @nowarn } // NB: not using the i results in a single receiver being created but scala warns that the variable is unused
     val msgClasses = IndexedSeq(classOf[DummyMessageA], classOf[DummyMessageB], classOf[DummyMessageC])
     val expectedCount = IndexedSeq(4, 7, 10) // NB: not generic !!
 

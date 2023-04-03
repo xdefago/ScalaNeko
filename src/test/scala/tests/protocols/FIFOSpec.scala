@@ -21,7 +21,7 @@ import neko.config.{ CF, NekoConfig }
 import neko.kernel.Initializer
 import neko.kernel.sim.NekoSimSystem
 import neko.protocol._
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
 
 class ProcessApp(c: ProcessConfig, nickname: String) extends ActiveProtocol(c,nickname)
@@ -70,7 +70,7 @@ class FIFOInitializer extends ProcessInitializer
 }
 
 
-class FIFOSpec extends FlatSpec
+class FIFOSpec extends AnyFlatSpec
 {
 
   behavior of "FIFOChannel"

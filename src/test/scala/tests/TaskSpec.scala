@@ -17,9 +17,9 @@ package tests
 
 import neko.kernel.{ PeriodicTask, Scheduler }
 import neko.util.Time
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
-class TaskSpec extends FlatSpec
+class TaskSpec extends AnyFlatSpec
 {
   behavior of "PeriodicTask"
 

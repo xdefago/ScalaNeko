@@ -18,10 +18,10 @@ package tests
 import neko.TaskID
 import neko.kernel.sim.Simulator
 import neko.util.Time
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
 trait SimulatorBehaviors extends TimerBehaviors
-{ this: FlatSpec =>
+{ this: AnyFlatSpec =>
 
   def discreteEventSimulator(newSimulator: => Simulator): Unit = {
     it should behave like normalTimer(newSimulator)

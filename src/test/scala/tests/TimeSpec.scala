@@ -16,9 +16,9 @@
 package tests
 
 import neko.util.Time
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
-class TimeSpec extends FlatSpec
+class TimeSpec extends AnyFlatSpec
 {
   behavior of "Time"
 

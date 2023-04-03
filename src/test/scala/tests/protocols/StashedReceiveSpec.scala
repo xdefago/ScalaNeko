@@ -21,7 +21,7 @@ import neko._
 import neko.config.{ CF, NekoConfig }
 import neko.kernel.Initializer
 import neko.kernel.sim.NekoSimSystem
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
 
 object StashedReceiveCollateral
@@ -35,7 +35,7 @@ object StashedReceiveCollateral
   class Stasher(p: ProcessConfig) extends ActiveProtocol(p) with StashedReceive
   {
     listenTo(classOf[Msg])
-    def run()
+    def run() : Unit =
     {
       var collected = List.empty[Int]
       for (i <- 1 to ITER) {
@@ -51,7 +51,7 @@ object StashedReceiveCollateral
   
   class Thrower(p: ProcessConfig) extends ActiveProtocol(p)
   {
-    def run()
+    def run() : Unit =
     {
       for (i <- ITER to 1 by -1) {
         BROADCAST( Msg(me, i) )
@@ -70,7 +70,7 @@ object StashedReceiveCollateral
 }
 
 
-class StashedReceiveSpec extends FlatSpec
+class StashedReceiveSpec extends AnyFlatSpec
 {
   import StashedReceiveCollateral._
   

@@ -45,11 +45,11 @@ import neko._
 import neko.config.{ CF, NekoConfig }
 import neko.kernel.Initializer
 import neko.kernel.sim.NekoSimSystem
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 import tests.init.AnonRound
 
 
-class AnonymousRoundSpec extends FlatSpec
+class AnonymousRoundSpec extends AnyFlatSpec
 {
   behavior of "AnonymousRound"
 

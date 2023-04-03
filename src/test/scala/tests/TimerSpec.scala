@@ -16,11 +16,11 @@
 package tests
 
 import neko.kernel._
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
 import scala.concurrent.ExecutionContext
 
-class TimerSpec extends FlatSpec with TimerBehaviors
+class TimerSpec extends AnyFlatSpec with TimerBehaviors
 {
   val executor = ExecutionContext.global
 

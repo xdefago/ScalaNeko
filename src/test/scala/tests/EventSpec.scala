@@ -16,12 +16,12 @@
 package tests
 
 import neko._
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
 import scala.util.Random
 
 
-class EventSpec extends FlatSpec
+class EventSpec extends AnyFlatSpec
 {
   val numIterations = 10
   val randomSeed = 0xcafebabefacebeefL

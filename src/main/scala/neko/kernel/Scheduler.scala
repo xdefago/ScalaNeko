@@ -40,7 +40,7 @@ abstract class Scheduler extends LazyLogging
   def schedule(task: Task): Task =
     synchronized {
       logger.trace(s"schedule($task)")
-      taskQueue = taskQueue union Set(task)
+      taskQueue = taskQueue | Set(task)
       task
     }
 

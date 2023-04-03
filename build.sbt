@@ -6,7 +6,7 @@ organization := "titech.c.coord"
 
 version := "0.23.0"
 
-scalaVersion := "2.13.8"
+scalaVersion := "2.13.10"
 
 
 console / initialCommands := "import neko._"

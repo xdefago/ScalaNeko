@@ -19,10 +19,10 @@ import com.typesafe.config.Config
 import neko.config.{ CF, NekoConfig }
 import neko.kernel.Initializer
 import neko.kernel.sim.NekoSimSystem
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 import tests.init._
 
-class NekoSystemSpec extends FlatSpec
+class NekoSystemSpec extends AnyFlatSpec
 {
   behavior of "NekoSystem"
 

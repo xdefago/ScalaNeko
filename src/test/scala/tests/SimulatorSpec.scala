@@ -17,11 +17,11 @@ package tests
 
 import neko.kernel.sim.Simulator
 import neko.kernel.{ ParallelScheduler, SequentialScheduler }
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
 import scala.concurrent.ExecutionContext
 
-class SimulatorSpec extends FlatSpec with SimulatorBehaviors
+class SimulatorSpec extends AnyFlatSpec with SimulatorBehaviors
 {
   behavior of "Simulator (w/sequential scheduler)"
 
