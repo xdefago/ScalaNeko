@@ -19,8 +19,8 @@ import ch.qos.logback.classic.Level
 import javafx.application.Platform
 import neko._
 import neko.topology._
-import scalafx.application.JFXApp
-import scalafx.application.JFXApp.PrimaryStage
+import scalafx.application.JFXApp3
+import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.scene.Scene
 import scalafx.scene.control.{ Tab, TabPane }
 
@@ -29,39 +29,41 @@ class GUIMain(
     logLevel : Level = Level.ERROR,
     logFile  : Option[String] = None,
     withTrace : Boolean = false
-)(initializer: ProcessInitializer) extends JFXApp
+)(initializer: ProcessInitializer) extends JFXApp3
 {
-  stage = new PrimaryStage {
-    title = "Console output"
+  override def start(): Unit = {
+    stage = new PrimaryStage {
+        title = "Console output"
 
-    width  = 1000
-    height = 750
-    
-    scene = new Scene {
-      def sceneWidth  = this.width
-      def sceneHeight = this.height
-      def thisScene   = this
-      content = new TabPane {
-        prefWidth  <== sceneWidth
-        prefHeight <== sceneHeight
+        width  = 1000
+        height = 750
         
-        this +=
-          new Tab {
-            text = "processes"
-            closable = false
-            content  = new MultiprocessConsolePane(topology)(3)
-            {
-              prefWidth  <== sceneWidth
-              prefHeight <== sceneHeight
+        scene = new Scene {
+        def sceneWidth  = this.width
+        def sceneHeight = this.height
+        def thisScene   = this
+        content = new TabPane {
+            prefWidth  <== sceneWidth
+            prefHeight <== sceneHeight
+            
+            this +=
+            new Tab {
+                text = "processes"
+                closable = false
+                content  = new MultiprocessConsolePane(topology)(3)
+                {
+                prefWidth  <== sceneWidth
+                prefHeight <== sceneHeight
+                }
             }
-          }
-       }
-    }
+        }
+        }
 
-    val main = new Main(topology, logLevel, logFile, withTrace)(initializer)
-    
-    Platform.runLater { ()=>
-      main.main(Array.empty)
+        val main = new Main(topology, logLevel, logFile, withTrace)(initializer)
+        
+        Platform.runLater { ()=>
+        main.main(Array.empty)
+        }
     }
   }
 }

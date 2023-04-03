@@ -20,11 +20,11 @@ Global / onChangedBuildSource := ReloadOnSourceChanges
 scalacOptions += "-deprecation"
 
 libraryDependencies ++= {
-  lazy val graphV = "1.13.4"
-  lazy val logbackV = "1.2.11"
+  lazy val graphV = "1.13.6"
+  lazy val logbackV = "1.4.6"
   lazy val configV = "1.4.2"
-  lazy val loggingV = "3.9.4"
-  lazy val scalaTestV = "3.1.1"
+  lazy val loggingV = "3.9.5"
+  lazy val scalaTestV = "3.2.15"
   Seq(
     /*
      *  Configuration
@@ -51,7 +51,7 @@ libraryDependencies ++= {
 // Settings for JavaFX/ScalaFX
 //
 
-libraryDependencies += "org.scalafx" %% "scalafx" % "12.0.2-R18"
+libraryDependencies += "org.scalafx" %% "scalafx" % "18.0.1-R28"
 
 //unmanagedJars in Compile += Attributed.blank(file(System.getenv("JAVA_HOME") + "/jre/lib/ext/jfxrt.jar"))
 
