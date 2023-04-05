@@ -72,7 +72,7 @@ You can also bump up the version number for Scala to `2.13.10` (at time of writi
 1. Clone the project: `git clone https://github.com/xdefago/class-da-prog.git`
 1. Open VSCode: `code class-da-prog`
     * It might take long the first time because Metals will download lots of dependencies
-    * If queried about _"import the build"_, do it and it will take even longer (several minutes). Once done, this will enable code sense for your project which is very useful to see infered types (among other things).
+    * If queried about _"Import Build"_, do it and, although it will take even longer (several minutes), this will enable code sense for your project which is very useful to see infered types (among other things).
 
 ### Run the Hello World
 
