@@ -49,22 +49,22 @@ In a terminal window,
 ### Configure New Project
 
 1. Open the file `build.sbt`. It is in the outline view on the left-hand side of the window.
-2. Add the `libraryDependencies` and `resolvers` lines to the file _(make sure to keep an empty line between each line)_:
-
-```scala
-resolvers += "titech.c.coord" at "https://xdefago.github.io/ScalaNeko/sbt-repo/"
-
-libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.24.0"
-```
-You can also bump up the version number for Scala to `2.13.10` (at time of writing), but version 3 of Scala will not work with ScalaNeko.
+2. Add the `libraryDependencies` and `resolvers` lines to the file _(make sure to keep an empty line between each line)_:   
+  ```scala
+  resolvers += "titech.c.coord" at "https://xdefago.github.io/ScalaNeko/sbt-repo/"
+  
+  libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.24.0"
+  ```
+  You can also bump up the version number for Scala to `2.13.10` (latest version 2 at time of writing), but version 3 of Scala will probably not work with ScalaNeko.
 
 3. Save the file
 4. Open the terminal window (Menu: View > Terminal).
-    1. Type `sbt compile` and see if there are any errors (if there are, you need to fix settings). The first time will probably download lots of things and hence take a very long time.
+    1. Type `sbt compile` and see if there are any errors (if there are, you need to fix settings). 
+    The first time will probably download lots of things and hence take a very long time.
     1. Type `sbt run` and see the hello world program running.
 
 
-## Clone the Distributed Systems Course template
+## Clone the Distributed Systems Course Template
 
 ### Setup the Project
 
@@ -80,11 +80,11 @@ You can also bump up the version number for Scala to `2.13.10` (at time of writi
     1. Type `sbt run`
     1. In the list of executable classes, pick `session0.a_hello_scala.HelloScala` (should probably be number `4`).
     1. You should see the output from the hello word:
-```console
-[info] running (fork) session0.a_hello_scala.HelloScala 
-[info] Hello Scala's world!
-```
-2. To see the code itself, navigate on VScode to `src/main/scala/session0/a_hello_scala/HelloWorld.scala`
+  ```console
+  [info] running (fork) session0.a_hello_scala.HelloScala 
+  [info] Hello Scala's world!
+  ```
+2. To see the code itself, navigate on VScode to `src/main/scala/session0/a_hello_scala/HelloWorld.scala`   
 ```scala
 package session0.a_hello_scala
 
@@ -120,7 +120,7 @@ object HelloNeko
     1. In the terminal, launche the sbt interactive shell: `sbt`
     1. In the sbt shell, type `run` (and select the class)
     1. OR, type `runMain session0.b_hello_neko.HelloNeko` to directly run the class.
-3. You should observe the following (or similar):
+3. You should observe the following (or similar):   
 ```shell
 sbt:DistribAlgo> runMain session0.b_hello_neko.HelloNeko
 [info] compiling 1 Scala source to ...
@@ -134,5 +134,4 @@ sbt:DistribAlgo> runMain session0.b_hello_neko.HelloNeko
 sbt:DistribAlgo> 
 ```
 
-Alternatively, you can also use [IntelliJ IDEA](./idea.html)
-
+Alternatively, you can also use [IntelliJ IDEA](idea)
