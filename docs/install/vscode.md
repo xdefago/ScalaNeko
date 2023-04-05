@@ -55,11 +55,12 @@ In a terminal window,
 
 1. Open the file `build.sbt`. It is in the outline view on the left-hand side of the window.
 2. Add the `libraryDependencies` and `resolvers` lines to the file _(make sure to keep an empty line between each line)_:   
-  ```scala
-  resolvers += "titech.c.coord" at "https://xdefago.github.io/ScalaNeko/sbt-repo/"
+
+```scala
+resolvers += "titech.c.coord" at "https://xdefago.github.io/ScalaNeko/sbt-repo/"
   
-  libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.24.0"
-  ```
+libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.24.0"
+```
   You can also bump up the version number for Scala to `2.13.10` (latest version 2 at time of writing), but version 3 of Scala will probably not work with ScalaNeko.
 
 3. Save the file
