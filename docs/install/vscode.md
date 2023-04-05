@@ -26,8 +26,8 @@ At some point, vscode might query you to install a version of JDK. I suggest tha
 
 1. Open Visual Studio Code.
 1. Install the following extensions:
-    1. Scala Syntax (official)
-    1. Scala (Metals)
+    1. > Scala Syntax (official)
+    1. > Scala (Metals)
 
 ## Create and Configure New Project (from Scratch)
 
