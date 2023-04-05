@@ -12,9 +12,12 @@ The instructions below are tested on a Mac environment and require some adaptati
 
 ## Preliminary Downloads
 
-1. (Mac only) make sure that you have installed the Xcode command-line tools. E.g., with `xcode-select --install`
-1. Download and install [Visual Studo Code](https://code.visualstudio.com). (Mac Only) you can also do that using [Homebrew](https://brew.sh) with `brew install vscode`.
-1. Install `sbt` by [downloading it](https://www.scala-sbt.org) or via a package manager. (Mac only) homebrew solution is recommended for Macs: `brew install sbt`
+1. (Mac only) make sure that you have installed the Xcode command-line tools. E.g., with   
+   `xcode-select --install`
+1. Download and install [Visual Studo Code](https://code.visualstudio.com). (Mac Only) you can also do that using [Homebrew](https://brew.sh) with   
+   `brew install vscode`.
+1. Install `sbt` by [downloading it](https://www.scala-sbt.org) or via a package manager. (Mac only) homebrew solution is recommended for Macs:   
+   `brew install sbt`
 
 At some point, vscode might query you to install a version of JDK. I suggest that you do it, but you can also set it up to find a version already installed.
 
@@ -33,9 +36,11 @@ At some point, vscode might query you to install a version of JDK. I suggest tha
 In a terminal window,
 
 1. Navigate to your project directory
-1. Run the command: `sbt new scala/hello-world.g8`
+1. Run the command:   
+   `sbt new scala/hello-world.g8`
 1. Give a name to your project when queried (e.g., `My Project`).
-1. Open VScode if not already done: `code my-project`
+1. Open VScode if not already done:   
+   `code my-project`
 1. Or navigate to your project directory if you are already in VScode (e.g., `cd my-project`).
 1. You should see the following:
     1. `build.sbt` is the construction file (like Makefile but smarter).
@@ -69,8 +74,10 @@ In a terminal window,
 ### Setup the Project
 
 1. Navigate to your project directory
-1. Clone the project: `git clone https://github.com/xdefago/class-da-prog.git`
-1. Open VSCode: `code class-da-prog`
+1. Clone the project:   
+   `git clone https://github.com/xdefago/class-da-prog.git`
+1. Open VSCode:   
+   `code class-da-prog`
     * It might take long the first time because Metals will download lots of dependencies
     * If queried about _"Import Build"_, do it and, although it will take even longer (several minutes), this will enable code sense for your project which is very useful to see infered types (among other things).
 
