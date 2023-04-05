@@ -92,7 +92,8 @@ In a terminal window,
   [info] Hello Scala's world!
   ```
 2. To see the code itself, navigate on VScode to `src/main/scala/session0/a_hello_scala/HelloWorld.scala`   
-  ```scala
+
+```scala
 package session0.a_hello_scala
 
 object HelloScala extends App
@@ -106,7 +107,8 @@ object HelloScala extends App
 The next example creates a number of processes, each of which prints an hello message.
 
 1. Navigate on VScode to `src/main/scala/session0/b_hello_neko/HelloNeko.scala`   
-  ```scala
+
+```scala
 package session0.b_hello_neko
 
 import neko._
