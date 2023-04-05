@@ -9,3 +9,6 @@ kramdown:
 This page explains how to install, from scratch, a working environment for developing ScalaNeko programs.
 
 There are two versions of these explanations, depending on which IDE/editor you want to use. Both have excellent support for the Scala language. For many years, [IntelliJ IDEA](idea) was the preferred choice, but nowadays [Visual Studio Code](vscode) is recommended.
+
+* Getting Started on ScalaNeko with [Visual Studio Code](vscode).
+* Getting Started on ScalaNeko with [IntelliJ IDEA](idea).
