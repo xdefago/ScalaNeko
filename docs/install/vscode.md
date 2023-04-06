@@ -48,7 +48,8 @@ In a terminal window,
     1. `project/` is some meta information that you can genrally ignore.
     1. `.metal/` ditto.
     1. `.vscode/` ditto.
-1. If using `git` you can safely add the latter two directories to your `.gitignore` file.
+    1. `.bloop/` ditto.
+1. If using `git` you can safely add the latter three directories to your `.gitignore` file.
 
 
 ### Configure New Project
