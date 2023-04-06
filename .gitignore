@@ -6,7 +6,8 @@
 .history
 .lib/
 .bsp/
-.metals
+.metals/
+.bloop/
 dist/*
 target/
 lib_managed/
@@ -22,7 +23,6 @@ project/metals.sbt
 # VScode specific
 *.code-workspace
 .vscode/
-.bloop
 
 # addendum project specific
 project/target/
