@@ -82,6 +82,12 @@ libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.24.0"
    `code class-da-prog`
     * It might take long the first time because Metals will download lots of dependencies
     * If queried about _"Import Build"_, do it and, although it will take even longer (several minutes), this will enable code sense for your project which is very useful to see infered types (among other things).
+    * If you missed the above import, you can trigger it manually as follows:
+        * Menu: _View > Command Palette...
+        * In the prompt, type: `import`
+        * Select: `Metals: Import build`
+        * wait...
+        * ... _et voilà!_
 
 ### Run the Hello World
 
