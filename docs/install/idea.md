@@ -6,15 +6,15 @@ kramdown:
 ---
 # Installing Programming Environment (Intellij IDEA)
 
-This page explains how to install, from scratch, a working environment for developing ScalaNeko programs.
+This page explains how to install, from scratch, a working environment for developing ScalaNeko programs, using the environment provided by Intellij IDEA. The steps have not been tested since 2022, and hence the explanations might require some adaptation to the current situation.
 
 ## Preliminary Downloads
 
 1. (Mac only) On Mac OS X, you will possibly be required to install the execution environment for Java 1.6 as well. To do so, open the `Terminal` application, type `java -version`. If Java is not installed, you will be prompted to install it (just follow the instruction which will guide you through the download and install process). If it is already installed, you're all good so far and can simply go to the next step.
 
-2. Download and install **Java SE Development Kit** _(Java SE 17)_ from Oracle at <https://www.oracle.com/java/technologies/javase-downloads.html>. You need to install the JDK (not the JRE). On Mac, you can alternatively install it via Homebrew: `brew install openjdk`
+2. Download and install **Java SE Development Kit** _(Java SE 17; or maybe higher)_ from Oracle at <https://www.oracle.com/java/technologies/javase-downloads.html>. You need to install the JDK (not the JRE). On Mac, you can alternatively install it via Homebrew: `brew install openjdk`
 
-3. Download and install **IntelliJ IDEA** _(version 2023.1)_ from JetBrains at <https://www.jetbrains.com/idea/download/>. If unsure, select the Community Edition. You can request an academic license for the Ultimate version by registering with your titech email address.
+3. Download and install **IntelliJ IDEA** _(version 2024.1)_ from JetBrains at <https://www.jetbrains.com/idea/download/>. If unsure, select the Community Edition. You can request an academic license for the Ultimate version by registering with your titech email address.
 
 
 
@@ -71,7 +71,7 @@ name := "DistribCourse"
 
 version := "1.0"
 
-scalaVersion := "2.13.10"
+scalaVersion := "2.13.13"
 
 resolvers += "titech.c.coord" at "https://xdefago.github.io/ScalaNeko/sbt-repo/"
 

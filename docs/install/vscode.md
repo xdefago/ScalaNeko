@@ -63,7 +63,7 @@ resolvers += "titech.c.coord" at "https://xdefago.github.io/ScalaNeko/sbt-repo/"
   
 libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.24.0"
 ```
-  You can also bump up the version number for Scala to `2.13.10` (latest version 2 at time of writing), but version 3 of Scala will probably not work with ScalaNeko.
+  You can also bump up the version number for Scala to `2.13.13` (latest version 2 at time of writing), but version 3 of Scala will probably not work with ScalaNeko.
 
 3. Save the file
 4. Open the terminal window (Menu: View > Terminal).
@@ -82,7 +82,7 @@ libraryDependencies += "titech.c.coord" %% "scalaneko" % "0.24.0"
 1. Open VSCode:   
    `code class-da-prog`
     * It might take long the first time because Metals will download lots of dependencies
-    * If queried about _"Import Build"_, do it and, although it will take even longer (several minutes), this will enable code sense for your project which is very useful to see infered types (among other things).
+    * If queried about _"Import Build"_, do it and, although it will take even longer (several minutes), this will enable code sense for your project which is very useful to see inferred types (among other things).
     * If you missed the above import, you can trigger it manually as follows:
         * Menu: _View > Command Palette...
         * In the prompt, type: `import`
@@ -135,7 +135,7 @@ object HelloNeko
   )
 ```
 2. Run the example (alternative method):
-    1. In the terminal, launche the sbt interactive shell: `sbt`
+    1. In the terminal, launch the sbt interactive shell: `sbt`
     1. In the sbt shell, type `run` (and select the class)
     1. OR, type `runMain session0.b_hello_neko.HelloNeko` to directly run the class.
 3. You should observe the following (or similar):   
