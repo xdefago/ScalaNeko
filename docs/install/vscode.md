@@ -38,6 +38,7 @@ In a terminal window,
 1. Navigate to your project directory
 1. Run the command:   
    `sbt new scala/hello-world.g8`
+    _(NB: it can take several minutes before anything happens; just be patient)_
 1. Give a name to your project when queried (e.g., `My Project`).
 1. Open VScode if not already done:   
    `code my-project`
@@ -45,7 +46,7 @@ In a terminal window,
 1. You should see the following:
     1. `build.sbt` is the construction file (like Makefile but smarter).
     1. `src/main/scala/` is the directory with the source code.
-    1. `project/` is some meta information that you can genrally ignore.
+    1. `project/` is some meta information that you can generally ignore.
     1. `.metal/` ditto.
     1. `.vscode/` ditto.
     1. `.bloop/` ditto.
