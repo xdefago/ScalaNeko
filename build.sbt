@@ -6,7 +6,7 @@ organization := "titech.c.coord"
 
 version := "0.24.0"
 
-scalaVersion := "2.13.10"
+scalaVersion := "2.13.13"
 
 
 console / initialCommands := "import neko._"
@@ -17,7 +17,10 @@ Compile / doc / scalacOptions ++= Seq("-skip-packages", "experimental:nekox")
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
-scalacOptions += "-deprecation"
+scalacOptions ++= Seq(
+    "-Xsource:3",
+    "-deprecation",
+)
 
 libraryDependencies ++= {
   lazy val graphV = "1.13.6"
