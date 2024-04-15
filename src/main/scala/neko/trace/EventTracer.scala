@@ -362,19 +362,19 @@ object SingleFileTracer
   }
   case class EventSnd(at: Time, by: PID, who: NamedEntity, ev: Event) extends EventInfo
   {
-    def kind = EventFormatter.sSend
+    def kind: neko.trace.EventFormatter.EventKind = EventFormatter.sSend
   }
   case class EventSEND(at: Time, by: PID, who: NamedEntity, ev: Event) extends EventInfo
   {
-    def kind = EventFormatter.lSend
+    def kind: neko.trace.EventFormatter.EventKind = EventFormatter.lSend
   }
   case class EventDlv(at: Time, by: PID, who: NamedEntity, ev: Event) extends EventInfo
   {
-    def kind = EventFormatter.sDelv
+    def kind: neko.trace.EventFormatter.EventKind = EventFormatter.sDelv
   }
   case class EventDELIVER(at: Time, by: PID, who: NamedEntity, ev: Event) extends EventInfo
   {
-    def kind = EventFormatter.lDelv
+    def kind: neko.trace.EventFormatter.EventKind = EventFormatter.lDelv
   }
 }
 

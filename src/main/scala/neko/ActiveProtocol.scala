@@ -154,7 +154,7 @@ abstract class ActiveProtocol(config: ProcessConfig, nickname: String = "unnamed
   //override def SEND(m: Event):Unit =  { sender.send(m) }
 
   override def deliver(event: Event): Unit = {
-    onReceiveWithTrace.applyOrElse(event, { e: Event =>
+    onReceiveWithTrace.applyOrElse(event, { (e: Event) =>
       logger.trace(s"${id.name} : ENQUEUE ${e.toPrettyString}")
       messageCount.incrementAndGet()
       blockingQueue.offer(e)

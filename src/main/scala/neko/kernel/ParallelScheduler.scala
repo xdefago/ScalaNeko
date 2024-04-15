@@ -26,7 +26,7 @@ class ParallelScheduler(executor: ExecutionContext) extends Scheduler
 {
   logger.warn("Beware that ParallelScheduler is not inherently threadsafe! Use at your own risks")
 
-  implicit val exec = executor
+  implicit val exec: scala.concurrent.ExecutionContext = executor
 
   protected[this] def executeBatch(time: Time, tasks: SortedSet[Task]): Unit =
   {

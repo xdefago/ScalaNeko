@@ -51,7 +51,7 @@ trait Protocol extends NamedEntity
   def name = s"${process.name}:${id.name}"
   
   override def simpleName = id.name
-  override def context    = Some(process)
+  override def context: Option[neko.PID] = Some(process)
 
   /**
    * override this method to perform initializations just before the process begins to run.

@@ -24,7 +24,7 @@ import scalax.collection.GraphEdge.UnDiEdge
 
 class Ring(range: Range) extends Topology
 {
-  val processSet : Set[PID] = range.map(PID).toSet
+  val processSet : Set[PID] = range.map(i => PID(i)).toSet
   val size = range.size
 
   private def nextOf(p: PID): PID = p.map { i => ((i+1-range.min) % size) + range.min }

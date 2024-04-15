@@ -52,7 +52,7 @@ class ArbitraryTopology(config: ProcessConfig, val topology: Graph[Int,UnDiEdge]
     case ie : Signal => SEND(ie)
 
     case m  : Message =>
-      SEND(MessageShell(me, m.destinations intersect neighborhood.map(PID), m))
+      SEND(MessageShell(me, m.destinations intersect neighborhood.map(i => PID(i)), m))
       if (m.destinations.contains(me)) DELIVER(m)
   }
 

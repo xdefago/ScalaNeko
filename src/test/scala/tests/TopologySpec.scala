@@ -233,7 +233,7 @@ class TopologySpec extends AnyFlatSpec
 
     assertResult((5 to 10).toSet)(intersectRange)
 
-    val intersect = intersectRange.map(PID)
+    val intersect = intersectRange.map(i => PID(i))
 
     val ring1 = Ring(range1)
     val ring2 = Ring(range2)
@@ -339,7 +339,7 @@ class TopologySpec extends AnyFlatSpec
 
     assertResult((5 to 10).toSet)(intersectRange)
 
-    val intersect = intersectRange.map(PID)
+    val intersect = intersectRange.map(i => PID(i))
 
     val ring1 = Ring(range1)
     val ring2 = Ring(range2)
@@ -414,7 +414,7 @@ class TopologySpec extends AnyFlatSpec
 
     assertResult((5 to 10).toSet)(intersectRange)
 
-    val intersect = intersectRange.map(PID)
+    val intersect = intersectRange.map(i => PID(i))
 
     val ring1 = Ring(range1)
     val ring2 = Ring(range2)

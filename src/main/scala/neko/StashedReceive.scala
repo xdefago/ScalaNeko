@@ -30,7 +30,7 @@ trait StashedReceive { this: ActiveProtocol =>
       .find(pf.isDefinedAt)
       .fold{
         while (true) {
-          Receive { m: Event =>
+          Receive { (m: Event) =>
             if (pf.isDefinedAt(m)) {
               pf(m)
               return

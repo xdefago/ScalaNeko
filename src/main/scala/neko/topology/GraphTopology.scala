@@ -34,7 +34,7 @@ trait GraphTopology extends Topology
     optNode
       .map { p =>
         val neighborhood: Set[Int] = p.neighbors.map {_.toInt}
-        neighborhood.map(PID)
+        neighborhood.map(i => PID(i))
       }
   }
 

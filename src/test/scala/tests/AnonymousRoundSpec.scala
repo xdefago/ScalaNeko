@@ -80,7 +80,7 @@ class AnonymousRoundSpec extends AnyFlatSpec
 
       val result = AnonRound.AggregatorLock.synchronized { AnonRound.aggregator.clone() }
 
-      val processes = (0 until processNum).map (PID).toSet
+      val processes = (0 until processNum).map (i => PID(i)).toSet
 
       //assert (result.nonEmpty, result)
       /*

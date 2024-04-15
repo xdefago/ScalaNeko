@@ -28,7 +28,7 @@ import scala.util.Try
 trait Network extends NamedEntity with Sender
 {
   def name      = "network"
-  def senderOpt = None
+  def senderOpt: Option[neko.Sender] = None
   
   def topology: neko.topology.Topology
 

@@ -66,7 +66,7 @@ case class PeriodicTask(
     extends Task
 {
   val action: Time => Unit = {
-    time: Time =>
+    (time: Time) =>
       val willReschedule = repeatAction(time)
       if (willReschedule) {
         val nextTask = this.copy(time = time + period, id = this.id)

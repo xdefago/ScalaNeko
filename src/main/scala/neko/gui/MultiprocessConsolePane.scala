@@ -65,10 +65,10 @@ class MultiprocessConsolePane(topology: Topology)(columns: Int = 1) extends Grid
     } yield
       new WriterArea(name)
       {
-        promptText = s"$name > "
+        promptText = s"${this.name} > "
         editable = false
         font = Font("Menlo", 12.0)
-        onMouseClicked = { ev => out.println(s"Mouse at (${ev.getSceneX }, ${ev.getSceneY })") }
+        onMouseClicked = { ev => this.out.println(s"Mouse at (${ev.getSceneX }, ${ev.getSceneY })") }
       }
   }
   private val lookupPID  = pids.zipWithIndex.map { case (pid,i) => pid -> i }.toMap
@@ -95,7 +95,7 @@ class MultiprocessConsolePane(topology: Topology)(columns: Int = 1) extends Grid
       promptText = s"$name > "
       editable = false
       font = Font("Menlo", 12.0)
-      onMouseClicked = { ev => out.println(s"Mouse at (${ev.getSceneX }, ${ev.getSceneY })") }
+      onMouseClicked = { ev => this.out.println(s"Mouse at (${ev.getSceneX }, ${ev.getSceneY })") }
       
       tooltip = new Tooltip(name)
       prefWidth  <== paneWidth

@@ -47,6 +47,10 @@ class ProcessApp(c: ProcessConfig, nickname: String) extends ActiveProtocol(c,ni
         case AppMessage(from,_,sn) =>
           println(s"Out-of-sync message: from=$from, sn=$sn; expected=${receipts(from)}")
           assert(false)
+
+        case unknown => 
+          println(s"UNKNOWN: ${unknown}")
+          assert(false)
       }
     }
     neighbors.foreach { p =>

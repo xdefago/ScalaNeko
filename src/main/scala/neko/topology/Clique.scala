@@ -22,7 +22,7 @@ import scalax.collection.GraphEdge.UnDiEdge
 
 class Clique(range: Range) extends Topology
 {
-  val processSet : Set[PID] = range.map(PID).toSet
+  val processSet : Set[PID] = range.map(i => PID(i)).toSet
   val size = range.size
 
   def neighborsFor (process: PID): Option[Set[PID]] =

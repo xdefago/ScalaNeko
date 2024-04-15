@@ -16,7 +16,7 @@
 package neko.kernel
 
 import java.io.File
-import java.net.{ MalformedURLException, URL }
+import java.net.{ MalformedURLException, URL, URI }
 
 import ch.qos.logback.classic.Level
 import com.typesafe.config.{ Config, ConfigFactory }
@@ -56,7 +56,7 @@ object Initializer
     }
 
     try {
-      fromURL(new URL(args(0)))
+      fromURL(new URI(args(0)).toURL)
     } catch {
       case _ : MalformedURLException =>
         fromFile(new File(args(0)))

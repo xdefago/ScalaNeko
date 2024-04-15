@@ -29,7 +29,7 @@ class NekoProcess(val id: PID, val system: NekoSystem)(config: NekoConfig, outOp
   // TODO: fix support for processes' out
   def out       = outOption.getOrElse { new PrintWriter(new OutputStreamWriter(Console.out)) }
   def name      = id.name
-  def senderOpt = Some(sender)
+  def senderOpt: Option[neko.Sender] = Some(sender)
   
   val network    = system.network
   val dispatcher = Dispatcher.withClassLookup()
@@ -73,7 +73,7 @@ object NekoProcess
     extends neko.Sender
   {
     def name      = s"${p.name}: network interface"
-    def senderOpt = Some(network)
+    def senderOpt: Option[neko.Sender] = Some(network)
     /**
      * Discard all messages that pass through it.
      * The shutdown code calls this function.
